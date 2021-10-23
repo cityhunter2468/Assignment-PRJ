@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/D:/prj/Assignment/web/view/Upload.jsp</file>
+            <file>file:/D:/prj/Assignment/src/java/Controller/profile/Profile.java</file>
+            <file>file:/D:/prj/Assignment/web/view/Narbar.jsp</file>
+            <file>file:/D:/prj/Assignment/web/css/styleProfile.css</file>
+            <file>file:/D:/prj/Assignment/src/java/Dal/PostDBContext.java</file>
+            <file>file:/D:/prj/Assignment/web/WEB-INF/web.xml</file>
+            <file>file:/D:/prj/Assignment/src/java/Controller/authen/BaseReqAuth.java</file>
+            <file>file:/D:/prj/Assignment/web/index.html</file>
+            <file>file:/D:/prj/Assignment/src/java/Dal/DBContext.java</file>
+            <file>file:/D:/prj/Assignment/src/java/Controller/authen/Logout.java</file>
+            <file>file:/D:/prj/Assignment/src/java/Controller/authen/Register.java</file>
+            <file>file:/D:/prj/Assignment/src/java/Controller/home/Upload.java</file>
+            <file>file:/D:/prj/Assignment/src/java/Controller/authen/Authen.java</file>
+            <file>file:/D:/prj/Assignment/src/java/Controller/home/Home.java</file>
+            <file>file:/D:/prj/Assignment/web/css/styleNewFeed.css</file>
+            <file>file:/D:/prj/Assignment/web/css/styleUpload.css</file>
+            <file>file:/D:/prj/Assignment/web/css/styleNarbar.css</file>
+            <file>file:/D:/prj/Assignment/web/view/Login.jsp</file>
+            <file>file:/D:/prj/Assignment/web/view/Profile.jsp</file>
+            <file>file:/D:/prj/Assignment/src/java/Model/Account.java</file>
+            <file>file:/D:/prj/Assignment/src/java/Model/Post.java</file>
+            <file>file:/D:/prj/Assignment/src/java/Dal/AccountDBContext.java</file>
+            <file>file:/D:/prj/Assignment/web/assert/10.png</file>
+            <file>file:/D:/prj/Assignment/web/view/Register.jsp</file>
+            <file>file:/D:/prj/Assignment/web/script/script_Narbar.js</file>
+            <file>file:/D:/prj/Assignment/web/view/NewFeed.jsp</file>
+            <file>file:/D:/prj/Assignment/web/css/styleRegisterandLogin.css</file>
+        </group>
+    </open-files>
+</project-private>

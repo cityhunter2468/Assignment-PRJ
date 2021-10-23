@@ -1,0 +1,105 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Oct 19, 2021, 11:16:09 AM
+    Author     : levan
+*/
+
+.status-field-container {
+    margin-top: 20px;
+    margin-left: 160px;
+}
+
+.write-post-container {
+    color: white;
+    background-color: #383030;
+    width: 65%;
+    padding: 20px;
+    border-radius: 6px;
+    height: 510px;
+    overflow-y: auto; 
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+}
+
+.user-profile img {
+    width: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.user-profile p {
+    color: white;
+    margin-bottom: -5px;
+}
+
+.user-profile small {
+    font-size: 12px;
+}
+
+.status-field{
+    width:100%;
+    text-align: center;
+}
+.status-field img {
+    height: 300px;
+    margin-top: 15px;
+    border-radius: 6px;
+}
+
+.status-field p {
+    font-size: 14px;
+    margin: 20px 0px 5px 0px;
+    text-transform: capitalize;
+    color: white;
+    text-align: left;
+}
+
+.status-field p a {
+    color: #3c80e6;
+}
+
+.activity-icons div {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 30px;
+}
+.activity-icons button{
+
+    border: none;
+}
+
+.post-reaction {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 2px solid #c9ced6;
+}
+
+.post-reaction .activity-icons i{
+    margin-right: 3px;
+    margin-left: 3px;
+}
+
+.post-reaction .activity-icons div{
+    color: white;
+    cursor:pointer;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d5d5db;
+}
+
+
