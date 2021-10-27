@@ -79,6 +79,16 @@ public class ProfileEdit extends BaseReqAuth {
         p.setTwitter(request.getParameter("twit"));
         p.setInsta(request.getParameter("ins"));
         p.setFace(request.getParameter("face"));
+        
+        Account ac = (Account) request.getSession().getAttribute("account");
+        ProfileDBContext pdb = new ProfileDBContext();
+        Profile pp = pdb.getProfile(ac.getId());
+        response.getWriter().println(pp);
+        if (pp == null){
+            pdb.insertProfile(p, ac.getId());
+        } else {
+            pdb.updateProfile(p);
+        }        
     }
 
     /**
