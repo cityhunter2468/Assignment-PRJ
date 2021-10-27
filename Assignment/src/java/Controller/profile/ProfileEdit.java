@@ -87,8 +87,9 @@ public class ProfileEdit extends BaseReqAuth {
         if (pp == null){
             pdb.insertProfile(p, ac.getId());
         } else {
-            pdb.updateProfile(p);
-        }        
+            pdb.updateProfile(p, ac.getId());
+        }
+        response.sendRedirect("edit");
     }
 
     /**

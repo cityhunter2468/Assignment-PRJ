@@ -21,7 +21,7 @@ public class ProfileDBContext extends DBContext {
 
     public Profile getProfile(int id) {
         try {
-            String sql = " select * from Profile where user_id = 1";
+            String sql = " select * from Profile where user_id = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, id);
             ResultSet rs = stm.executeQuery();
@@ -49,7 +49,7 @@ public class ProfileDBContext extends DBContext {
         return null;
     }
 
-    public void updateProfile(Profile p) {
+    public void updateProfile(Profile p, int id) {
         try {
             String sql = "UPDATE [dbo].[Profile]\n"
                     + "   SET [Website] = ?\n"
@@ -80,6 +80,7 @@ public class ProfileDBContext extends DBContext {
             stm.setString(11, p.getNumber());
             stm.setString(12, p.getOccupation());
             stm.setString(13, p.getSkill());
+            stm.setInt(14, id);
             stm.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(ProfileDBContext.class.getName()).log(Level.SEVERE, null, ex);
@@ -103,6 +104,7 @@ public class ProfileDBContext extends DBContext {
                     + "           ,[Mobile_Number]\n"
                     + "           ,[Occupation]\n"
                     + "           ,[Skills]\n"
+                    + "           )\n"
                     + "     VALUES\n"
                     + "           (?\n"
                     + "           ,?\n"
@@ -116,8 +118,9 @@ public class ProfileDBContext extends DBContext {
                     + "           ,?\n"
                     + "           ,?\n"
                     + "           ,?\n"
-                    + "           ,?\n"                          
-                    + "           ,?)";
+                    + "           ,?\n"
+                    + "           ,?\n"
+                    + "           )";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, id);
             stm.setString(2, p.getWed());
@@ -127,7 +130,7 @@ public class ProfileDBContext extends DBContext {
             stm.setString(6, p.getFace());
             stm.setString(7, p.getFname());
             stm.setInt(8, p.getGender());
-            stm.setDate(9, (Date) p.getDob());
+            stm.setDate(9, p.getDob());
             stm.setString(10, p.getMstatus());
             stm.setString(11, p.getLocation());
             stm.setString(12, p.getNumber());
