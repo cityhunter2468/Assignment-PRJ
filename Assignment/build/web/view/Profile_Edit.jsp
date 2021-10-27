@@ -12,6 +12,33 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/styleProfile_Edit.css" />
+        <style>
+            body{
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                -o-user-select: none;
+                user-select: none;
+            }
+        </style>
+
+        <script>
+            function killCopy(e) {
+                return false;
+            }
+
+            function reEnable() {
+                return true;
+            }
+
+            document.onselectstart = new Function("return false");
+
+            if (window.sidebar) {
+                document.onmousedown = killCopy;
+                document.onclick = reEnable;
+            }
+        </script>
     </head>
     <body>
         <jsp:include page="Narbar.jsp"></jsp:include>
@@ -22,30 +49,37 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="d-flex flex-column align-items-center text-center">
-                                        <img src="${pageContext.request.contextPath}/assert/no_avata.jpg" alt="Admin" class="rounded-circle p-1 bg-primary" width="110" height="110">
-                                        <div class="mt-3">
-                                            <h4>John Doe</h4>
-                                            <p class="text-secondary mb-1">${requestScope.profile.occupation}</p>
-                                            <p class="text-muted font-size-sm">${requestScope.profile.location}</p>  
-                                            <button class="btn btn-outline-primary">Change Avata</button>
-                                        </div>
+                                        <img <c:choose>
+                                             <c:when test = "${requestScope.profile.url_avata != null}">
+                                                 Salary is very low to survive.
+                                             </c:when>
+                                             <c:otherwise>
+                                                 src="${pageContext.request.contextPath}/assert/no_avata.jpg" 
+                                             </c:otherwise>
+                                        </c:choose>alt="Admin" class="rounded-circle p-1 bg-primary" width="110" height="110">
+                                    <div class="mt-3">
+                                        <h4>${sessionScope.account.displayname}</h4>
+                                        <p class="text-secondary mb-1">${requestScope.profile.occupation}</p>
+                                        <p class="text-muted font-size-sm">${requestScope.profile.location}</p>  
+                                        <button class="btn btn-outline-primary">Change Avata</button>
                                     </div>
-                                    <hr class="my-4">
                                 </div>
+                                <hr class="my-4">
                             </div>
                         </div>
+                    </div>
 
-                        <div class="col-lg-8">    
-                            <form method="post" action="edit">
-                                <div class="card">
+                    <div class="col-lg-8">    
+                        <form method="post" action="edit">
+                            <div class="card">
 
-                                    <div class="card-body">
-                                        <div class="row mb-3">
-                                            <div class="col-sm-4">
-                                                <h6 class="mb-0">Full Name</h6>
-                                            </div>
-                                            <div class="col-sm-8 text-secondary">
-                                                <input type="text" class="form-control" value="${requestScope.profile.fname}" name="name">
+                                <div class="card-body">
+                                    <div class="row mb-3">
+                                        <div class="col-sm-4">
+                                            <h6 class="mb-0">Full Name</h6>
+                                        </div>
+                                        <div class="col-sm-8 text-secondary">
+                                            <input type="text" class="form-control" value="${requestScope.profile.fname}" name="name">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
