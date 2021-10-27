@@ -5,10 +5,16 @@
  */
 package Dal;
 
+import Model.Profile;
+
 /**
  *
  * @author levan
  */
 public class ProfileDBContext {
-    //tren git
+    //trong may
+    public Profile getProfile(int id){
+        
+        return null;
+    }
 }

@@ -6,6 +6,7 @@
 package Controller.profile;
 
 import Controller.authen.BaseReqAuth;
+import Model.Account;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -43,6 +44,8 @@ public class ProfileEdit extends BaseReqAuth {
     protected void processGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String servletPath = request.getContextPath();
+        Account ac = (Account) request.getSession().getAttribute("account");
+        
         System.out.println(servletPath);
         request.getRequestDispatcher(".././view/Profile_Edit.jsp").forward(request, response);
     }

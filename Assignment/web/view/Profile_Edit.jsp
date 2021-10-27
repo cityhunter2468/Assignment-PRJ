@@ -57,7 +57,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-8">
+
+                    <div class="col-lg-8">    
                         <form method="post" action="edit?pt=1">
                             <div class="card">
 
@@ -130,19 +131,12 @@
                                             <input type="text" class="form-control" value="Bay Area, San Francisco, CA" name="skill">
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-sm-4"></div>
-                                        <div class="col-sm-8 text-secondary">
-                                            <input type="submit" class="btn btn-primary px-4" value="Save Changes">
-                                        </div>
-                                    </div>
                                 </div>
 
                             </div>
-                        </form>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <form method="post" action="edit">
+
+                            <div class="row">
+                                <div class="col-sm-12">
                                     <div class="card">
                                         <div class="card-body">
                                             <h5 class="d-flex align-items-center mb-3">Link</h5>
@@ -189,10 +183,11 @@
                                             </div>
                                         </div>
                                     </div>
-                                </form>
+                                </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
+
                 </div>
             </div>
         </div>
