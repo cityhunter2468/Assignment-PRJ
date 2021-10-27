@@ -6,9 +6,12 @@
 package Controller.profile;
 
 import Controller.authen.BaseReqAuth;
+import Dal.ProfileDBContext;
 import Model.Account;
+import Model.Profile;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -45,8 +48,9 @@ public class ProfileEdit extends BaseReqAuth {
             throws ServletException, IOException {
         String servletPath = request.getContextPath();
         Account ac = (Account) request.getSession().getAttribute("account");
-        
-        System.out.println(servletPath);
+        ProfileDBContext pdb = new ProfileDBContext();
+        Profile p = pdb.getProfile(ac.getId());
+        request.setAttribute("profile",p);
         request.getRequestDispatcher(".././view/Profile_Edit.jsp").forward(request, response);
     }
 
@@ -61,11 +65,20 @@ public class ProfileEdit extends BaseReqAuth {
     @Override
     protected void processPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-       int pt = Integer.parseInt(request.getParameter("pt"));
-       if (pt == 1){
-           String name = request.getParameter("name");
-       }
+        Profile p = new Profile();
+        p.setFname(request.getParameter("name"));
+        p.setGender(Integer.parseInt(request.getParameter("gender")));
+        p.setDob(Date.valueOf(request.getParameter("dob")));
+        p.setMstatus(request.getParameter("status"));
+        p.setLocation(request.getParameter("location"));
+        p.setNumber(request.getParameter("phone"));
+        p.setOccupation(request.getParameter("occupation"));
+        p.setSkill(request.getParameter("skill"));
+        p.setWed(request.getParameter("web"));
+        p.setGithub(request.getParameter("git"));
+        p.setTwitter(request.getParameter("twit"));
+        p.setInsta(request.getParameter("ins"));
+        p.setFace(request.getParameter("face"));
     }
 
     /**
