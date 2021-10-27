@@ -41,8 +41,9 @@ public class ProfileView extends BaseReqAuth {
     protected void processGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //tren git
-        String servletPath = request.getContextPath();
-        System.out.println(servletPath);
+//        String servletPath = request.getContextPath();
+//        System.out.println(servletPath);
+        
         request.getRequestDispatcher(".././view/Profile.jsp").forward(request, response);
     }
 
