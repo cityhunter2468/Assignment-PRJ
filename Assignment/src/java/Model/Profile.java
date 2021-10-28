@@ -13,7 +13,7 @@ import java.sql.Date;
  * @author levan
  */
 public class Profile {
-    private String url_avata;
+   
     private String wed;
     private String github;
     private String twitter;
@@ -27,14 +27,6 @@ public class Profile {
     private String number;
     private String occupation;
     private String skill;
-
-    public String getUrl_avata() {
-        return url_avata;
-    }
-
-    public void setUrl_avata(String url_avata) {
-        this.url_avata = url_avata;
-    }
 
     public String getWed() {
         return wed;
@@ -140,8 +132,8 @@ public class Profile {
         this.skill = skill;
     }
 
-    public Profile(String url_avata, String wed, String github, String twitter, String insta, String face, String fname, int gender, Date dob, String mstatus, String location, String number, String occupation, String skill) {
-        this.url_avata = url_avata;
+    public Profile(String wed, String github, String twitter, String insta, String face, String fname, int gender, Date dob, String mstatus, String location, String number, String occupation, String skill) {
+        
         this.wed = wed;
         this.github = github;
         this.twitter = twitter;

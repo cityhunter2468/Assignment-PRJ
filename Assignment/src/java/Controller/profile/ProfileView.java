@@ -46,7 +46,7 @@ public class ProfileView extends BaseReqAuth {
         
         request.getRequestDispatcher(".././view/Profile.jsp").forward(request, response);
     }
-
+    
     /**
      * Handles the HTTP <code>POST</code> method.
      *

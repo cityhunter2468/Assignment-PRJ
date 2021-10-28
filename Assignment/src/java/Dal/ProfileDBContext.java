@@ -27,7 +27,6 @@ public class ProfileDBContext extends DBContext {
             ResultSet rs = stm.executeQuery();
             if (rs.next()) {
                 Profile p = new Profile();
-                p.setUrl_avata(rs.getString("url_avata"));
                 p.setWed(rs.getString(2));
                 p.setGithub(rs.getString(3));
                 p.setTwitter(rs.getString(4));

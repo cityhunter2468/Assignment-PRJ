@@ -50,7 +50,7 @@
                                 <div class="card-body">
                                     <div class="d-flex flex-column align-items-center text-center">
                                         <img <c:choose>
-                                             <c:when test = "${requestScope.profile.url_avata != null}">
+                                             <c:when test = "${sesion.account.url_avata != null}">
                                                  Salary is very low to survive.
                                              </c:when>
                                              <c:otherwise>

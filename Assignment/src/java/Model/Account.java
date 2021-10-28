@@ -15,7 +15,16 @@ public class Account {
     private String pass; 
     private String email;
     private String displayname;
+    private String url_avata;
 
+    public String getUrl_avata() {
+        return url_avata;
+    }
+
+    public void setUrl_avata(String url_avata) {
+        this.url_avata = url_avata;
+    }
+    
     public String getUser() {
         return user;
     }
@@ -56,14 +65,16 @@ public class Account {
         this.id = id;
     }
 
-    public Account(int id, String user, String pass, String email, String displayname) {
+    public Account(int id, String user, String pass, String email, String displayname, String url_avata) {
         this.id = id;
         this.user = user;
         this.pass = pass;
         this.email = email;
         this.displayname = displayname;
+        this.url_avata = url_avata;
     }
 
+    
     public Account() {
     } 
     
