@@ -71,8 +71,7 @@
             $('.image-upload-wrap').bind('dragleave', function () {
                 $('.image-upload-wrap').removeClass('image-dropping');
             });
-            
-            
+
         </script>
     </head>
     <body>
@@ -96,12 +95,12 @@
                                         <h4>${sessionScope.account.displayname}</h4>
                                         <p class="text-secondary mb-1">${requestScope.profile.occupation}</p>
                                         <p class="text-muted font-size-sm">${requestScope.profile.location}</p>  
-                                        <button class="btn btn-outline-primary">Change Avata</button>
+                                        <button class="btn btn-outline-primary upload_avata">Change Avata</button>
                                     </div>
                                 </div>
                                 <hr class="my-4">
                                 <form action="edit" method="post">
-                                    <div class="form-group change_avata">
+                                    <div class="form-group change_avata" style="display: none;">
 
                                         <div class="image-upload-wrap">
                                             <input class="file-upload-input" type='file' onchange="readURL(this);" name="file" accept="image/*"/>
@@ -255,5 +254,11 @@
                 </div>
             </div>
         </div>
+
+        <script>
+            $('.upload_avata').click(function () {
+                $(".change_avata").show();
+            });
+        </script>                                       
     </body>
 </html>
