@@ -16,7 +16,7 @@
     </head>
     <jsp:include page="Narbar.jsp"></jsp:include>
     <body>
-        
+
         <main>
             <div class="container">
                 <div class="status-field-container write-post-container">
@@ -96,6 +96,6 @@
                 </div>
             </div>
         </main>
-      
+
     </body>
 </html>

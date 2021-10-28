@@ -33,6 +33,7 @@ public class AccountDBContext extends DBContext {
                 ac.setUser(rs.getString("username"));
                 ac.setPass(rs.getString("password"));
                 ac.setDisplayname(rs.getString(5));
+                ac.setUrl_avata(rs.getString(6));
                 return ac;
             }
         } catch (SQLException ex) {

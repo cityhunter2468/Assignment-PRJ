@@ -10,7 +10,8 @@ and open the template in the editor.
 
 .status-field-container {
     margin-top: 20px;
-    margin-left: 160px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .write-post-container {
@@ -48,7 +49,7 @@ and open the template in the editor.
     text-align: center;
 }
 .status-field img {
-    height: 300px;
+    max-height: 300px;
     margin-top: 15px;
     border-radius: 6px;
 }

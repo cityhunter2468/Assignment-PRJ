@@ -32,10 +32,12 @@ form{
 ul .icons{
     margin-right: 70px;
 }
+ul .iconss{
+    margin-right: 400px;
+}
 
 ul .dropdown{
     margin-top: 5px;
-    margin-left: 350px;
 }
 
 

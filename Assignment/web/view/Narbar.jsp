@@ -36,12 +36,20 @@
                         <li class="nav-item icons">
                             <a class="nav-link" href="#"><i class="bi bi-bell"></i></a>
                         </li>
-                        <li class="nav-item icons">
+                        <li class="nav-item icons iconss">
                             <a class="nav-link" href="${pageContext.request.contextPath}/upload"><i class="bi bi-cloud-upload"></i></a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 ${sessionScope.account.displayname}
+                                 <img <c:choose>
+                                             <c:when test = "${sesion.account.url_avata != null}">
+                                                 Salary is very low to survive.
+                                             </c:when>
+                                             <c:otherwise>
+                                                 src="${pageContext.request.contextPath}/assert/no_avata.jpg" 
+                                             </c:otherwise>
+                                        </c:choose>alt="Admin" class="rounded-circle" width="35" height="35">
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="${pageContext.request.contextPath}/profile/view"><i class="bi bi-file-person"></i>  View Profile</a>

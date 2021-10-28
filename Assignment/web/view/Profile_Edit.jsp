@@ -38,6 +38,41 @@
                 document.onmousedown = killCopy;
                 document.onclick = reEnable;
             }
+
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('.image-upload-wrap').hide();
+
+                        $('.file-upload-image').attr('src', e.target.result);
+                        $('.file-upload-content').show();
+
+                        $('.image-title').html(input.files[0].name);
+                    };
+
+                    reader.readAsDataURL(input.files[0]);
+
+                } else {
+                    removeUpload();
+                }
+            }
+
+            function removeUpload() {
+                $('.file-upload-input').replaceWith($('.file-upload-input').clone());
+                $('.file-upload-content').hide();
+                $('.image-upload-wrap').show();
+            }
+            $('.image-upload-wrap').bind('dragover', function () {
+                $('.image-upload-wrap').addClass('image-dropping');
+            });
+            $('.image-upload-wrap').bind('dragleave', function () {
+                $('.image-upload-wrap').removeClass('image-dropping');
+            });
+            
+            
         </script>
     </head>
     <body>
@@ -50,12 +85,12 @@
                                 <div class="card-body">
                                     <div class="d-flex flex-column align-items-center text-center">
                                         <img <c:choose>
-                                             <c:when test = "${sesion.account.url_avata != null}">
-                                                 Salary is very low to survive.
-                                             </c:when>
-                                             <c:otherwise>
-                                                 src="${pageContext.request.contextPath}/assert/no_avata.jpg" 
-                                             </c:otherwise>
+                                            <c:when test = "${sesion.account.url_avata != null}">
+                                                Salary is very low to survive.
+                                            </c:when>
+                                            <c:otherwise>
+                                                src="${pageContext.request.contextPath}/assert/no_avata.jpg" 
+                                            </c:otherwise>
                                         </c:choose>alt="Admin" class="rounded-circle p-1 bg-primary" width="110" height="110">
                                     <div class="mt-3">
                                         <h4>${sessionScope.account.displayname}</h4>
@@ -65,6 +100,24 @@
                                     </div>
                                 </div>
                                 <hr class="my-4">
+                                <form action="edit" method="post">
+                                    <div class="form-group change_avata">
+
+                                        <div class="image-upload-wrap">
+                                            <input class="file-upload-input" type='file' onchange="readURL(this);" name="file" accept="image/*"/>
+                                            <div class="drag-text">
+                                                <h3>Drag and drop a file or select add Image</h3>
+                                            </div>
+                                        </div>
+                                        <div class="file-upload-content">
+                                            <img class="rounded-circle file-upload-image" src="#" alt="your image" />
+                                            <div class="image-title-wrap">
+                                                <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-success upload">Upload</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
