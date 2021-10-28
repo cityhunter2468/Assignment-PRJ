@@ -84,8 +84,8 @@
                                 <div class="card-body">
                                     <div class="d-flex flex-column align-items-center text-center">
                                         <img <c:choose>
-                                            <c:when test = "${sesion.account.url_avata != null}">
-                                                Salary is very low to survive.
+                                            <c:when test = "${sessionScope.account.url_avata != null}">
+                                                src="${pageContext.request.contextPath}/${sessionScope.account.url_avata}" 
                                             </c:when>
                                             <c:otherwise>
                                                 src="${pageContext.request.contextPath}/assert/no_avata.jpg" 
@@ -99,7 +99,7 @@
                                     </div>
                                 </div>
                                 <hr class="my-4">
-                                <form action="edit" method="post">
+                                <form action="edit?op=1" method="post" enctype="multipart/form-data">
                                     <div class="form-group change_avata" style="display: none;">
 
                                         <div class="image-upload-wrap">
@@ -122,7 +122,7 @@
                     </div>
 
                     <div class="col-lg-8">    
-                        <form method="post" action="edit">
+                        <form method="post" action="edit?op=0">
                             <div class="card">
 
                                 <div class="card-body">

@@ -43,8 +43,8 @@
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 ${sessionScope.account.displayname}
                                  <img <c:choose>
-                                             <c:when test = "${sesion.account.url_avata != null}">
-                                                 Salary is very low to survive.
+                                         <c:when test = "${sessionScope.account.url_avata != null}">
+                                             src="${pageContext.request.contextPath}/${sessionScope.account.url_avata}" 
                                              </c:when>
                                              <c:otherwise>
                                                  src="${pageContext.request.contextPath}/assert/no_avata.jpg" 

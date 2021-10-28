@@ -66,4 +66,19 @@ public class AccountDBContext extends DBContext {
         }
         return ("oke");
     }
+
+    public void updateAvata(Account a) {
+        try {
+            String sql = "UPDATE [dbo].[Account]\n"
+                    + "   SET [url_avarta] = ?\n"
+                    + " WHERE id = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, a.getUrl_avata());
+            stm.setInt(2, a.getId());
+            stm.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 }

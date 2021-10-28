@@ -55,11 +55,12 @@ public class Authen extends HttpServlet {
         ac.setPass(pass);
         if (adb.getAccount(ac) != null) {
             ac = adb.getAccount(ac);
-            response.sendRedirect(contextPath+"/home");
+            request.getSession().setAttribute("account", ac);
+            response.sendRedirect(contextPath + "/home");
         } else {
             response.getWriter().print("Failed");
         }
-        request.getSession().setAttribute("account", ac);
+
     }
 
     /**
