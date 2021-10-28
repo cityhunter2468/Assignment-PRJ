@@ -257,7 +257,15 @@
 
         <script>
             $('.upload_avata').click(function () {
-                $(".change_avata").show();
+                var content = $('.upload_avata').html();
+                if (content === "Change Avata"){
+                    $(".change_avata").show();
+                    $('.upload_avata').html("Cancel");
+                } else {
+                    $(".change_avata").hide();
+                    $('.upload_avata').html("Change Avata");
+                }
+                
             });
         </script>                                       
     </body>
