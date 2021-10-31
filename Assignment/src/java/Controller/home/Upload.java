@@ -19,7 +19,6 @@ import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -97,8 +96,8 @@ public class Upload extends BaseReqAuth {
         String fileName = filePart.getSubmittedFileName();
         
         Timestamp added_date = new Timestamp(System.currentTimeMillis());
-        String today = df.format(added_date);
-        p.setTime_create(added_date);
+        String today = df.format(added_date); 
+        p.setTime_create(added_date); //
         String path = folderName + File.separator + today + fileName;
         InputStream is = filePart.getInputStream();
         Files.copy(is, Paths.get(uploadPath + File.separator + today + fileName));
@@ -108,19 +107,19 @@ public class Upload extends BaseReqAuth {
             String s1 = fileName.substring(index1);
 
             if (img.contains(s1.toUpperCase())) {
-                p.setUrl_img(path);
+                p.setUrl_img(path);//
             } else 
             if (video.contains(s1.toUpperCase())) {
-                p.setUrl_video(path);
-            } else p.setUrl_file(path);
+                p.setUrl_video(path);//
+            } else p.setUrl_file(path);//
         }
         
         HttpSession session = request.getSession();
         Account ac = (Account) session.getAttribute("account");
-        p.setUser_id(ac.getId());
+        p.setUser_id(ac.getId());//
         
         p.setContent(request.getParameter("content"));
-        p.setStatus(Integer.parseInt(request.getParameter("status")));
+        p.setStatus(Integer.parseInt(request.getParameter("status")));//
         
         PostDBContext pdb = new PostDBContext();
         pdb.AddPost(p);

@@ -88,166 +88,119 @@
                                             </div>
 
                                             <div class="tab-content">
-                                                <div>
+
                                                 <div class="tab-pane active" id="timeline">
-                                                    <div class="row">
-                                                        <div class="col-md-12 ">
-                                                            <div class=" p-relative">
-                                                                <div class="row timeline-right p-t-35">
-                                                                    <div class="col-2 col-sm-2 col-xl-1">
-                                                                        <div class="social-timelines-left">
-                                                                            <img class="img-radius timeline-icon" <c:choose>
-                                                                                     <c:when test = "${sessionScope.account.url_avata != null}">
-                                                                                         src="${pageContext.request.contextPath}/${sessionScope.account.url_avata}" 
-                                                                                     </c:when>
-                                                                                     <c:otherwise>
-                                                                                         src="${pageContext.request.contextPath}/assert/no_avata.jpg" 
-                                                                                     </c:otherwise>
-                                                                                 </c:choose> alt="">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-10 col-sm-10 col-xl-11 p-l-5 p-b-35">
-                                                                        <div class="card">
-                                                                            <div class="card-block post-timelines">
-                                                                                <span class="dropdown-toggle addon-btn text-muted f-right service-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="tooltip"></span>
-                                                                                <div class="dropdown-menu dropdown-menu-right b-none services-list">
-                                                                                    <a class="dropdown-item" href="#">Remove post</a>
-                                                                                    <a class="dropdown-item" href="#">Edit post</a>
-                                                                                </div>
-                                                                                <div class="chat-header f-w-600"> posted on your timeline</div>
-                                                                            </div>
-                                                                            <img src="https://via.placeholder.com/800x350/87CEFA/000000" class="img-fluid width-100" alt="">
-                                                                            <div class="card-block">
-                                                                                <div class="timeline-details">
-                                                                                    <div class="chat-header">Josephin Doe posted on your timeline</div>
-                                                                                    <p class="text-muted">lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea </p>
+                                                    <div>
+                                                        <c:forEach items="${requestScope.post}" var="post">
+                                                            <div class="row">
+                                                                <div class="col-md-12 ">
+                                                                    <div class=" p-relative">
+                                                                        <div class="row timeline-right p-t-35">
+                                                                            <div class="col-2 col-sm-2 col-xl-1">
+                                                                                <div class="social-timelines-left">
+                                                                                    <img class="img-radius timeline-icon" <c:choose>
+                                                                                             <c:when test = "${sessionScope.account.url_avata != null}">
+                                                                                                 src="${pageContext.request.contextPath}/${sessionScope.account.url_avata}" 
+                                                                                             </c:when>
+                                                                                             <c:otherwise>
+                                                                                                 src="${pageContext.request.contextPath}/assert/no_avata.jpg" 
+                                                                                             </c:otherwise>
+                                                                                         </c:choose> alt="">
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="card-block b-b-theme b-t-theme social-msg">
-                                                                                <a href="#"> <i class="icofont icofont-heart-alt text-muted"></i><span class="b-r-muted">Like (20)</span> </a>
-                                                                                <a href="#"> <i class="icofont icofont-comment text-muted"></i> <span class="b-r-muted">Comments (25)</span></a>
-                                                                                <a href="#"> <i class="icofont icofont-share text-muted"></i> <span>Share (10)</span></a>
-                                                                            </div>
-                                                                            <div class="card-block user-box">
-                                                                                <div class="p-b-30"> <span class="f-14"><a href="#">Comments (110)</a></span><span class="f-right">see all comments</span></div>
-                                                                                <div class="media m-b-20">
-                                                                                    <a class="media-left" href="#">
-                                                                                        <img class="media-object img-radius m-r-20" src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="Generic placeholder image">
-                                                                                    </a>
-                                                                                    <div class="media-body b-b-muted social-client-description">
-                                                                                        <div class="chat-header">About Marta Williams<span class="text-muted">Jane 10, 2015</span></div>
-                                                                                        <p class="text-muted">lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                                                            <div class="col-10 col-sm-10 col-xl-11 p-l-5 p-b-35">
+                                                                                <div class="card">
+                                                                                    <div class="card-block post-timelines">
+                                                                                        <span class="dropdown-toggle addon-btn text-muted f-right service-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="tooltip"></span>
+                                                                                        <div class="dropdown-menu dropdown-menu-right b-none services-list">
+                                                                                            <a class="dropdown-item" href="#">Remove post</a>
+                                                                                            <a class="dropdown-item" href="#">Edit post</a>
+                                                                                        </div>
+                                                                                        <div class="chat-header f-w-600"> ${requestScope.account.displayname} posted on your timeline</div>
+                                                                                        <div class="chat-header f-w-600"> Create at: ${post.time_create}</div>
                                                                                     </div>
-                                                                                </div>
-                                                                                <div class="media m-b-20">
-                                                                                    <a class="media-left" href="#">
-                                                                                        <img class="media-object img-radius m-r-20" src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="Generic placeholder image">
-                                                                                    </a>
-                                                                                    <div class="media-body b-b-muted social-client-description">
-                                                                                        <div class="chat-header">About Marta Williams<span class="text-muted">Jane 11, 2015</span></div>
-                                                                                        <p class="text-muted">lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                                                                    <img src="https://via.placeholder.com/800x350/87CEFA/000000" class="img-fluid width-100" alt="">
+                                                                                    <div class="card-block">
+                                                                                        <div class="timeline-details">
+                                                                                            <div class="chat-header">Josephin Doe posted on your timeline</div>
+                                                                                            <p class="text-muted">lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea </p>
+                                                                                        </div>
                                                                                     </div>
-                                                                                </div>
-                                                                                <div class="media">
-                                                                                    <a class="media-left" href="#">
-                                                                                        <img class="media-object img-radius m-r-20" src="https://bootdey.com/img/Content/avatar/avatar4.png" alt="Generic placeholder image">
-                                                                                    </a>
-                                                                                    <div class="media-body">
-                                                                                        <form class="">
-                                                                                            <div class="">
-                                                                                                <textarea rows="5" cols="5" class="form-control" placeholder="Write Something here..."></textarea>
-                                                                                                <div class="text-right m-t-20"><a href="#" class="btn btn-primary waves-effect waves-light">Post</a></div>
+                                                                                    <div class="card-block b-b-theme b-t-theme social-msg">
+                                                                                        <a href="#"> <i class="icofont icofont-heart-alt text-muted"></i><span class="b-r-muted">Like (20)</span> </a>
+                                                                                        <a href="#"> <i class="icofont icofont-comment text-muted"></i> <span class="b-r-muted">Comments (25)</span></a>
+                                                                                        <a href="#"> <i class="icofont icofont-share text-muted"></i> <span>Share (10)</span></a>
+                                                                                    </div>
+                                                                                    <div class="card-block user-box">
+                                                                                        <div class="p-b-30"> <span class="f-14"><a href="#">Comments (110)</a></span><span class="f-right">see all comments</span></div>
+                                                                                        <div class="media m-b-20">
+                                                                                            <a class="media-left" href="#">
+                                                                                                <img class="media-object img-radius m-r-20" src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="Generic placeholder image">
+                                                                                            </a>
+                                                                                            <div class="media-body b-b-muted social-client-description">
+                                                                                                <div class="chat-header">About Marta Williams<span class="text-muted">Jane 10, 2015</span></div>
+                                                                                                <p class="text-muted">lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                                                                                             </div>
-                                                                                        </form>
+                                                                                        </div>
+                                                                                        <div class="media m-b-20">
+                                                                                            <a class="media-left" href="#">
+                                                                                                <img class="media-object img-radius m-r-20" src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="Generic placeholder image">
+                                                                                            </a>
+                                                                                            <div class="media-body b-b-muted social-client-description">
+                                                                                                <div class="chat-header">About Marta Williams<span class="text-muted">Jane 11, 2015</span></div>
+                                                                                                <p class="text-muted">lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="media">
+                                                                                            <a class="media-left" href="#">
+                                                                                                <img class="media-object img-radius m-r-20" src="https://bootdey.com/img/Content/avatar/avatar4.png" alt="Generic placeholder image">
+                                                                                            </a>
+                                                                                            <div class="media-body">
+                                                                                                <form class="">
+                                                                                                    <div class="">
+                                                                                                        <textarea rows="5" cols="5" class="form-control" placeholder="Write Something here..."></textarea>
+                                                                                                        <div class="text-right m-t-20"><a href="#" class="btn btn-primary waves-effect waves-light">Post</a></div>
+                                                                                                    </div>
+                                                                                                </form>
+                                                                                            </div>
+                                                                                        </div>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                </div>
-                                                            </div>
 
-                                                        </div>
-                                                    </div>
-                                                    <div class="f-30 text-muted text-center">2014</div>
-                                                    <div class="row">
-                                                        <div class="col-md-12 ">
-                                                            <div class=" p-relative">
-                                                                <div class="row timeline-right p-t-35">
-                                                                    <div class="col-2 col-sm-2 col-xl-1">
-                                                                        <div class="social-timelines-left">
-                                                                            <img class="img-radius timeline-icon" <c:choose>
-                                                                                     <c:when test = "${sessionScope.account.url_avata != null}">
-                                                                                         src="${pageContext.request.contextPath}/${sessionScope.account.url_avata}" 
-                                                                                     </c:when>
-                                                                                     <c:otherwise>
-                                                                                         src="${pageContext.request.contextPath}/assert/no_avata.jpg" 
-                                                                                     </c:otherwise>
-                                                                                 </c:choose> alt="">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-10 col-sm-10 col-xl-11 p-l-5 p-b-35">
-                                                                        <div class="card">
-                                                                            <div class="card-block post-timelines">
-                                                                                <span class="dropdown-toggle addon-btn text-muted f-right service-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="tooltip"></span>
-                                                                                <div class="dropdown-menu dropdown-menu-right b-none services-list">
-                                                                                    <a class="dropdown-item" href="#">Remove tag</a>
-                                                                                    <a class="dropdown-item" href="#">Report Photo</a>
-                                                                                    <a class="dropdown-item" href="#">Hide From Timeline</a>
-                                                                                    <a class="dropdown-item" href="#">Blog User</a>
-                                                                                </div>
-                                                                                <div class="chat-header f-w-600">Josephin Doe posted on your timeline</div>
-                                                                                <div class="social-time text-muted">50 minutes ago</div>
-                                                                            </div>
-                                                                            <img src="https://via.placeholder.com/800x350/20B2AA/000000" class="img-fluid width-100" alt="">
-                                                                            <div class="card-block">
-                                                                                <div class="timeline-details">
-                                                                                    <div class="chat-header">Josephin Doe posted on your timeline</div>
-                                                                                    <p class="text-muted">lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea </p>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="card-block b-b-theme b-t-theme social-msg">
-                                                                                <a href="#"> <i class="icofont icofont-heart-alt text-muted"></i><span class="b-r-muted">Like (20)</span> </a>
-                                                                                <a href="#"> <i class="icofont icofont-comment text-muted"></i> <span class="b-r-muted">Comments (25)</span></a>
-                                                                                <a href="#"> <i class="icofont icofont-share text-muted"></i> <span>Share (10)</span></a>
-                                                                            </div>
-                                                                            <div class="card-block user-box">
-                                                                                <div class="p-b-30"> <span class="f-14"><a href="#">Comments (110)</a></span><span class="f-right">see all comments</span></div>
-                                                                                <div class="media">
-                                                                                    <a class="media-left" href="#">
-                                                                                        <img class="media-object img-radius m-r-20" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="Generic placeholder image">
-                                                                                    </a>
-                                                                                    <div class="media-body">
-                                                                                        <form class="">
-                                                                                            <div class="">
-                                                                                                <textarea rows="5" cols="5" class="form-control" placeholder="Write Something here..."></textarea>
-                                                                                                <div class="text-right m-t-20"><a href="#" class="btn btn-primary waves-effect waves-light">Post</a></div>
-                                                                                            </div>
-                                                                                        </form>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
                                                                 </div>
+                                                            </div>    
+                                                        </c:forEach>
+                                                    </div>
+
+                                                    <div>
+                                                        <div class="row">
+                                                            <div class="col text-center">
+                                                                <button type="button" class="btn btn-outline-primary" id="loadmore_post">Load more</button>
                                                             </div>
                                                         </div>
                                                     </div>
+
                                                 </div>
-                                                   
-                                                </div>    
-                                                <div class="tab-pane" id="about">
-                                                    <div class="row">
-                                                        <div class="col-sm-12">
-                                                            <div class="card">
-                                                                <div class="card-header">
-                                                                    <h5 class="card-header-text">Basic Information</h5>
 
-                                                                </div>
-                                                                <div class="card-block">
-                                                                    <div id="view-info" class="row">
-                                                                        <div class="col-lg-6 col-md-12">
-                                                                      
+
+
+
+                                                <div class="tab-pane" id="about">
+                                                    <div>
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <div class="card">
+                                                                    <div class="card-header">
+                                                                        <h5 class="card-header-text">Basic Information</h5>
+
+                                                                    </div>
+                                                                    <div class="card-block">
+                                                                        <div id="view-info" class="row">
+                                                                            <div class="col-lg-6 col-md-12">
+
                                                                                 <table class="table table-responsive m-b-0">
                                                                                     <tbody>
                                                                                         <tr>
@@ -286,221 +239,247 @@
                                                                                         </tr>
                                                                                     </tbody>
                                                                                 </table>
-                                                                      
-                                                                        </div>
-                                                                    </div>
 
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-12">
+                                                                <div class="card">
+                                                                    <div class="card-header">
+                                                                        <h5 class="card-header-text">Contact Information</h5>
+
+                                                                    </div>
+                                                                    <div class="card-block">
+                                                                        <div id="contact-info" class="row">
+                                                                            <div class="col-lg-6 col-md-12">
+                                                                                <table class="table table-responsive m-b-0">
+                                                                                    <tbody>
+                                                                                        <tr>
+                                                                                            <th class="social-label b-none p-t-0">Mobile Number</th>
+                                                                                            <td class="social-user-name b-none p-t-0 text-muted">${requestScope.profile.number}</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <th class="social-label b-none">Web</th>
+                                                                                            <td class="social-user-name b-none text-muted">${requestScope.profile.wed}</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <th class="social-label b-none">Twitter</th>
+                                                                                            <td class="social-user-name b-none text-muted">${requestScope.profile.twitter}</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <th class="social-label b-none p-b-0">Github</th>
+                                                                                            <td class="social-user-name b-none p-b-0 text-muted">${requestScope.profile.github}</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <th class="social-label b-none p-b-0">Facebook</th>
+                                                                                            <td class="social-user-name b-none p-b-0 text-muted">${requestScope.profile.face}</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <th class="social-label b-none p-b-0">Instagram</th>
+                                                                                            <td class="social-user-name b-none p-b-0 text-muted">${requestScope.profile.insta}</td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-12">
+                                                                <div class="card">
+                                                                    <div class="card-header">
+                                                                        <h5 class="card-header-text">Work</h5>
+
+                                                                    </div>
+                                                                    <div class="card-block">
+                                                                        <div id="work-info" class="row">
+                                                                            <div class="col-lg-6 col-md-12">
+                                                                                <table class="table table-responsive m-b-0">
+                                                                                    <tbody>
+                                                                                        <tr>
+                                                                                            <th class="social-label b-none p-t-0">Occupation      
+                                                                                            </th>
+                                                                                            <td class="social-user-name b-none p-t-0 text-muted">${requestScope.profile.occupation}</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <th class="social-label b-none">Skills</th>
+                                                                                            <td class="social-user-name b-none text-muted">${requestScope.profile.skill}</td>
+                                                                                        </tr>
+
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-sm-12">
-                                                            <div class="card">
-                                                                <div class="card-header">
-                                                                    <h5 class="card-header-text">Contact Information</h5>
-
-                                                                </div>
-                                                                <div class="card-block">
-                                                                    <div id="contact-info" class="row">
-                                                                        <div class="col-lg-6 col-md-12">
-                                                                            <table class="table table-responsive m-b-0">
-                                                                                <tbody>
-                                                                                    <tr>
-                                                                                        <th class="social-label b-none p-t-0">Mobile Number</th>
-                                                                                        <td class="social-user-name b-none p-t-0 text-muted">${requestScope.profile.number}</td>
-                                                                                    </tr>
-                                                                                    <tr>
-                                                                                        <th class="social-label b-none">Web</th>
-                                                                                        <td class="social-user-name b-none text-muted">${requestScope.profile.wed}</td>
-                                                                                    </tr>
-                                                                                    <tr>
-                                                                                        <th class="social-label b-none">Twitter</th>
-                                                                                        <td class="social-user-name b-none text-muted">${requestScope.profile.twitter}</td>
-                                                                                    </tr>
-                                                                                    <tr>
-                                                                                        <th class="social-label b-none p-b-0">Github</th>
-                                                                                        <td class="social-user-name b-none p-b-0 text-muted">${requestScope.profile.github}</td>
-                                                                                    </tr>
-                                                                                    <tr>
-                                                                                        <th class="social-label b-none p-b-0">Facebook</th>
-                                                                                        <td class="social-user-name b-none p-b-0 text-muted">${requestScope.profile.face}</td>
-                                                                                    </tr>
-                                                                                    <tr>
-                                                                                        <th class="social-label b-none p-b-0">Instagram</th>
-                                                                                        <td class="social-user-name b-none p-b-0 text-muted">${requestScope.profile.insta}</td>
-                                                                                    </tr>
-                                                                                </tbody>
-                                                                            </table>
-                                                                        </div>
-                                                                    </div>
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-12">
-                                                            <div class="card">
-                                                                <div class="card-header">
-                                                                    <h5 class="card-header-text">Work</h5>
-
-                                                                </div>
-                                                                <div class="card-block">
-                                                                    <div id="work-info" class="row">
-                                                                        <div class="col-lg-6 col-md-12">
-                                                                            <table class="table table-responsive m-b-0">
-                                                                                <tbody>
-                                                                                    <tr>
-                                                                                        <th class="social-label b-none p-t-0">Occupation      
-                                                                                        </th>
-                                                                                        <td class="social-user-name b-none p-t-0 text-muted">${requestScope.profile.occupation}</td>
-                                                                                    </tr>
-                                                                                    <tr>
-                                                                                        <th class="social-label b-none">Skills</th>
-                                                                                        <td class="social-user-name b-none text-muted">${requestScope.profile.skill}</td>
-                                                                                    </tr>
-
-                                                                                </tbody>
-                                                                            </table>
-                                                                        </div>
-                                                                    </div>
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                    </div> 
                                                 </div>
+
+
+
 
                                                 <div class="tab-pane" id="photos">
-                                                    <div class="card">
+                                                    <div>
+                                                        <div class="card">
 
-                                                        <div class="card-block">
-                                                            <div class="demo-gallery">
-                                                                <ul id="profile-lightgallery" class="row">
-                                                                    <li class="col-md-4 col-lg-2 col-sm-6 col-xs-12">
-                                                                        <a href="#" data-toggle="lightbox" data-title="A random title" data-footer="A custom footer text">
-                                                                            <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="img-fluid" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="col-md-4 col-lg-2 col-sm-6 col-xs-12">
-                                                                        <a href="#" data-toggle="lightbox" data-title="A random title" data-footer="A custom footer text">
-                                                                            <img src="https://bootdey.com/img/Content/avatar/avatar2.png" class="img-fluid" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="col-md-4 col-lg-2 col-sm-6 col-xs-12">
-                                                                        <a href="#" data-toggle="lightbox" data-title="A random title" data-footer="A custom footer text">
-                                                                            <img src="https://bootdey.com/img/Content/avatar/avatar3.png" class="img-fluid" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="col-md-4 col-lg-2 col-sm-6 col-xs-12">
-                                                                        <a href="#" data-toggle="lightbox" data-title="A random title" data-footer="A custom footer text">
-                                                                            <img src="https://bootdey.com/img/Content/avatar/avatar4.png" class="img-fluid" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                </ul>
+                                                            <div class="card-block">
+                                                                <div class="demo-gallery">
+                                                                    <ul id="profile-lightgallery" class="row">
+                                                                        <li class="col-md-4 col-lg-2 col-sm-6 col-xs-12">
+                                                                            <a href="#" data-toggle="lightbox" data-title="A random title" data-footer="A custom footer text">
+                                                                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="img-fluid" alt="">
+                                                                            </a>
+                                                                        </li>
+                                                                        <li class="col-md-4 col-lg-2 col-sm-6 col-xs-12">
+                                                                            <a href="#" data-toggle="lightbox" data-title="A random title" data-footer="A custom footer text">
+                                                                                <img src="https://bootdey.com/img/Content/avatar/avatar2.png" class="img-fluid" alt="">
+                                                                            </a>
+                                                                        </li>
+                                                                        <li class="col-md-4 col-lg-2 col-sm-6 col-xs-12">
+                                                                            <a href="#" data-toggle="lightbox" data-title="A random title" data-footer="A custom footer text">
+                                                                                <img src="https://bootdey.com/img/Content/avatar/avatar3.png" class="img-fluid" alt="">
+                                                                            </a>
+                                                                        </li>
+                                                                        <li class="col-md-4 col-lg-2 col-sm-6 col-xs-12">
+                                                                            <a href="#" data-toggle="lightbox" data-title="A random title" data-footer="A custom footer text">
+                                                                                <img src="https://bootdey.com/img/Content/avatar/avatar4.png" class="img-fluid" alt="">
+                                                                            </a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div>
+                                                        <div class="row">
+                                                            <div class="col text-center">
+                                                                <button type="button" class="btn btn-outline-primary" id="loadmore_photos">Load more</button>
                                                             </div>
                                                         </div>
-
                                                     </div>
+
                                                 </div>
+
 
                                                 <div class="tab-pane" id="friends">
-                                                    <div class="row">
-                                                        <div class="col-lg-12 col-xl-6">
-                                                            <div class="card">
-                                                                <div class="card-block post-timelines">
-                                                                    <span class="dropdown-toggle addon-btn text-muted f-right service-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="tooltip"></span>
-                                                                    <div class="dropdown-menu dropdown-menu-right b-none services-list">
-                                                                        <a class="dropdown-item" href="#">Remove tag</a>
-                                                                        <a class="dropdown-item" href="#">Report Photo</a>
-                                                                        <a class="dropdown-item" href="#">Hide From Timeline</a>
-                                                                        <a class="dropdown-item" href="#">Blog User</a>
-                                                                    </div>
-                                                                    <div class="media bg-white d-flex">
-                                                                        <div class="media-left media-middle">
-                                                                            <a href="#">
-                                                                                <img class="media-object" width="120" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">
-                                                                            </a>
+                                                    <div> 
+                                                        <div class="row">
+                                                            <div class="col-lg-12 col-xl-6">
+                                                                <div class="card">
+                                                                    <div class="card-block post-timelines">
+                                                                        <span class="dropdown-toggle addon-btn text-muted f-right service-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="tooltip"></span>
+                                                                        <div class="dropdown-menu dropdown-menu-right b-none services-list">
+                                                                            <a class="dropdown-item" href="#">Remove tag</a>
+                                                                            <a class="dropdown-item" href="#">Report Photo</a>
+                                                                            <a class="dropdown-item" href="#">Hide From Timeline</a>
+                                                                            <a class="dropdown-item" href="#">Blog User</a>
                                                                         </div>
-                                                                        <div class="media-body friend-elipsis">
-                                                                            <div class="f-15 f-bold m-b-5">Josephin Doe</div>
-                                                                            <div class="text-muted social-designation">Software Engineer</div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-12 col-xl-6">
-                                                            <div class="card">
-                                                                <div class="card-block post-timelines">
-                                                                    <span class="dropdown-toggle addon-btn text-muted f-right service-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="tooltip"></span>
-                                                                    <div class="dropdown-menu dropdown-menu-right b-none services-list">
-                                                                        <a class="dropdown-item" href="#">Remove tag</a>
-                                                                        <a class="dropdown-item" href="#">Report Photo</a>
-                                                                        <a class="dropdown-item" href="#">Hide From Timeline</a>
-                                                                        <a class="dropdown-item" href="#">Blog User</a>
-                                                                    </div>
-                                                                    <div class="media bg-white d-flex">
-                                                                        <div class="media-left media-middle">
-                                                                            <a href="#">
-                                                                                <img class="media-object" width="120" src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="">
-                                                                            </a>
-                                                                        </div>
-                                                                        <div class="media-body friend-elipsis">
-                                                                            <div class="f-15 f-bold m-b-5">Josephin Doe</div>
-                                                                            <div class="text-muted social-designation">Software Engineer</div>
+                                                                        <div class="media bg-white d-flex">
+                                                                            <div class="media-left media-middle">
+                                                                                <a href="#">
+                                                                                    <img class="media-object" width="120" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">
+                                                                                </a>
+                                                                            </div>
+                                                                            <div class="media-body friend-elipsis">
+                                                                                <div class="f-15 f-bold m-b-5">Josephin Doe</div>
+                                                                                <div class="text-muted social-designation">Software Engineer</div>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-lg-12 col-xl-6">
-                                                            <div class="card">
-                                                                <div class="card-block post-timelines">
-                                                                    <span class="dropdown-toggle addon-btn text-muted f-right service-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="tooltip"></span>
-                                                                    <div class="dropdown-menu dropdown-menu-right b-none services-list">
-                                                                        <a class="dropdown-item" href="#">Remove tag</a>
-                                                                        <a class="dropdown-item" href="#">Report Photo</a>
-                                                                        <a class="dropdown-item" href="#">Hide From Timeline</a>
-                                                                        <a class="dropdown-item" href="#">Blog User</a>
-                                                                    </div>
-                                                                    <div class="media bg-white d-flex">
-                                                                        <div class="media-left media-middle">
-                                                                            <a href="#">
-                                                                                <img class="media-object" width="120" src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="">
-                                                                            </a>
+                                                            <div class="col-lg-12 col-xl-6">
+                                                                <div class="card">
+                                                                    <div class="card-block post-timelines">
+                                                                        <span class="dropdown-toggle addon-btn text-muted f-right service-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="tooltip"></span>
+                                                                        <div class="dropdown-menu dropdown-menu-right b-none services-list">
+                                                                            <a class="dropdown-item" href="#">Remove tag</a>
+                                                                            <a class="dropdown-item" href="#">Report Photo</a>
+                                                                            <a class="dropdown-item" href="#">Hide From Timeline</a>
+                                                                            <a class="dropdown-item" href="#">Blog User</a>
                                                                         </div>
-                                                                        <div class="media-body friend-elipsis">
-                                                                            <div class="f-15 f-bold m-b-5">Josephin Doe</div>
-                                                                            <div class="text-muted social-designation">Software Engineer</div>
+                                                                        <div class="media bg-white d-flex">
+                                                                            <div class="media-left media-middle">
+                                                                                <a href="#">
+                                                                                    <img class="media-object" width="120" src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="">
+                                                                                </a>
+                                                                            </div>
+                                                                            <div class="media-body friend-elipsis">
+                                                                                <div class="f-15 f-bold m-b-5">Josephin Doe</div>
+                                                                                <div class="text-muted social-designation">Software Engineer</div>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-lg-12 col-xl-6">
-                                                            <div class="card">
-                                                                <div class="card-block post-timelines">
-                                                                    <span class="dropdown-toggle addon-btn text-muted f-right service-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="tooltip"></span>
-                                                                    <div class="dropdown-menu dropdown-menu-right b-none services-list">
-                                                                        <a class="dropdown-item" href="#">Remove tag</a>
-                                                                        <a class="dropdown-item" href="#">Report Photo</a>
-                                                                        <a class="dropdown-item" href="#">Hide From Timeline</a>
-                                                                        <a class="dropdown-item" href="#">Blog User</a>
-                                                                    </div>
-                                                                    <div class="media bg-white d-flex">
-                                                                        <div class="media-left media-middle">
-                                                                            <a href="#">
-                                                                                <img class="media-object" width="120" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="">
-                                                                            </a>
+                                                            <div class="col-lg-12 col-xl-6">
+                                                                <div class="card">
+                                                                    <div class="card-block post-timelines">
+                                                                        <span class="dropdown-toggle addon-btn text-muted f-right service-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="tooltip"></span>
+                                                                        <div class="dropdown-menu dropdown-menu-right b-none services-list">
+                                                                            <a class="dropdown-item" href="#">Remove tag</a>
+                                                                            <a class="dropdown-item" href="#">Report Photo</a>
+                                                                            <a class="dropdown-item" href="#">Hide From Timeline</a>
+                                                                            <a class="dropdown-item" href="#">Blog User</a>
                                                                         </div>
-                                                                        <div class="media-body friend-elipsis">
-                                                                            <div class="f-15 f-bold m-b-5">Josephin Doe</div>
-                                                                            <div class="text-muted social-designation">Software Engineer</div>
+                                                                        <div class="media bg-white d-flex">
+                                                                            <div class="media-left media-middle">
+                                                                                <a href="#">
+                                                                                    <img class="media-object" width="120" src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="">
+                                                                                </a>
+                                                                            </div>
+                                                                            <div class="media-body friend-elipsis">
+                                                                                <div class="f-15 f-bold m-b-5">Josephin Doe</div>
+                                                                                <div class="text-muted social-designation">Software Engineer</div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-12 col-xl-6">
+                                                                <div class="card">
+                                                                    <div class="card-block post-timelines">
+                                                                        <span class="dropdown-toggle addon-btn text-muted f-right service-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="tooltip"></span>
+                                                                        <div class="dropdown-menu dropdown-menu-right b-none services-list">
+                                                                            <a class="dropdown-item" href="#">Remove tag</a>
+                                                                            <a class="dropdown-item" href="#">Report Photo</a>
+                                                                            <a class="dropdown-item" href="#">Hide From Timeline</a>
+                                                                            <a class="dropdown-item" href="#">Blog User</a>
+                                                                        </div>
+                                                                        <div class="media bg-white d-flex">
+                                                                            <div class="media-left media-middle">
+                                                                                <a href="#">
+                                                                                    <img class="media-object" width="120" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="">
+                                                                                </a>
+                                                                            </div>
+                                                                            <div class="media-body friend-elipsis">
+                                                                                <div class="f-15 f-bold m-b-5">Josephin Doe</div>
+                                                                                <div class="text-muted social-designation">Software Engineer</div>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                    <div>
+                                                        <div class="row">
+                                                            <div class="col text-center">
+                                                                <button type="button" class="btn btn-outline-primary" id="loadmore_friends">Load more</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>       
                                             </div>
                                         </div>    
                                     </div>   

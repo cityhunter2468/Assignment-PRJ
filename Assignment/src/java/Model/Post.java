@@ -13,7 +13,7 @@ import java.sql.Timestamp;
  * @author levan
  */
 public class Post {
-
+    private int post_id;
     private int user_id;
     private String url_img;
     private String url_video;
@@ -78,7 +78,16 @@ public class Post {
         this.content = content;
     }
 
-    public Post(int user_id, String url_img, String url_video, String url_file, Timestamp time_create, int status, String content) {
+    public int getPost_id() {
+        return post_id;
+    }
+
+    public void setPost_id(int post_id) {
+        this.post_id = post_id;
+    }
+
+    public Post(int post_id, int user_id, String url_img, String url_video, String url_file, Timestamp time_create, int status, String content) {
+        this.post_id = post_id;
         this.user_id = user_id;
         this.url_img = url_img;
         this.url_video = url_video;
@@ -87,6 +96,8 @@ public class Post {
         this.status = status;
         this.content = content;
     }
+
+    
 
     public Post() {
     }

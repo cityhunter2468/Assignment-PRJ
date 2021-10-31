@@ -417,3 +417,8 @@ ul#profile-lightgallery {
 ::-webkit-scrollbar-thumb {
   background: #d5d5db;
 }
+
+#loadmore_content{
+    text-align: center;
+    
+}

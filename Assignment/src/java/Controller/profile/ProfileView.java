@@ -7,11 +7,14 @@ package Controller.profile;
 
 import Controller.authen.BaseReqAuth;
 import Dal.AccountDBContext;
+import Dal.PostDBContext;
 import Dal.ProfileDBContext;
 import Model.Account;
+import Model.Post;
 import Model.Profile;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -45,21 +48,31 @@ public class ProfileView extends BaseReqAuth {
     protected void processGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //tren git
-//        String servletPath = request.getContextPath();
-//        System.out.println(servletPath);
+
         int id = Integer.parseInt(request.getParameter("id"));
+        Account ac = (Account) request.getSession().getAttribute("account");
+
         ProfileDBContext pdb = new ProfileDBContext();
-        Profile profile = new Profile();        
+        Profile profile = new Profile();
         profile = pdb.getProfile(id);
-        
+
         AccountDBContext adb = new AccountDBContext();
         Account account = adb.getAccountId(id);
+
+        PostDBContext postdb = new PostDBContext();
+        ArrayList<Post> posts = new ArrayList<Post>();
+        if (ac.getId() == id) {
+            posts = postdb.getPost(id, 0, 2);
+        } else {
+            posts = postdb.getPost(id, 0, 1);
+        }
         
+        request.setAttribute("post", posts);
         request.setAttribute("profile", profile);
         request.setAttribute("account", account);
         request.getRequestDispatcher(".././view/Profile.jsp").forward(request, response);
     }
-    
+
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -71,7 +84,7 @@ public class ProfileView extends BaseReqAuth {
     @Override
     protected void processPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
     }
 
     /**
