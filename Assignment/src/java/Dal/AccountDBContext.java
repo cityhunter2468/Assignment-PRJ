@@ -41,6 +41,28 @@ public class AccountDBContext extends DBContext {
         }
         return null;
     }
+    
+    public Account getAccountId(int id) {
+        try {
+            String sql = " select * from Account\n"
+                    + "where id = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, id);
+            ResultSet rs = stm.executeQuery();
+            if (rs.next()) {
+                Account ac = new Account();
+                ac.setId(rs.getInt("id"));
+                ac.setUser(rs.getString("username"));
+                ac.setPass(rs.getString("password"));
+                ac.setDisplayname(rs.getString(5));
+                ac.setUrl_avata(rs.getString(6));
+                return ac;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 
     public String Insert(Account a) {
         try {

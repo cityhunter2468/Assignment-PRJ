@@ -11,10 +11,26 @@ public final class Profile_jsp extends org.apache.jasper.runtime.HttpJspBase
 
   private static java.util.List<String> _jspx_dependants;
 
+  private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_c_choose;
+  private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_c_otherwise;
+  private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_c_when_test;
+
   private org.glassfish.jsp.api.ResourceInjector _jspx_resourceInjector;
 
   public java.util.List<String> getDependants() {
     return _jspx_dependants;
+  }
+
+  public void _jspInit() {
+    _jspx_tagPool_c_choose = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
+    _jspx_tagPool_c_otherwise = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
+    _jspx_tagPool_c_when_test = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
+  }
+
+  public void _jspDestroy() {
+    _jspx_tagPool_c_choose.release();
+    _jspx_tagPool_c_otherwise.release();
+    _jspx_tagPool_c_when_test.release();
   }
 
   public void _jspService(HttpServletRequest request, HttpServletResponse response)
@@ -57,40 +73,47 @@ public final class Profile_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    ");
       org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "Narbar.jsp", out, false);
       out.write("\n");
-      out.write("    <body>\n");
-      out.write("        <main>\n");
-      out.write("            <div class=\"container\">\n");
-      out.write("                <div class=\"row\">\n");
-      out.write("                    <div class=\"col-sm-12\">\n");
-      out.write("                        <div>\n");
-      out.write("                            <div class=\"content social-timeline\">\n");
-      out.write("                                <div class=\"\">\n");
+      out.write("        <body>\n");
+      out.write("            <main>\n");
+      out.write("                <div class=\"container\">\n");
+      out.write("                    <div class=\"row\">\n");
+      out.write("                        <div class=\"col-sm-12\">\n");
+      out.write("                            <div>\n");
+      out.write("                                <div class=\"content social-timeline\">\n");
+      out.write("                                    <div class=\"\">\n");
       out.write("\n");
-      out.write("                                    <div class=\"row\">\n");
-      out.write("                                        <div class=\"col-md-12\">\n");
-      out.write("                                            <div class=\"social-wallpaper\">\n");
-      out.write("                                                <div class=\"profile-hvr\">\n");
-      out.write("                                                    <i class=\"icofont icofont-ui-edit p-r-10\"></i>\n");
-      out.write("                                                    <i class=\"icofont icofont-ui-delete\"></i>\n");
+      out.write("                                        <div class=\"row\">\n");
+      out.write("                                            <div class=\"col-md-12\">\n");
+      out.write("                                                <div class=\"social-wallpaper\">\n");
+      out.write("                                                    <div class=\"profile-hvr\">\n");
+      out.write("                                                        <i class=\"icofont icofont-ui-edit p-r-10\"></i>\n");
+      out.write("                                                        <i class=\"icofont icofont-ui-delete\"></i>\n");
+      out.write("                                                    </div>\n");
       out.write("                                                </div>\n");
       out.write("                                            </div>\n");
       out.write("                                        </div>\n");
-      out.write("                                    </div>\n");
       out.write("\n");
-      out.write("                                    <div class=\"row\">\n");
-      out.write("                                        <div class=\"col-xl-3 col-lg-4 col-md-4 col-xs-12\">\n");
-      out.write("                                            <div class=\"social-timeline-left\">\n");
-      out.write("                                                <div class=\"card\">\n");
-      out.write("                                                    <div class=\"social-profile\">\n");
-      out.write("                                                        <img class=\"img-fluid width-100\" src=\"https://bootdey.com/img/Content/avatar/avatar7.png\" alt=\"\">\n");
+      out.write("                                        <div class=\"row\">\n");
+      out.write("                                            <div class=\"col-xl-3 col-lg-4 col-md-4 col-xs-12\">\n");
+      out.write("                                                <div class=\"social-timeline-left\">\n");
+      out.write("                                                    <div class=\"card\">\n");
+      out.write("                                                        <div class=\"social-profile\">\n");
+      out.write("                                                            <img class=\"img-fluid width-100\" ");
+      if (_jspx_meth_c_choose_0(_jspx_page_context))
+        return;
+      out.write(" alt=\"\">\n");
       out.write("                                                        <div class=\"profile-hvr m-t-15\">\n");
       out.write("                                                            <i class=\"icofont icofont-ui-edit p-r-10\"></i>\n");
       out.write("                                                            <i class=\"icofont icofont-ui-delete\"></i>\n");
       out.write("                                                        </div>\n");
       out.write("                                                    </div>\n");
       out.write("                                                    <div class=\"card-block social-follower\">\n");
-      out.write("                                                        <h4>Josephin Villa</h4>\n");
-      out.write("                                                        <h5>Softwear Engineer</h5>\n");
+      out.write("                                                        <h4>");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${requestScope.profile.fname}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("</h4>\n");
+      out.write("                                                        <h5>");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${requestScope.profile.occupation}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("</h5>\n");
       out.write("\n");
       out.write("                                                        <div class=\"\">\n");
       out.write("                                                            <button type=\"button\" class=\"btn btn-outline-primary waves-effect btn-block\"><i class=\"icofont icofont-ui-user m-r-10\"></i> Add as Friend</button>\n");
@@ -337,23 +360,34 @@ public final class Profile_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                                                                        <tr>\n");
       out.write("                                                                                            <th class=\"social-label b-none p-t-0\">Full Name\n");
       out.write("                                                                                            </th>\n");
-      out.write("                                                                                            <td class=\"social-user-name b-none p-t-0 text-muted\">Josephine Villa</td>\n");
+      out.write("                                                                                            <td class=\"social-user-name b-none p-t-0 text-muted\">");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${requestScope.profile.fname}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("</td>\n");
       out.write("                                                                                        </tr>\n");
       out.write("                                                                                        <tr>\n");
       out.write("                                                                                            <th class=\"social-label b-none\">Gender</th>\n");
-      out.write("                                                                                            <td class=\"social-user-name b-none text-muted\">Female</td>\n");
+      out.write("                                                                                            <td class=\"social-user-name b-none text-muted\">");
+      if (_jspx_meth_c_choose_1(_jspx_page_context))
+        return;
+      out.write("</td>\n");
       out.write("                                                                                        </tr>\n");
       out.write("                                                                                        <tr>\n");
       out.write("                                                                                            <th class=\"social-label b-none\">Birth Date</th>\n");
-      out.write("                                                                                            <td class=\"social-user-name b-none text-muted\">October 25th, 1990</td>\n");
+      out.write("                                                                                            <td class=\"social-user-name b-none text-muted\">");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${requestScope.profile.dob}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("</td>\n");
       out.write("                                                                                        </tr>\n");
       out.write("                                                                                        <tr>\n");
       out.write("                                                                                            <th class=\"social-label b-none\">Martail Status</th>\n");
-      out.write("                                                                                            <td class=\"social-user-name b-none text-muted\">Single</td>\n");
+      out.write("                                                                                            <td class=\"social-user-name b-none text-muted\">");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${requestScope.profile.mstatus}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("</td>\n");
       out.write("                                                                                        </tr>\n");
       out.write("                                                                                        <tr>\n");
       out.write("                                                                                            <th class=\"social-label b-none p-b-0\">Location</th>\n");
-      out.write("                                                                                            <td class=\"social-user-name b-none p-b-0 text-muted\">New York, USA</td>\n");
+      out.write("                                                                                            <td class=\"social-user-name b-none p-b-0 text-muted\">");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${requestScope.profile.location}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("</td>\n");
       out.write("                                                                                        </tr>\n");
       out.write("                                                                                    </tbody>\n");
       out.write("                                                                                </table>\n");
@@ -377,19 +411,39 @@ public final class Profile_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                                                                <tbody>\n");
       out.write("                                                                                    <tr>\n");
       out.write("                                                                                        <th class=\"social-label b-none p-t-0\">Mobile Number</th>\n");
-      out.write("                                                                                        <td class=\"social-user-name b-none p-t-0 text-muted\">eg. (0123) - 4567891</td>\n");
+      out.write("                                                                                        <td class=\"social-user-name b-none p-t-0 text-muted\">");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${requestScope.profile.number}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("</td>\n");
       out.write("                                                                                    </tr>\n");
       out.write("                                                                                    <tr>\n");
-      out.write("                                                                                        <th class=\"social-label b-none\">Email Address</th>\n");
-      out.write("                                                                                        <td class=\"social-user-name b-none text-muted\">test@gmail.com</td>\n");
+      out.write("                                                                                        <th class=\"social-label b-none\">Web</th>\n");
+      out.write("                                                                                        <td class=\"social-user-name b-none text-muted\">");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${requestScope.profile.wed}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("</td>\n");
       out.write("                                                                                    </tr>\n");
       out.write("                                                                                    <tr>\n");
       out.write("                                                                                        <th class=\"social-label b-none\">Twitter</th>\n");
-      out.write("                                                                                        <td class=\"social-user-name b-none text-muted\">@phonixcoded</td>\n");
+      out.write("                                                                                        <td class=\"social-user-name b-none text-muted\">");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${requestScope.profile.twitter}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("</td>\n");
       out.write("                                                                                    </tr>\n");
       out.write("                                                                                    <tr>\n");
-      out.write("                                                                                        <th class=\"social-label b-none p-b-0\">Skype</th>\n");
-      out.write("                                                                                        <td class=\"social-user-name b-none p-b-0 text-muted\">@phonixcoded demo</td>\n");
+      out.write("                                                                                        <th class=\"social-label b-none p-b-0\">Github</th>\n");
+      out.write("                                                                                        <td class=\"social-user-name b-none p-b-0 text-muted\">");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${requestScope.profile.github}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("</td>\n");
+      out.write("                                                                                    </tr>\n");
+      out.write("                                                                                    <tr>\n");
+      out.write("                                                                                        <th class=\"social-label b-none p-b-0\">Facebook</th>\n");
+      out.write("                                                                                        <td class=\"social-user-name b-none p-b-0 text-muted\">");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${requestScope.profile.face}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("</td>\n");
+      out.write("                                                                                    </tr>\n");
+      out.write("                                                                                    <tr>\n");
+      out.write("                                                                                        <th class=\"social-label b-none p-b-0\">Instagram</th>\n");
+      out.write("                                                                                        <td class=\"social-user-name b-none p-b-0 text-muted\">");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${requestScope.profile.insta}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("</td>\n");
       out.write("                                                                                    </tr>\n");
       out.write("                                                                                </tbody>\n");
       out.write("                                                                            </table>\n");
@@ -413,16 +467,17 @@ public final class Profile_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                                                                    <tr>\n");
       out.write("                                                                                        <th class=\"social-label b-none p-t-0\">Occupation      \n");
       out.write("                                                                                        </th>\n");
-      out.write("                                                                                        <td class=\"social-user-name b-none p-t-0 text-muted\">Developer</td>\n");
+      out.write("                                                                                        <td class=\"social-user-name b-none p-t-0 text-muted\">");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${requestScope.profile.occupation}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("</td>\n");
       out.write("                                                                                    </tr>\n");
       out.write("                                                                                    <tr>\n");
       out.write("                                                                                        <th class=\"social-label b-none\">Skills</th>\n");
-      out.write("                                                                                        <td class=\"social-user-name b-none text-muted\">C#, Javascript, Anguler</td>\n");
+      out.write("                                                                                        <td class=\"social-user-name b-none text-muted\">");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${requestScope.profile.skill}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("</td>\n");
       out.write("                                                                                    </tr>\n");
-      out.write("                                                                                    <tr>\n");
-      out.write("                                                                                        <th class=\"social-label b-none\">Jobs</th>\n");
-      out.write("                                                                                        <td class=\"social-user-name b-none p-b-0 text-muted\">#</td>\n");
-      out.write("                                                                                    </tr>\n");
+      out.write("\n");
       out.write("                                                                                </tbody>\n");
       out.write("                                                                            </table>\n");
       out.write("                                                                        </div>\n");
@@ -590,5 +645,224 @@ public final class Profile_jsp extends org.apache.jasper.runtime.HttpJspBase
     } finally {
       _jspxFactory.releasePageContext(_jspx_page_context);
     }
+  }
+
+  private boolean _jspx_meth_c_choose_0(PageContext _jspx_page_context)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  c:choose
+    org.apache.taglibs.standard.tag.common.core.ChooseTag _jspx_th_c_choose_0 = (org.apache.taglibs.standard.tag.common.core.ChooseTag) _jspx_tagPool_c_choose.get(org.apache.taglibs.standard.tag.common.core.ChooseTag.class);
+    _jspx_th_c_choose_0.setPageContext(_jspx_page_context);
+    _jspx_th_c_choose_0.setParent(null);
+    int _jspx_eval_c_choose_0 = _jspx_th_c_choose_0.doStartTag();
+    if (_jspx_eval_c_choose_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
+      do {
+        out.write("\n");
+        out.write("                                                                 ");
+        if (_jspx_meth_c_when_0((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_choose_0, _jspx_page_context))
+          return true;
+        out.write("\n");
+        out.write("                                                                 ");
+        if (_jspx_meth_c_otherwise_0((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_choose_0, _jspx_page_context))
+          return true;
+        out.write("\n");
+        out.write("                                                             ");
+        int evalDoAfterBody = _jspx_th_c_choose_0.doAfterBody();
+        if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
+          break;
+      } while (true);
+    }
+    if (_jspx_th_c_choose_0.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _jspx_tagPool_c_choose.reuse(_jspx_th_c_choose_0);
+      return true;
+    }
+    _jspx_tagPool_c_choose.reuse(_jspx_th_c_choose_0);
+    return false;
+  }
+
+  private boolean _jspx_meth_c_when_0(javax.servlet.jsp.tagext.JspTag _jspx_th_c_choose_0, PageContext _jspx_page_context)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  c:when
+    org.apache.taglibs.standard.tag.rt.core.WhenTag _jspx_th_c_when_0 = (org.apache.taglibs.standard.tag.rt.core.WhenTag) _jspx_tagPool_c_when_test.get(org.apache.taglibs.standard.tag.rt.core.WhenTag.class);
+    _jspx_th_c_when_0.setPageContext(_jspx_page_context);
+    _jspx_th_c_when_0.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_c_choose_0);
+    _jspx_th_c_when_0.setTest(((java.lang.Boolean) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${sessionScope.account.url_avata != null}", java.lang.Boolean.class, (PageContext)_jspx_page_context, null)).booleanValue());
+    int _jspx_eval_c_when_0 = _jspx_th_c_when_0.doStartTag();
+    if (_jspx_eval_c_when_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
+      do {
+        out.write("\n");
+        out.write("                                                                     src=\"");
+        out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+        out.write('/');
+        out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${sessionScope.account.url_avata}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+        out.write("\" \n");
+        out.write("                                                                 ");
+        int evalDoAfterBody = _jspx_th_c_when_0.doAfterBody();
+        if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
+          break;
+      } while (true);
+    }
+    if (_jspx_th_c_when_0.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _jspx_tagPool_c_when_test.reuse(_jspx_th_c_when_0);
+      return true;
+    }
+    _jspx_tagPool_c_when_test.reuse(_jspx_th_c_when_0);
+    return false;
+  }
+
+  private boolean _jspx_meth_c_otherwise_0(javax.servlet.jsp.tagext.JspTag _jspx_th_c_choose_0, PageContext _jspx_page_context)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  c:otherwise
+    org.apache.taglibs.standard.tag.common.core.OtherwiseTag _jspx_th_c_otherwise_0 = (org.apache.taglibs.standard.tag.common.core.OtherwiseTag) _jspx_tagPool_c_otherwise.get(org.apache.taglibs.standard.tag.common.core.OtherwiseTag.class);
+    _jspx_th_c_otherwise_0.setPageContext(_jspx_page_context);
+    _jspx_th_c_otherwise_0.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_c_choose_0);
+    int _jspx_eval_c_otherwise_0 = _jspx_th_c_otherwise_0.doStartTag();
+    if (_jspx_eval_c_otherwise_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
+      do {
+        out.write("\n");
+        out.write("                                                                     src=\"");
+        out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+        out.write("/assert/no_avata.jpg\" \n");
+        out.write("                                                                 ");
+        int evalDoAfterBody = _jspx_th_c_otherwise_0.doAfterBody();
+        if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
+          break;
+      } while (true);
+    }
+    if (_jspx_th_c_otherwise_0.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _jspx_tagPool_c_otherwise.reuse(_jspx_th_c_otherwise_0);
+      return true;
+    }
+    _jspx_tagPool_c_otherwise.reuse(_jspx_th_c_otherwise_0);
+    return false;
+  }
+
+  private boolean _jspx_meth_c_choose_1(PageContext _jspx_page_context)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  c:choose
+    org.apache.taglibs.standard.tag.common.core.ChooseTag _jspx_th_c_choose_1 = (org.apache.taglibs.standard.tag.common.core.ChooseTag) _jspx_tagPool_c_choose.get(org.apache.taglibs.standard.tag.common.core.ChooseTag.class);
+    _jspx_th_c_choose_1.setPageContext(_jspx_page_context);
+    _jspx_th_c_choose_1.setParent(null);
+    int _jspx_eval_c_choose_1 = _jspx_th_c_choose_1.doStartTag();
+    if (_jspx_eval_c_choose_1 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
+      do {
+        out.write("\n");
+        out.write("\n");
+        out.write("                                                                                                    ");
+        if (_jspx_meth_c_when_1((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_choose_1, _jspx_page_context))
+          return true;
+        out.write("\n");
+        out.write("\n");
+        out.write("                                                                                                    ");
+        if (_jspx_meth_c_when_2((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_choose_1, _jspx_page_context))
+          return true;
+        out.write("\n");
+        out.write("\n");
+        out.write("                                                                                                    ");
+        if (_jspx_meth_c_otherwise_1((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_choose_1, _jspx_page_context))
+          return true;
+        out.write("\n");
+        out.write("                                                                                                ");
+        int evalDoAfterBody = _jspx_th_c_choose_1.doAfterBody();
+        if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
+          break;
+      } while (true);
+    }
+    if (_jspx_th_c_choose_1.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _jspx_tagPool_c_choose.reuse(_jspx_th_c_choose_1);
+      return true;
+    }
+    _jspx_tagPool_c_choose.reuse(_jspx_th_c_choose_1);
+    return false;
+  }
+
+  private boolean _jspx_meth_c_when_1(javax.servlet.jsp.tagext.JspTag _jspx_th_c_choose_1, PageContext _jspx_page_context)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  c:when
+    org.apache.taglibs.standard.tag.rt.core.WhenTag _jspx_th_c_when_1 = (org.apache.taglibs.standard.tag.rt.core.WhenTag) _jspx_tagPool_c_when_test.get(org.apache.taglibs.standard.tag.rt.core.WhenTag.class);
+    _jspx_th_c_when_1.setPageContext(_jspx_page_context);
+    _jspx_th_c_when_1.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_c_choose_1);
+    _jspx_th_c_when_1.setTest(((java.lang.Boolean) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${requestScope.profile.gender == 1}", java.lang.Boolean.class, (PageContext)_jspx_page_context, null)).booleanValue());
+    int _jspx_eval_c_when_1 = _jspx_th_c_when_1.doStartTag();
+    if (_jspx_eval_c_when_1 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
+      do {
+        out.write("\n");
+        out.write("                                                                                                        Male\n");
+        out.write("                                                                                                    ");
+        int evalDoAfterBody = _jspx_th_c_when_1.doAfterBody();
+        if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
+          break;
+      } while (true);
+    }
+    if (_jspx_th_c_when_1.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _jspx_tagPool_c_when_test.reuse(_jspx_th_c_when_1);
+      return true;
+    }
+    _jspx_tagPool_c_when_test.reuse(_jspx_th_c_when_1);
+    return false;
+  }
+
+  private boolean _jspx_meth_c_when_2(javax.servlet.jsp.tagext.JspTag _jspx_th_c_choose_1, PageContext _jspx_page_context)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  c:when
+    org.apache.taglibs.standard.tag.rt.core.WhenTag _jspx_th_c_when_2 = (org.apache.taglibs.standard.tag.rt.core.WhenTag) _jspx_tagPool_c_when_test.get(org.apache.taglibs.standard.tag.rt.core.WhenTag.class);
+    _jspx_th_c_when_2.setPageContext(_jspx_page_context);
+    _jspx_th_c_when_2.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_c_choose_1);
+    _jspx_th_c_when_2.setTest(((java.lang.Boolean) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${requestScope.profile.gender == 0}", java.lang.Boolean.class, (PageContext)_jspx_page_context, null)).booleanValue());
+    int _jspx_eval_c_when_2 = _jspx_th_c_when_2.doStartTag();
+    if (_jspx_eval_c_when_2 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
+      do {
+        out.write("\n");
+        out.write("                                                                                                        Female\n");
+        out.write("                                                                                                    ");
+        int evalDoAfterBody = _jspx_th_c_when_2.doAfterBody();
+        if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
+          break;
+      } while (true);
+    }
+    if (_jspx_th_c_when_2.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _jspx_tagPool_c_when_test.reuse(_jspx_th_c_when_2);
+      return true;
+    }
+    _jspx_tagPool_c_when_test.reuse(_jspx_th_c_when_2);
+    return false;
+  }
+
+  private boolean _jspx_meth_c_otherwise_1(javax.servlet.jsp.tagext.JspTag _jspx_th_c_choose_1, PageContext _jspx_page_context)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  c:otherwise
+    org.apache.taglibs.standard.tag.common.core.OtherwiseTag _jspx_th_c_otherwise_1 = (org.apache.taglibs.standard.tag.common.core.OtherwiseTag) _jspx_tagPool_c_otherwise.get(org.apache.taglibs.standard.tag.common.core.OtherwiseTag.class);
+    _jspx_th_c_otherwise_1.setPageContext(_jspx_page_context);
+    _jspx_th_c_otherwise_1.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_c_choose_1);
+    int _jspx_eval_c_otherwise_1 = _jspx_th_c_otherwise_1.doStartTag();
+    if (_jspx_eval_c_otherwise_1 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
+      do {
+        out.write("\n");
+        out.write("                                                                                                        Orther\n");
+        out.write("                                                                                                    ");
+        int evalDoAfterBody = _jspx_th_c_otherwise_1.doAfterBody();
+        if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
+          break;
+      } while (true);
+    }
+    if (_jspx_th_c_otherwise_1.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _jspx_tagPool_c_otherwise.reuse(_jspx_th_c_otherwise_1);
+      return true;
+    }
+    _jspx_tagPool_c_otherwise.reuse(_jspx_th_c_otherwise_1);
+    return false;
   }
 }

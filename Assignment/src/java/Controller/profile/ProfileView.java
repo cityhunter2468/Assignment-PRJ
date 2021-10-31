@@ -6,6 +6,10 @@
 package Controller.profile;
 
 import Controller.authen.BaseReqAuth;
+import Dal.AccountDBContext;
+import Dal.ProfileDBContext;
+import Model.Account;
+import Model.Profile;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -43,7 +47,16 @@ public class ProfileView extends BaseReqAuth {
         //tren git
 //        String servletPath = request.getContextPath();
 //        System.out.println(servletPath);
+        int id = Integer.parseInt(request.getParameter("id"));
+        ProfileDBContext pdb = new ProfileDBContext();
+        Profile profile = new Profile();        
+        profile = pdb.getProfile(id);
         
+        AccountDBContext adb = new AccountDBContext();
+        Account account = adb.getAccountId(id);
+        
+        request.setAttribute("profile", profile);
+        request.setAttribute("account", account);
         request.getRequestDispatcher(".././view/Profile.jsp").forward(request, response);
     }
     
@@ -58,6 +71,7 @@ public class ProfileView extends BaseReqAuth {
     @Override
     protected void processPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
     }
 
     /**

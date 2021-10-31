@@ -52,7 +52,7 @@
                                         </c:choose>alt="Admin" class="rounded-circle" width="35" height="35">
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="${pageContext.request.contextPath}/profile/view"><i class="bi bi-file-person"></i>  View Profile</a>
+                                <a class="dropdown-item" href="${pageContext.request.contextPath}/profile/view?id=${sessionScope.account.id}"><i class="bi bi-file-person"></i>  View Profile</a>
                                 <a class="dropdown-item" href="${pageContext.request.contextPath}/profile/edit"><i class="bi bi-file-earmark"></i> Edit Profile</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#"><i class="bi bi-file-earmark-lock"></i> Change Password </a>

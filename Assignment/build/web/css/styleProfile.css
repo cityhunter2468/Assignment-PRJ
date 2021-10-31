@@ -217,39 +217,6 @@ body{
     border: 4px #fff solid;
 }
 
-.social-timelines-left:after {
-    height: 3px;
-    width: 25%;
-    position: absolute;
-    background: #cccccc;
-    top: 20px;
-    content: "";
-    right: 0;
-    z-index: 0;
-}
-
-.social-timelines:before {
-    position: absolute;
-    content: ' ';
-    width: 3px;
-    background: #cccccc;
-    left: 4%;
-    z-index: 0;
-    height: 100%;
-    top: 0;
-}
-
-.timeline-dot:after,
-.timeline-dot:before {
-    content: "";
-    position: absolute;
-    height: 9px;
-    width: 9px;
-    background-color: #cccccc;
-    left: 3.8%;
-    border-radius: 100%;
-}
-
 .user-box .social-designation,
 .post-timelines .social-time {
     font-size: 13px;
@@ -441,4 +408,12 @@ ul#profile-lightgallery {
     -webkit-transition: left 0.3s ease-out;
     transition: left 0.3s ease-out;
     bottom: 0;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d5d5db;
 }

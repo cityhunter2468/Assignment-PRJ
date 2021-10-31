@@ -5,6 +5,8 @@
  */
 package Model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author levan
@@ -16,7 +18,8 @@ public class Account {
     private String email;
     private String displayname;
     private String url_avata;
-
+    private ArrayList<Account> friend = new ArrayList<Account>();
+            
     public String getUrl_avata() {
         return url_avata;
     }
@@ -63,6 +66,14 @@ public class Account {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public ArrayList<Account> getFriend() {
+        return friend;
+    }
+
+    public void setFriend(ArrayList<Account> friend) {
+        this.friend = friend;
     }
 
     public Account(int id, String user, String pass, String email, String displayname, String url_avata) {

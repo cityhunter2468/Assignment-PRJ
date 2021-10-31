@@ -14,40 +14,47 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/styleProfile.css" />
     </head>
     <jsp:include page="Narbar.jsp"></jsp:include>
-    <body>
-        <main>
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div>
-                            <div class="content social-timeline">
-                                <div class="">
+        <body>
+            <main>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div>
+                                <div class="content social-timeline">
+                                    <div class="">
 
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="social-wallpaper">
-                                                <div class="profile-hvr">
-                                                    <i class="icofont icofont-ui-edit p-r-10"></i>
-                                                    <i class="icofont icofont-ui-delete"></i>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="social-wallpaper">
+                                                    <div class="profile-hvr">
+                                                        <i class="icofont icofont-ui-edit p-r-10"></i>
+                                                        <i class="icofont icofont-ui-delete"></i>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
 
-                                    <div class="row">
-                                        <div class="col-xl-3 col-lg-4 col-md-4 col-xs-12">
-                                            <div class="social-timeline-left">
-                                                <div class="card">
-                                                    <div class="social-profile">
-                                                        <img class="img-fluid width-100" src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="">
+                                        <div class="row">
+                                            <div class="col-xl-3 col-lg-4 col-md-4 col-xs-12">
+                                                <div class="social-timeline-left">
+                                                    <div class="card">
+                                                        <div class="social-profile">
+                                                            <img class="img-fluid width-100" <c:choose>
+                                                                 <c:when test = "${requestScope.account.url_avata != null}">
+                                                                     src="${pageContext.request.contextPath}/${requestScope.account.url_avata}" 
+                                                                 </c:when>
+                                                                 <c:otherwise>
+                                                                     src="${pageContext.request.contextPath}/assert/no_avata.jpg" 
+                                                                 </c:otherwise>
+                                                             </c:choose> alt="">
                                                         <div class="profile-hvr m-t-15">
                                                             <i class="icofont icofont-ui-edit p-r-10"></i>
                                                             <i class="icofont icofont-ui-delete"></i>
                                                         </div>
                                                     </div>
                                                     <div class="card-block social-follower">
-                                                        <h4>Josephin Villa</h4>
-                                                        <h5>Softwear Engineer</h5>
+                                                        <h4>${requestScope.account.displayname}</h4>
+                                                        <h5>${requestScope.profile.occupation}</h5>
 
                                                         <div class="">
                                                             <button type="button" class="btn btn-outline-primary waves-effect btn-block"><i class="icofont icofont-ui-user m-r-10"></i> Add as Friend</button>
@@ -57,8 +64,8 @@
                                             </div>
 
                                         </div>
-                                        <div class="col-xl-9 col-lg-8 col-md-8 col-xs-12 ">
 
+                                        <div class="col-xl-9 col-lg-8 col-md-8 col-xs-12 ">
                                             <div class="card social-tabs">
                                                 <ul class="nav nav-tabs md-tabs tab-timeline" role="tablist">
                                                     <li class="nav-item">
@@ -81,15 +88,22 @@
                                             </div>
 
                                             <div class="tab-content">
-
+                                                <div>
                                                 <div class="tab-pane active" id="timeline">
                                                     <div class="row">
-                                                        <div class="col-md-12 timeline-dot">
-                                                            <div class="social-timelines p-relative">
+                                                        <div class="col-md-12 ">
+                                                            <div class=" p-relative">
                                                                 <div class="row timeline-right p-t-35">
                                                                     <div class="col-2 col-sm-2 col-xl-1">
                                                                         <div class="social-timelines-left">
-                                                                            <img class="img-radius timeline-icon" src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="">
+                                                                            <img class="img-radius timeline-icon" <c:choose>
+                                                                                     <c:when test = "${sessionScope.account.url_avata != null}">
+                                                                                         src="${pageContext.request.contextPath}/${sessionScope.account.url_avata}" 
+                                                                                     </c:when>
+                                                                                     <c:otherwise>
+                                                                                         src="${pageContext.request.contextPath}/assert/no_avata.jpg" 
+                                                                                     </c:otherwise>
+                                                                                 </c:choose> alt="">
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-10 col-sm-10 col-xl-11 p-l-5 p-b-35">
@@ -97,13 +111,10 @@
                                                                             <div class="card-block post-timelines">
                                                                                 <span class="dropdown-toggle addon-btn text-muted f-right service-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="tooltip"></span>
                                                                                 <div class="dropdown-menu dropdown-menu-right b-none services-list">
-                                                                                    <a class="dropdown-item" href="#">Remove tag</a>
-                                                                                    <a class="dropdown-item" href="#">Report Photo</a>
-                                                                                    <a class="dropdown-item" href="#">Hide From Timeline</a>
-                                                                                    <a class="dropdown-item" href="#">Blog User</a>
+                                                                                    <a class="dropdown-item" href="#">Remove post</a>
+                                                                                    <a class="dropdown-item" href="#">Edit post</a>
                                                                                 </div>
-                                                                                <div class="chat-header f-w-600">Josephin Doe posted on your timeline</div>
-                                                                                <div class="social-time text-muted">50 minutes ago</div>
+                                                                                <div class="chat-header f-w-600"> posted on your timeline</div>
                                                                             </div>
                                                                             <img src="https://via.placeholder.com/800x350/87CEFA/000000" class="img-fluid width-100" alt="">
                                                                             <div class="card-block">
@@ -155,77 +166,24 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="social-timelines p-relative">
-                                                                <div class="row timeline-right p-t-35">
-                                                                    <div class="col-2 col-sm-2 col-xl-1">
-                                                                        <div class="social-timelines-left">
-                                                                            <img class="img-radius timeline-icon" src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-10 col-sm-10 col-xl-11 p-l-5 p-b-35">
-                                                                        <div class="card">
-                                                                            <div class="card-block post-timelines">
-                                                                                <span class="dropdown-toggle addon-btn text-muted f-right service-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="tooltip"></span>
-                                                                                <div class="dropdown-menu dropdown-menu-right b-none services-list">
-                                                                                    <a class="dropdown-item" href="#">Remove tag</a>
-                                                                                    <a class="dropdown-item" href="#">Report Photo</a>
-                                                                                    <a class="dropdown-item" href="#">Hide From Timeline</a>
-                                                                                    <a class="dropdown-item" href="#">Blog User</a>
-                                                                                </div>
-                                                                                <div class="chat-header f-w-600">Josephin Doe posted on your timeline</div>
-                                                                                <div class="social-time text-muted">50 minutes ago</div>
-                                                                            </div>
-                                                                            <img src="https://via.placeholder.com/800x350/FF69B4/000000" class="img-fluid width-100" alt="">
-                                                                            <div class="card-block">
-                                                                                <div class="timeline-details">
-                                                                                    <div class="chat-header">Josephin Doe posted on your timeline</div>
-                                                                                    <p class="text-muted">lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea </p>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="card-block b-b-theme b-t-theme social-msg">
-                                                                                <a href="#"> <i class="icofont icofont-heart-alt text-muted"></i><span class="b-r-muted">Like (20)</span></a>
-                                                                                <a href="#"> <i class="icofont icofont-comment text-muted"></i><span class="b-r-muted">Comments (25)</span> </a>
-                                                                                <a href="#"> <i class="icofont icofont-share text-muted"></i><span>Share (10)</span> </a>
-                                                                            </div>
-                                                                            <div class="card-block user-box">
-                                                                                <div class="p-b-30"> <span class="f-14"><a href="#">Comments (110)</a></span><span class="f-right">see all comments</span></div>
-                                                                                <div class="media m-b-20">
-                                                                                    <a class="media-left" href="#">
-                                                                                        <img class="media-object img-radius m-r-20" src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="Generic placeholder image">
-                                                                                    </a>
-                                                                                    <div class="media-body b-b-muted social-client-description">
-                                                                                        <div class="chat-header">About Marta Williams<span class="text-muted">Jane 10, 2015</span></div>
-                                                                                        <p class="text-muted">lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="media">
-                                                                                    <a class="media-left" href="#">
-                                                                                        <img class="media-object img-radius m-r-20" src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="Generic placeholder image">
-                                                                                    </a>
-                                                                                    <div class="media-body">
-                                                                                        <form class="">
-                                                                                            <div class="">
-                                                                                                <textarea rows="5" cols="5" class="form-control" placeholder="Write Something here..."></textarea>
-                                                                                                <div class="text-right m-t-20"><a href="#" class="btn btn-primary waves-effect waves-light">Post</a></div>
-                                                                                            </div>
-                                                                                        </form>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+
                                                         </div>
                                                     </div>
                                                     <div class="f-30 text-muted text-center">2014</div>
                                                     <div class="row">
-                                                        <div class="col-md-12 timeline-dot">
-                                                            <div class="social-timelines p-relative">
+                                                        <div class="col-md-12 ">
+                                                            <div class=" p-relative">
                                                                 <div class="row timeline-right p-t-35">
                                                                     <div class="col-2 col-sm-2 col-xl-1">
                                                                         <div class="social-timelines-left">
-                                                                            <img class="img-radius timeline-icon" src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="">
+                                                                            <img class="img-radius timeline-icon" <c:choose>
+                                                                                     <c:when test = "${sessionScope.account.url_avata != null}">
+                                                                                         src="${pageContext.request.contextPath}/${sessionScope.account.url_avata}" 
+                                                                                     </c:when>
+                                                                                     <c:otherwise>
+                                                                                         src="${pageContext.request.contextPath}/assert/no_avata.jpg" 
+                                                                                     </c:otherwise>
+                                                                                 </c:choose> alt="">
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-10 col-sm-10 col-xl-11 p-l-5 p-b-35">
@@ -276,7 +234,8 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
+                                                   
+                                                </div>    
                                                 <div class="tab-pane" id="about">
                                                     <div class="row">
                                                         <div class="col-sm-12">
@@ -288,33 +247,46 @@
                                                                 <div class="card-block">
                                                                     <div id="view-info" class="row">
                                                                         <div class="col-lg-6 col-md-12">
-                                                                            <form>
+                                                                      
                                                                                 <table class="table table-responsive m-b-0">
                                                                                     <tbody>
                                                                                         <tr>
                                                                                             <th class="social-label b-none p-t-0">Full Name
                                                                                             </th>
-                                                                                            <td class="social-user-name b-none p-t-0 text-muted">Josephine Villa</td>
+                                                                                            <td class="social-user-name b-none p-t-0 text-muted">${requestScope.profile.fname}</td>
                                                                                         </tr>
                                                                                         <tr>
                                                                                             <th class="social-label b-none">Gender</th>
-                                                                                            <td class="social-user-name b-none text-muted">Female</td>
+                                                                                            <td class="social-user-name b-none text-muted"><c:choose>
+
+                                                                                                    <c:when test = "${requestScope.profile.gender == 1}">
+                                                                                                        Male
+                                                                                                    </c:when>
+
+                                                                                                    <c:when test = "${requestScope.profile.gender == 0}">
+                                                                                                        Female
+                                                                                                    </c:when>
+
+                                                                                                    <c:otherwise>
+                                                                                                        Orther
+                                                                                                    </c:otherwise>
+                                                                                                </c:choose></td>
                                                                                         </tr>
                                                                                         <tr>
                                                                                             <th class="social-label b-none">Birth Date</th>
-                                                                                            <td class="social-user-name b-none text-muted">October 25th, 1990</td>
+                                                                                            <td class="social-user-name b-none text-muted">${requestScope.profile.dob}</td>
                                                                                         </tr>
                                                                                         <tr>
                                                                                             <th class="social-label b-none">Martail Status</th>
-                                                                                            <td class="social-user-name b-none text-muted">Single</td>
+                                                                                            <td class="social-user-name b-none text-muted">${requestScope.profile.mstatus}</td>
                                                                                         </tr>
                                                                                         <tr>
                                                                                             <th class="social-label b-none p-b-0">Location</th>
-                                                                                            <td class="social-user-name b-none p-b-0 text-muted">New York, USA</td>
+                                                                                            <td class="social-user-name b-none p-b-0 text-muted">${requestScope.profile.location}</td>
                                                                                         </tr>
                                                                                     </tbody>
                                                                                 </table>
-                                                                            </form>
+                                                                      
                                                                         </div>
                                                                     </div>
 
@@ -334,19 +306,27 @@
                                                                                 <tbody>
                                                                                     <tr>
                                                                                         <th class="social-label b-none p-t-0">Mobile Number</th>
-                                                                                        <td class="social-user-name b-none p-t-0 text-muted">eg. (0123) - 4567891</td>
+                                                                                        <td class="social-user-name b-none p-t-0 text-muted">${requestScope.profile.number}</td>
                                                                                     </tr>
                                                                                     <tr>
-                                                                                        <th class="social-label b-none">Email Address</th>
-                                                                                        <td class="social-user-name b-none text-muted">test@gmail.com</td>
+                                                                                        <th class="social-label b-none">Web</th>
+                                                                                        <td class="social-user-name b-none text-muted">${requestScope.profile.wed}</td>
                                                                                     </tr>
                                                                                     <tr>
                                                                                         <th class="social-label b-none">Twitter</th>
-                                                                                        <td class="social-user-name b-none text-muted">@phonixcoded</td>
+                                                                                        <td class="social-user-name b-none text-muted">${requestScope.profile.twitter}</td>
                                                                                     </tr>
                                                                                     <tr>
-                                                                                        <th class="social-label b-none p-b-0">Skype</th>
-                                                                                        <td class="social-user-name b-none p-b-0 text-muted">@phonixcoded demo</td>
+                                                                                        <th class="social-label b-none p-b-0">Github</th>
+                                                                                        <td class="social-user-name b-none p-b-0 text-muted">${requestScope.profile.github}</td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <th class="social-label b-none p-b-0">Facebook</th>
+                                                                                        <td class="social-user-name b-none p-b-0 text-muted">${requestScope.profile.face}</td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <th class="social-label b-none p-b-0">Instagram</th>
+                                                                                        <td class="social-user-name b-none p-b-0 text-muted">${requestScope.profile.insta}</td>
                                                                                     </tr>
                                                                                 </tbody>
                                                                             </table>
@@ -370,16 +350,13 @@
                                                                                     <tr>
                                                                                         <th class="social-label b-none p-t-0">Occupation      
                                                                                         </th>
-                                                                                        <td class="social-user-name b-none p-t-0 text-muted">Developer</td>
+                                                                                        <td class="social-user-name b-none p-t-0 text-muted">${requestScope.profile.occupation}</td>
                                                                                     </tr>
                                                                                     <tr>
                                                                                         <th class="social-label b-none">Skills</th>
-                                                                                        <td class="social-user-name b-none text-muted">C#, Javascript, Anguler</td>
+                                                                                        <td class="social-user-name b-none text-muted">${requestScope.profile.skill}</td>
                                                                                     </tr>
-                                                                                    <tr>
-                                                                                        <th class="social-label b-none">Jobs</th>
-                                                                                        <td class="social-user-name b-none p-b-0 text-muted">#</td>
-                                                                                    </tr>
+
                                                                                 </tbody>
                                                                             </table>
                                                                         </div>
