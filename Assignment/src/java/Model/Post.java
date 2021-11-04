@@ -23,6 +23,8 @@ public class Post {
     private int status;
     private String content;
     private ArrayList<Comment> comment = new ArrayList<>();
+    private Account ac = new Account();
+    
     public int getUser_id() {
         return user_id;
     }
@@ -95,6 +97,14 @@ public class Post {
         this.comment = comment;
     }
 
+    public Account getAc() {
+        return ac;
+    }
+
+    public void setAc(Account ac) {
+        this.ac = ac;
+    }
+
     public Post(int post_id, int user_id, String url_img, String url_video, String url_file, Timestamp time_create, int status, String content) {
         this.post_id = post_id;
         this.user_id = user_id;
@@ -106,7 +116,6 @@ public class Post {
         this.content = content;
     }
 
-    
 
     public Post() {
     }
