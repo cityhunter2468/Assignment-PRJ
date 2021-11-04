@@ -117,14 +117,23 @@
                                                                                             <a class="dropdown-item" href="#">Remove post</a>
                                                                                             <a class="dropdown-item" href="#">Edit post</a>
                                                                                         </div>
-                                                                                        <div class="chat-header f-w-600"> ${requestScope.account.displayname} posted on your timeline</div>
+                                                             
                                                                                         <div class="chat-header f-w-600"> Create at: ${post.time_create}</div>
                                                                                     </div>
-                                                                                    <img src="https://via.placeholder.com/800x350/87CEFA/000000" class="img-fluid width-100" alt="">
+                                                                                    <div class="anhcontainer">
+                                                                                    <c:choose>
+                                                                                        <c:when test = "${post.url_img != null}">
+                                                                                            <img src="${pageContext.request.contextPath}/${post.url_img}" class="anh" alt="">
+                                                                                        </c:when>
+                                                                                        <c:otherwise>
+                                                                                            src="${pageContext.request.contextPath}/assert/no_avata.jpg" 
+                                                                                        </c:otherwise>
+                                                                                    </c:choose>
+                                                                                    </div>
                                                                                     <div class="card-block">
                                                                                         <div class="timeline-details">
-                                                                                            <div class="chat-header">Josephin Doe posted on your timeline</div>
-                                                                                            <p class="text-muted">lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea </p>
+                                                           
+                                                                                            <p class="text-muted">${post.content} </p>
                                                                                         </div>
                                                                                     </div>
                                                                                     <div class="card-block b-b-theme b-t-theme social-msg">

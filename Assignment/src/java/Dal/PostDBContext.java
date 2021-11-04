@@ -61,13 +61,13 @@ public class PostDBContext extends DBContext {
                 + "where user_id = ? and status != 0\n"
                 + "ORDER BY time_create DESC\n"
                 + "OFFSET ? ROWS\n"
-                + "FETCH NEXT 9 ROWS ONLY";
+                + "FETCH NEXT 2 ROWS ONLY";
 
         String sql2 = "SELECT * FROM Post\n"
                 + "where user_id = ? \n"
                 + "ORDER BY time_create DESC\n"
                 + "OFFSET ? ROWS\n"
-                + "FETCH NEXT 9 ROWS ONLY";
+                + "FETCH NEXT 2 ROWS ONLY";
         try {
             String sql = "";
             if (op == 1) {

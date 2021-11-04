@@ -422,3 +422,11 @@ ul#profile-lightgallery {
     text-align: center;
     
 }
+
+.anh{
+    max-width: 500px;
+}
+
+.anhcontainer{
+    text-align: center;
+}

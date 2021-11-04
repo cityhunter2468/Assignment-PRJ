@@ -7,6 +7,7 @@ package Model;
 
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 
 /**
  *
@@ -21,7 +22,7 @@ public class Post {
     private Timestamp time_create;
     private int status;
     private String content;
-
+    private ArrayList<Comment> comment = new ArrayList<>();
     public int getUser_id() {
         return user_id;
     }
@@ -84,6 +85,14 @@ public class Post {
 
     public void setPost_id(int post_id) {
         this.post_id = post_id;
+    }
+
+    public ArrayList<Comment> getComment() {
+        return comment;
+    }
+
+    public void setComment(ArrayList<Comment> comment) {
+        this.comment = comment;
     }
 
     public Post(int post_id, int user_id, String url_img, String url_video, String url_file, Timestamp time_create, int status, String content) {
