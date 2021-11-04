@@ -98,9 +98,10 @@
                                                                         <div class="row timeline-right p-t-35">
                                                                             <div class="col-2 col-sm-2 col-xl-1">
                                                                                 <div class="social-timelines-left">
-                                                                                    <img class="img-radius timeline-icon" <c:choose>
+                                                                                    <img class="img-radius timeline-icon" 
+                                                                                         <c:choose>
                                                                                              <c:when test = "${sessionScope.account.url_avata != null}">
-                                                                                                 src="${pageContext.request.contextPath}/${sessionScope.account.url_avata}" 
+                                                                                                 src="${pageContext.request.contextPath}/${requestScope.account.url_avata}" 
                                                                                              </c:when>
                                                                                              <c:otherwise>
                                                                                                  src="${pageContext.request.contextPath}/assert/no_avata.jpg" 
