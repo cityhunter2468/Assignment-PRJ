@@ -5,6 +5,7 @@
  */
 package Dal;
 
+import Model.Account;
 import Model.Post;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -79,12 +80,9 @@ public class PostDBContext extends DBContext {
             stm.setInt(1, id);
             stm.setInt(2, amount);
             ResultSet rs = stm.executeQuery();
-            while (rs.next()) {
-                System.out.println("3");
+            while (rs.next()) {    
                 Post p = new Post();
                 p.setPost_id(rs.getInt("post_id"));
-                Timestamp time = rs.getTimestamp("time_create");
-                System.out.println(time);
                 p.setTime_create(rs.getTimestamp("time_create"));
                 p.setContent(rs.getString("content"));
                 p.setUrl_img(rs.getString("url_img"));
@@ -95,6 +93,47 @@ public class PostDBContext extends DBContext {
                 list.add(p);
             }
         } catch (Exception e) {
+        }
+        return list;
+    }
+
+    public ArrayList<Post> getPostHome(int id, int amount) {
+        ArrayList<Post> list = new ArrayList<>();
+        try {
+            String sql = "select DISTINCT p.post_id, p.time_create, p.content,p.url_img,\n"
+                    + "p.url_video, p.status, p.url_file, a.id, a.displayname, a.url_avarta from Post as p \n"
+                    + "inner join Account as a\n"
+                    + "on p.user_id = a.id \n"
+                    + "left join Relationship_User as ru \n"
+                    + "on a.id = ru.user_id\n"
+                    + "where p.status = 2 or (p.status = 1 and ru.friend_id = ?  and ru.status = 1) or p.user_id = ?\n"
+                    + "ORDER BY p.time_create DESC\n"
+                    + "OFFSET ? ROWS\n"
+                    + "FETCH NEXT 3 ROWS ONLY";
+
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, id);
+            stm.setInt(2, id);
+            stm.setInt(3, amount);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {           
+                Post p = new Post();
+                p.setPost_id(rs.getInt("post_id"));
+                p.setTime_create(rs.getTimestamp("time_create"));
+                p.setContent(rs.getString("content"));
+                p.setUrl_img(rs.getString("url_img"));
+                p.setUrl_video(rs.getString("url_video"));
+                p.setStatus(rs.getInt("status"));
+                p.setUrl_file(rs.getString("url_file"));
+                Account ac = new Account();
+                ac.setId(rs.getInt("id"));
+                ac.setDisplayname(rs.getString("displayname"));
+                ac.setUrl_avata(rs.getString("url_avarta"));
+                p.setAc(ac);
+                list.add(p);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PostDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return list;
     }

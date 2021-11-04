@@ -6,8 +6,12 @@
 package Controller.home;
 
 import Controller.authen.BaseReqAuth;
+import Dal.PostDBContext;
+import Model.Account;
+import Model.Post;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -40,6 +44,10 @@ public class Home extends BaseReqAuth {
     @Override
     protected void processGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        PostDBContext pdb = new PostDBContext();
+        Account ac = (Account) request.getSession().getAttribute("account");
+        ArrayList<Post> posts = pdb.getPostHome(ac.getId(), 0);
+        request.setAttribute("posts", posts);
         request.getRequestDispatcher("view/NewFeed.jsp").forward(request, response);
     }
 
