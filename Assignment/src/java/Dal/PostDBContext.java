@@ -78,7 +78,7 @@ public class PostDBContext extends DBContext {
             String sql = "";
             if (op == 1) {
                 sql = sql1;
-            } else {               
+            } else {
                 sql = sql2;
             }
             PreparedStatement stm = connection.prepareStatement(sql);
@@ -147,6 +147,53 @@ public class PostDBContext extends DBContext {
             }
         } catch (SQLException ex) {
             Logger.getLogger(PostDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+
+    public ArrayList<Post> getImg(int id, int id1, int amount, int op) {
+        ArrayList<Post> list = new ArrayList<Post>();
+        String sql1 = "select DISTINCT p.url_img\n"
+                + "                  from Post as p \n"
+                + "                   inner join Account as a\n"
+                + "                    on p.user_id = a.id \n"
+                + "                   left join Relationship_User as ru \n"
+                + "                   on a.id = ru.user_id\n"
+                + "                  where (p.status = 2 and  p.user_id = ?) or (p.status = 1 and ru.user_id = ? and ru.friend_id = ?  and ru.status = 1)\n"
+                + "                ORDER BY time_create DESC\n"
+                + "               OFFSET ? ROWS\n"
+                + "                FETCH NEXT 5 ROWS ONLY";
+
+        String sql2 = "SELECT * FROM Post\n"
+                + "where user_id = ? \n"
+                + "ORDER BY time_create DESC\n"
+                + "OFFSET ? ROWS\n"
+                + "FETCH NEXT 5 ROWS ONLY";
+        try {
+            String sql = "";
+            if (op == 1) {
+                sql = sql1;
+            } else {
+                sql = sql2;
+            }
+            PreparedStatement stm = connection.prepareStatement(sql);
+            if (op == 1) {
+                stm.setInt(1, id);
+                stm.setInt(2, id);
+                stm.setInt(3, id1);
+                stm.setInt(4, amount);
+            } else {
+                stm.setInt(1, id);
+                stm.setInt(2, amount);
+            }
+
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Post p = new Post();                
+                p.setUrl_img(rs.getString("url_img"));                
+                list.add(p);
+            }
+        } catch (Exception e) {
         }
         return list;
     }

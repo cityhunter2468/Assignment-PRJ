@@ -20,6 +20,10 @@
         <servlet-name>LoadMorePost</servlet-name>
         <servlet-class>Controller.profile.LoadMorePost</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoadMoreNewFeed</servlet-name>
+        <servlet-class>Controller.home.LoadMoreNewFeed</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Register</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -63,5 +67,9 @@
     <servlet-mapping>
         <servlet-name>LoadMorePost</servlet-name>
         <url-pattern>/LoadMorePost</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadMoreNewFeed</servlet-name>
+        <url-pattern>/LoadMoreNewFeed</url-pattern>
     </servlet-mapping>
 </web-app>

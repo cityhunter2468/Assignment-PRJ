@@ -32,6 +32,7 @@
                                                 src="${pageContext.request.contextPath}/assert/no_avata.jpg" 
                                             </c:otherwise>
                                         </c:choose>alt="Admin" class="rounded-circle" width="35" height="35">
+                                    
                                     <div>
                                         <p> <a href="profile/view?id=${post.ac.id}">${post.ac.displayname}</a></p>
                                         <small>${post.time_create}</small>
@@ -60,6 +61,7 @@
                             </div>
                         </div>
                     </c:forEach>
+                        
                 </div>
             </div>
         </main>
@@ -89,7 +91,7 @@
                                                     //alert("bottom");
                                                     var amount = document.getElementsByClassName("sub_content").length;
                                                     $.ajax({
-                                                        url: "/Assignment/LoadMorePost",
+                                                        url: "/Assignment/LoadMoreNewFeed",
                                                         type: "post", //send it through get method
                                                         data: {
                                                             exits: amount
