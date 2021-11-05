@@ -153,7 +153,7 @@ public class PostDBContext extends DBContext {
 
     public ArrayList<Post> getImg(int id, int id1, int amount, int op) {
         ArrayList<Post> list = new ArrayList<Post>();
-        String sql1 = "select DISTINCT p.url_img\n"
+        String sql1 = "select DISTINCT p.url_img,p.time_create\n"
                 + "                  from Post as p \n"
                 + "                   inner join Account as a\n"
                 + "                    on p.user_id = a.id \n"
@@ -189,11 +189,39 @@ public class PostDBContext extends DBContext {
 
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
-                Post p = new Post();                
-                p.setUrl_img(rs.getString("url_img"));                
+                Post p = new Post();
+                p.setUrl_img(rs.getString("url_img"));
                 list.add(p);
             }
         } catch (Exception e) {
+        }
+        return list;
+    }
+
+    public ArrayList<Account> getFriend(int id, int amount) {
+        ArrayList<Account> list = new ArrayList<>();
+        try {
+            String sql = "select * from Relationship_User as ru \n"
+                    + "inner join Account as a\n"
+                    + "on ru.friend_id = a.id\n"
+                    + "where ru.user_id = ? and ru.status != 0\n"
+                    + "ORDER BY ru.user_id DESC\n"
+                    + "                OFFSET ? ROWS\n"
+                    + "                FETCH NEXT 5 ROWS ONLY";
+
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, id);
+            stm.setInt(2, amount);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Account ac = new Account();
+                ac.setId(rs.getInt(4));
+                ac.setDisplayname(rs.getString(8));
+                ac.setUrl_avata(rs.getString(9));
+                list.add(ac);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PostDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return list;
     }

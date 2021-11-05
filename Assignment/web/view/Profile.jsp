@@ -117,22 +117,20 @@
                                                                                             <a class="dropdown-item" href="#">Remove post</a>
                                                                                             <a class="dropdown-item" href="#">Edit post</a>
                                                                                         </div>
-                                                             
+
                                                                                         <div class="chat-header f-w-600"> Create at: ${post.time_create}</div>
                                                                                     </div>
                                                                                     <div class="anhcontainer">
-                                                                                    <c:choose>
-                                                                                        <c:when test = "${post.url_img != null}">
-                                                                                            <img src="${pageContext.request.contextPath}/${post.url_img}" class="anh" alt="">
-                                                                                        </c:when>
-                                                                                        <c:otherwise>
-                                                                                            src="${pageContext.request.contextPath}/assert/no_avata.jpg" 
-                                                                                        </c:otherwise>
-                                                                                    </c:choose>
+                                                                                        <c:choose>
+                                                                                            <c:when test = "${post.url_img != null}">
+                                                                                                <img src="${pageContext.request.contextPath}/${post.url_img}" class="anh" alt="">
+                                                                                            </c:when>
+
+                                                                                        </c:choose>
                                                                                     </div>
                                                                                     <div class="card-block">
                                                                                         <div class="timeline-details">
-                                                           
+
                                                                                             <p class="text-muted">${post.content} </p>
                                                                                         </div>
                                                                                     </div>
@@ -341,27 +339,14 @@
 
                                                             <div class="card-block">
                                                                 <div class="demo-gallery">
-                                                                    <ul id="profile-lightgallery" class="row">
-                                                                        <li class="col-md-4 col-lg-2 col-sm-6 col-xs-12">
-                                                                            <a href="#" data-toggle="lightbox" data-title="A random title" data-footer="A custom footer text">
-                                                                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="img-fluid" alt="">
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="col-md-4 col-lg-2 col-sm-6 col-xs-12">
-                                                                            <a href="#" data-toggle="lightbox" data-title="A random title" data-footer="A custom footer text">
-                                                                                <img src="https://bootdey.com/img/Content/avatar/avatar2.png" class="img-fluid" alt="">
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="col-md-4 col-lg-2 col-sm-6 col-xs-12">
-                                                                            <a href="#" data-toggle="lightbox" data-title="A random title" data-footer="A custom footer text">
-                                                                                <img src="https://bootdey.com/img/Content/avatar/avatar3.png" class="img-fluid" alt="">
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="col-md-4 col-lg-2 col-sm-6 col-xs-12">
-                                                                            <a href="#" data-toggle="lightbox" data-title="A random title" data-footer="A custom footer text">
-                                                                                <img src="https://bootdey.com/img/Content/avatar/avatar4.png" class="img-fluid" alt="">
-                                                                            </a>
-                                                                        </li>
+                                                                    <ul id="profile-lightgallery" class="row" style="list-style: none;">
+                                                                        <c:forEach items="${requestScope.img}" var="img">
+                                                                            <li class="col-md-4 col-lg-2 col-sm-6 col-xs-12">
+
+                                                                                <img src="${pageContext.request.contextPath}/${img.url_img}" class="img-fluid" alt="">
+
+                                                                            </li>
+                                                                        </c:forEach>
                                                                     </ul>
                                                                 </div>
                                                             </div>
@@ -383,102 +368,38 @@
                                                 <div class="tab-pane" id="friends">
                                                     <div> 
                                                         <div class="row">
-                                                            <div class="col-lg-12 col-xl-6">
-                                                                <div class="card">
-                                                                    <div class="card-block post-timelines">
-                                                                        <span class="dropdown-toggle addon-btn text-muted f-right service-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="tooltip"></span>
-                                                                        <div class="dropdown-menu dropdown-menu-right b-none services-list">
-                                                                            <a class="dropdown-item" href="#">Remove tag</a>
-                                                                            <a class="dropdown-item" href="#">Report Photo</a>
-                                                                            <a class="dropdown-item" href="#">Hide From Timeline</a>
-                                                                            <a class="dropdown-item" href="#">Blog User</a>
-                                                                        </div>
-                                                                        <div class="media bg-white d-flex">
-                                                                            <div class="media-left media-middle">
-                                                                                <a href="#">
-                                                                                    <img class="media-object" width="120" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">
-                                                                                </a>
+                                                            <c:forEach items="${requestScope.friend}" var="friend">
+                                                                <div class="col-lg-12 col-xl-6">
+                                                                    <div class="card">
+                                                                        <div class="card-block post-timelines">
+                                                                            <span class="dropdown-toggle addon-btn text-muted f-right service-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="tooltip"></span>
+                                                                            <div class="dropdown-menu dropdown-menu-right b-none services-list">
+                                                                                <a class="dropdown-item" href="#">Huy ket ban</a>
+                                                                                <a class="dropdown-item" href="${pageContext.request.contextPath}/profile/view?id=${friend.id}">Profile</a>
+
                                                                             </div>
-                                                                            <div class="media-body friend-elipsis">
-                                                                                <div class="f-15 f-bold m-b-5">Josephin Doe</div>
-                                                                                <div class="text-muted social-designation">Software Engineer</div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg-12 col-xl-6">
-                                                                <div class="card">
-                                                                    <div class="card-block post-timelines">
-                                                                        <span class="dropdown-toggle addon-btn text-muted f-right service-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="tooltip"></span>
-                                                                        <div class="dropdown-menu dropdown-menu-right b-none services-list">
-                                                                            <a class="dropdown-item" href="#">Remove tag</a>
-                                                                            <a class="dropdown-item" href="#">Report Photo</a>
-                                                                            <a class="dropdown-item" href="#">Hide From Timeline</a>
-                                                                            <a class="dropdown-item" href="#">Blog User</a>
-                                                                        </div>
-                                                                        <div class="media bg-white d-flex">
-                                                                            <div class="media-left media-middle">
-                                                                                <a href="#">
-                                                                                    <img class="media-object" width="120" src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="">
-                                                                                </a>
-                                                                            </div>
-                                                                            <div class="media-body friend-elipsis">
-                                                                                <div class="f-15 f-bold m-b-5">Josephin Doe</div>
-                                                                                <div class="text-muted social-designation">Software Engineer</div>
+                                                                            <div class="media bg-white d-flex">
+                                                                                <div class="media-left media-middle">
+                                                                                    <c:choose>
+                                                                                        <c:when test = "${friend.url_avata != null}">
+                                                                                            <img class="media-object" width="120" height="120" src="${pageContext.request.contextPath}/${friend.url_avata}" alt="">
+                                                                                        </c:when>
+                                                                                        <c:otherwise>
+                                                                                            <img class="media-object" width="120" height="120" src="${pageContext.request.contextPath}/assert/no_avata.jpg"  alt="">
+                                                                                        </c:otherwise>
+                                                                                    </c:choose>
+
+
+                                                                                </div>
+                                                                                <div class="media-body friend-elipsis">
+                                                                                    <div class="f-15 f-bold m-b-5">${friend.displayname}</div>
+
+                                                                                </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg-12 col-xl-6">
-                                                                <div class="card">
-                                                                    <div class="card-block post-timelines">
-                                                                        <span class="dropdown-toggle addon-btn text-muted f-right service-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="tooltip"></span>
-                                                                        <div class="dropdown-menu dropdown-menu-right b-none services-list">
-                                                                            <a class="dropdown-item" href="#">Remove tag</a>
-                                                                            <a class="dropdown-item" href="#">Report Photo</a>
-                                                                            <a class="dropdown-item" href="#">Hide From Timeline</a>
-                                                                            <a class="dropdown-item" href="#">Blog User</a>
-                                                                        </div>
-                                                                        <div class="media bg-white d-flex">
-                                                                            <div class="media-left media-middle">
-                                                                                <a href="#">
-                                                                                    <img class="media-object" width="120" src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="">
-                                                                                </a>
-                                                                            </div>
-                                                                            <div class="media-body friend-elipsis">
-                                                                                <div class="f-15 f-bold m-b-5">Josephin Doe</div>
-                                                                                <div class="text-muted social-designation">Software Engineer</div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg-12 col-xl-6">
-                                                                <div class="card">
-                                                                    <div class="card-block post-timelines">
-                                                                        <span class="dropdown-toggle addon-btn text-muted f-right service-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="tooltip"></span>
-                                                                        <div class="dropdown-menu dropdown-menu-right b-none services-list">
-                                                                            <a class="dropdown-item" href="#">Remove tag</a>
-                                                                            <a class="dropdown-item" href="#">Report Photo</a>
-                                                                            <a class="dropdown-item" href="#">Hide From Timeline</a>
-                                                                            <a class="dropdown-item" href="#">Blog User</a>
-                                                                        </div>
-                                                                        <div class="media bg-white d-flex">
-                                                                            <div class="media-left media-middle">
-                                                                                <a href="#">
-                                                                                    <img class="media-object" width="120" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="">
-                                                                                </a>
-                                                                            </div>
-                                                                            <div class="media-body friend-elipsis">
-                                                                                <div class="f-15 f-bold m-b-5">Josephin Doe</div>
-                                                                                <div class="text-muted social-designation">Software Engineer</div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+                                                                </div>   
+                                                            </c:forEach>
                                                         </div>
                                                     </div>
                                                     <div>

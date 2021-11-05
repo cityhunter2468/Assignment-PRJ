@@ -67,7 +67,18 @@ public class ProfileView extends BaseReqAuth {
             posts = postdb.getPost(id,ac.getId(), 0, 1);
         }
         
+        ArrayList<Post> imgs = new ArrayList<Post>();
+        if (ac.getId() == id) {
+            imgs = postdb.getImg(id,ac.getId(), 0, 2);
+        } else {
+            imgs = postdb.getImg(id,ac.getId(), 0, 1);
+        }
+        
+        ArrayList<Account> friends = postdb.getFriend(id,0);
+        
+        request.setAttribute("friend", friends);
         request.setAttribute("post", posts);
+        request.setAttribute("img", imgs);
         request.setAttribute("profile", profile);
         request.setAttribute("account", account);
         request.getRequestDispatcher(".././view/Profile.jsp").forward(request, response);
