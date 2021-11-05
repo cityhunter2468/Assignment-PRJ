@@ -62,9 +62,9 @@ public class ProfileView extends BaseReqAuth {
         PostDBContext postdb = new PostDBContext();
         ArrayList<Post> posts = new ArrayList<Post>();
         if (ac.getId() == id) {
-            posts = postdb.getPost(id, 0, 2);
+            posts = postdb.getPost(id,ac.getId(), 0, 2);
         } else {
-            posts = postdb.getPost(id, 0, 1);
+            posts = postdb.getPost(id,ac.getId(), 0, 1);
         }
         
         request.setAttribute("post", posts);

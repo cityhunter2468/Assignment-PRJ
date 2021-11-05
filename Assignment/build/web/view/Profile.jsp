@@ -100,7 +100,7 @@
                                                                                 <div class="social-timelines-left">
                                                                                     <img class="img-radius timeline-icon" 
                                                                                          <c:choose>
-                                                                                             <c:when test = "${sessionScope.account.url_avata != null}">
+                                                                                             <c:when test = "${requestScope.account.url_avata != null}">
                                                                                                  src="${pageContext.request.contextPath}/${requestScope.account.url_avata}" 
                                                                                              </c:when>
                                                                                              <c:otherwise>

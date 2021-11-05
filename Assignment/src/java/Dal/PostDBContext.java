@@ -56,31 +56,44 @@ public class PostDBContext extends DBContext {
         }
     }
 
-    public ArrayList<Post> getPost(int id, int amount, int op) {
+    public ArrayList<Post> getPost(int id, int id1, int amount, int op) {
         ArrayList<Post> list = new ArrayList<Post>();
-        String sql1 = "SELECT * FROM Post\n"
-                + "where user_id = ? and status != 0\n"
-                + "ORDER BY time_create DESC\n"
-                + "OFFSET ? ROWS\n"
-                + "FETCH NEXT 2 ROWS ONLY";
+        String sql1 = "select DISTINCT p.post_id, p.time_create, p.content,p.url_img,\n"
+                + "                  p.url_video, p.status, p.url_file, a.id as user_id from Post as p \n"
+                + "                   inner join Account as a\n"
+                + "                    on p.user_id = a.id \n"
+                + "                   left join Relationship_User as ru \n"
+                + "                   on a.id = ru.user_id\n"
+                + "                  where (p.status = 2 and  p.user_id = ?) or (p.status = 1 and ru.user_id = ? and ru.friend_id = ?  and ru.status = 1)\n"
+                + "                ORDER BY time_create DESC\n"
+                + "               OFFSET ? ROWS\n"
+                + "                FETCH NEXT 5 ROWS ONLY";
 
         String sql2 = "SELECT * FROM Post\n"
                 + "where user_id = ? \n"
                 + "ORDER BY time_create DESC\n"
                 + "OFFSET ? ROWS\n"
-                + "FETCH NEXT 2 ROWS ONLY";
+                + "FETCH NEXT 5 ROWS ONLY";
         try {
             String sql = "";
             if (op == 1) {
                 sql = sql1;
-            } else {
+            } else {               
                 sql = sql2;
             }
             PreparedStatement stm = connection.prepareStatement(sql);
-            stm.setInt(1, id);
-            stm.setInt(2, amount);
+            if (op == 1) {
+                stm.setInt(1, id);
+                stm.setInt(2, id);
+                stm.setInt(3, id1);
+                stm.setInt(4, amount);
+            } else {
+                stm.setInt(1, id);
+                stm.setInt(2, amount);
+            }
+
             ResultSet rs = stm.executeQuery();
-            while (rs.next()) {    
+            while (rs.next()) {
                 Post p = new Post();
                 p.setPost_id(rs.getInt("post_id"));
                 p.setTime_create(rs.getTimestamp("time_create"));
@@ -116,7 +129,7 @@ public class PostDBContext extends DBContext {
             stm.setInt(2, id);
             stm.setInt(3, amount);
             ResultSet rs = stm.executeQuery();
-            while (rs.next()) {           
+            while (rs.next()) {
                 Post p = new Post();
                 p.setPost_id(rs.getInt("post_id"));
                 p.setTime_create(rs.getTimestamp("time_create"));

@@ -15,7 +15,8 @@ public class Comment {
     private int id;
     private Date time;
     private String content;
-    private int user_id;
+    private int post_id;
+    private Account account;
 
     public int getId() {
         return id;
@@ -41,20 +42,31 @@ public class Comment {
         this.content = content;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public int getPost_id() {
+        return post_id;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setPost_id(int post_id) {
+        this.post_id = post_id;
     }
 
-    public Comment(int id, Date time, String content, int user_id) {
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
+    public Comment(int id, Date time, String content, int post_id, Account account) {
         this.id = id;
         this.time = time;
         this.content = content;
-        this.user_id = user_id;
+        this.post_id = post_id;
+        this.account = account;
     }
+
+    
 
     public Comment() {
     }
