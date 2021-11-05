@@ -141,4 +141,19 @@ public class ProfileDBContext extends DBContext {
         }
     }
 
+    public void deleteFriend(int idac, int id) {
+        try {
+            String sql = " DELETE FROM [dbo].[Relationship_User]\n"
+                    + "      WHERE user_id = ? and friend_id = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, id);
+            stm.setInt(2, idac);
+            stm.executeQuery();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ProfileDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
 }

@@ -367,14 +367,16 @@
 
                                                 <div class="tab-pane" id="friends">
                                                     <div> 
-                                                        <div class="row">
+                                                        <div class="row" id="friend">
                                                             <c:forEach items="${requestScope.friend}" var="friend">
-                                                                <div class="col-lg-12 col-xl-6">
+                                                                <div class="col-lg-12 col-xl-6" id="${friend.id}">
                                                                     <div class="card">
                                                                         <div class="card-block post-timelines">
                                                                             <span class="dropdown-toggle addon-btn text-muted f-right service-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="tooltip"></span>
                                                                             <div class="dropdown-menu dropdown-menu-right b-none services-list">
-                                                                                <a class="dropdown-item" href="#">Huy ket ban</a>
+                                                                                <c:if test = "${sessionScope.account.id == requestScope.account.id}">
+                                                                                    <a class="dropdown-item" href="#" onclick="deleteFriend(${friend.id})">Huy ket ban</a>
+                                                                                </c:if>                                                                          
                                                                                 <a class="dropdown-item" href="${pageContext.request.contextPath}/profile/view?id=${friend.id}">Profile</a>
 
                                                                             </div>
@@ -421,5 +423,31 @@
                 </div> 
             </div> 
         </main>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+                                                                                        function deleteFriend(obj) {
+                                                                                            var result = confirm("ban chac chan muon huy ket ban")
+                                                                                           
+                                                                                            if (result) {
+                                                                                                $.ajax({
+                                                                                                    url: "/Assignment/deleteFriend",
+                                                                                                    type: "post", //send it through get method
+                                                                                                    data: {
+                                                                                                        id_ac: ${sessionScope.account.id},
+                                                                                                        id: obj
+                                                                                                    },
+                                                                                                    success: function (data) {
+                                                                                                        var row = document.getElementById("friend");
+                                                                                                        var row1 = document.getElementById(obj);
+                                                                                                        row.removeChild(row1);
+                                                                                                    },
+                                                                                                    error: function (xhr) {
+                                                                                                        //Do Something to handle error
+                                                                                                    }
+                                                                                                });
+                                                                                            }
+
+                                                                                        }
+        </script>                                                                                  
     </body>
 </html>

@@ -24,6 +24,10 @@
         <servlet-name>LoadMoreNewFeed</servlet-name>
         <servlet-class>Controller.home.LoadMoreNewFeed</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>deleteFriend</servlet-name>
+        <servlet-class>Controller.profile.deleteFriend</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Register</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -71,5 +75,9 @@
     <servlet-mapping>
         <servlet-name>LoadMoreNewFeed</servlet-name>
         <url-pattern>/LoadMoreNewFeed</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>deleteFriend</servlet-name>
+        <url-pattern>/deleteFriend</url-pattern>
     </servlet-mapping>
 </web-app>
