@@ -115,8 +115,8 @@
                                                                                         <c:if test = "${sessionScope.account.id == requestScope.account.id}">
                                                                                             <span class="dropdown-toggle addon-btn text-muted f-right service-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="tooltip"></span>
                                                                                             <div class="dropdown-menu dropdown-menu-right b-none services-list">
-                                                                                                <a class="dropdown-item" href="#" onclick="deletePost(${post.post_id})">Remove post</a>
-                                                                                                <a class="dropdown-item" href="#">Edit post</a>
+                                                                                                <div class="dropdown-item" onclick="deletePost(${post.post_id})">Remove post</div>
+                                                                                                <div class="dropdown-item" >Edit post</div>
                                                                                             </div>
                                                                                         </c:if>  
 
@@ -127,7 +127,6 @@
                                                                                             <c:when test = "${post.url_img != null}">
                                                                                                 <img src="${pageContext.request.contextPath}/${post.url_img}" class="anh" alt="">
                                                                                             </c:when>
-
                                                                                         </c:choose>
                                                                                     </div>
                                                                                     <div class="card-block">
@@ -136,13 +135,13 @@
                                                                                             <p class="text-muted">${post.content} </p>
                                                                                         </div>
                                                                                     </div>
-                                                                                    <div class="card-block b-b-theme b-t-theme social-msg">
-                                                                                        <a href="#"> <i class="icofont icofont-heart-alt text-muted"></i><span class="b-r-muted">Like (20)</span> </a>
-                                                                                        <a href="#"> <i class="icofont icofont-comment text-muted"></i> <span class="b-r-muted">Comments (25)</span></a>
-                                                                                        <a href="#"> <i class="icofont icofont-share text-muted"></i> <span>Share (10)</span></a>
-                                                                                    </div>
-                                                                                    <div class="card-block user-box">
-                                                                                        <div class="p-b-30"> <span class="f-14"><a href="#">Comments (110)</a></span><span class="f-right">see all comments</span></div>
+
+                                                                                    <div class="row" id="interact">
+                                                                                        <div class="col-2" onclick="like()"><i class="bi bi-heart"></i><span class="b-r-muted"> Like (20)</span> </div>
+                                                                                        <div class="col-3" onclick="comment()"> <i class="bi bi-chat-left"></i><span class="b-r-muted"> Comments (25)</span></div>
+                                                                                    </div>   
+                                                                                    <div class="card-block user-box" >
+                                                                                        <div class="p-b-30"> <div id="loadmorecomment">Load more comment</div></div>
                                                                                         <div class="media m-b-20">
                                                                                             <a class="media-left" href="#">
                                                                                                 <img class="media-object img-radius m-r-20" src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="Generic placeholder image">
@@ -452,7 +451,7 @@
                                                                                                     url: "/Assignment/deletePost",
                                                                                                     type: "post", //send it through get method
                                                                                                     data: {
-                                                                  
+
                                                                                                         id: obj
                                                                                                     },
                                                                                                     success: function (data) {
@@ -466,6 +465,14 @@
                                                                                                 });
                                                                                             }
 
+                                                                                        }
+
+                                                                                        function like() {
+                                                                                            window.alert("like");
+                                                                                        }
+                                                                                        
+                                                                                        function comment() {
+                                                                                            window.alert("comment");
                                                                                         }
         </script>                                                                                  
     </body>

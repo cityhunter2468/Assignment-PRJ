@@ -430,3 +430,21 @@ ul#profile-lightgallery {
 .anhcontainer{
     text-align: center;
 }
+
+#interact {
+    padding-left: 15px;
+    
+}
+
+#interact div:hover{
+    cursor:pointer;
+    color: red;
+}
+
+#loadmorecomment{
+    color: blue;
+}
+#loadmorecomment:hover{
+    cursor:pointer;
+    color: red;
+}
