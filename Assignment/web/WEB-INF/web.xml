@@ -28,6 +28,10 @@
         <servlet-name>deleteFriend</servlet-name>
         <servlet-class>Controller.profile.deleteFriend</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>deletePost</servlet-name>
+        <servlet-class>Controller.profile.deletePost</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Register</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -79,5 +83,9 @@
     <servlet-mapping>
         <servlet-name>deleteFriend</servlet-name>
         <url-pattern>/deleteFriend</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>deletePost</servlet-name>
+        <url-pattern>/deletePost</url-pattern>
     </servlet-mapping>
 </web-app>

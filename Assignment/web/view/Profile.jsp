@@ -90,9 +90,9 @@
                                             <div class="tab-content">
 
                                                 <div class="tab-pane active" id="timeline">
-                                                    <div>
+                                                    <div id="posts">
                                                         <c:forEach items="${requestScope.post}" var="post">
-                                                            <div class="row">
+                                                            <div class="row" id="${post.post_id}">
                                                                 <div class="col-md-12 ">
                                                                     <div class=" p-relative">
                                                                         <div class="row timeline-right p-t-35">
@@ -112,11 +112,13 @@
                                                                             <div class="col-10 col-sm-10 col-xl-11 p-l-5 p-b-35">
                                                                                 <div class="card">
                                                                                     <div class="card-block post-timelines">
-                                                                                        <span class="dropdown-toggle addon-btn text-muted f-right service-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="tooltip"></span>
-                                                                                        <div class="dropdown-menu dropdown-menu-right b-none services-list">
-                                                                                            <a class="dropdown-item" href="#">Remove post</a>
-                                                                                            <a class="dropdown-item" href="#">Edit post</a>
-                                                                                        </div>
+                                                                                        <c:if test = "${sessionScope.account.id == requestScope.account.id}">
+                                                                                            <span class="dropdown-toggle addon-btn text-muted f-right service-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="tooltip"></span>
+                                                                                            <div class="dropdown-menu dropdown-menu-right b-none services-list">
+                                                                                                <a class="dropdown-item" href="#" onclick="deletePost(${post.post_id})">Remove post</a>
+                                                                                                <a class="dropdown-item" href="#">Edit post</a>
+                                                                                            </div>
+                                                                                        </c:if>  
 
                                                                                         <div class="chat-header f-w-600"> Create at: ${post.time_create}</div>
                                                                                     </div>
@@ -192,8 +194,6 @@
                                                     </div>
 
                                                 </div>
-
-
 
 
                                                 <div class="tab-pane" id="about">
@@ -330,9 +330,6 @@
                                                     </div> 
                                                 </div>
 
-
-
-
                                                 <div class="tab-pane" id="photos">
                                                     <div>
                                                         <div class="card">
@@ -363,7 +360,6 @@
                                                     </div>
 
                                                 </div>
-
 
                                                 <div class="tab-pane" id="friends">
                                                     <div> 
@@ -427,7 +423,7 @@
         <script>
                                                                                         function deleteFriend(obj) {
                                                                                             var result = confirm("ban chac chan muon huy ket ban")
-                                                                                           
+
                                                                                             if (result) {
                                                                                                 $.ajax({
                                                                                                     url: "/Assignment/deleteFriend",
@@ -438,6 +434,29 @@
                                                                                                     },
                                                                                                     success: function (data) {
                                                                                                         var row = document.getElementById("friend");
+                                                                                                        var row1 = document.getElementById(obj);
+                                                                                                        row.removeChild(row1);
+                                                                                                    },
+                                                                                                    error: function (xhr) {
+                                                                                                        //Do Something to handle error
+                                                                                                    }
+                                                                                                });
+                                                                                            }
+
+                                                                                        }
+                                                                                        function deletePost(obj) {
+                                                                                            var result = confirm("ban chac chan muon xoa bai viet")
+
+                                                                                            if (result) {
+                                                                                                $.ajax({
+                                                                                                    url: "/Assignment/deletePost",
+                                                                                                    type: "post", //send it through get method
+                                                                                                    data: {
+                                                                  
+                                                                                                        id: obj
+                                                                                                    },
+                                                                                                    success: function (data) {
+                                                                                                        var row = document.getElementById("posts");
                                                                                                         var row1 = document.getElementById(obj);
                                                                                                         row.removeChild(row1);
                                                                                                     },

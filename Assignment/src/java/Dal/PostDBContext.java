@@ -225,4 +225,24 @@ public class PostDBContext extends DBContext {
         }
         return list;
     }
+
+    public void deletePost(int id) {
+        ArrayList<Account> list = new ArrayList<>();
+        try {
+            String sql_comment = "DELETE FROM [dbo].[Comment]\n"
+                    + "      WHERE post_id = ?";
+            String sql_post = "DELETE FROM [dbo].[Post]\n"
+                    + "      WHERE post_id = ? ";
+            PreparedStatement stm_comment = connection.prepareStatement(sql_comment);
+            stm_comment.setInt(1, id);
+            stm_comment.executeUpdate();
+            
+            PreparedStatement stm_post = connection.prepareStatement(sql_post);
+            stm_post.setInt(1, id);
+            stm_post.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(PostDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
 }
