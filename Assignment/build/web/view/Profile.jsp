@@ -137,11 +137,11 @@
                                                                                     </div>
 
                                                                                     <div class="row" id="interact">
-                                                                                        <div class="col-2" onclick="like()"><i class="bi bi-heart"></i><span class="b-r-muted"> Like (20)</span> </div>
-                                                                                        <div class="col-3" onclick="comment()"> <i class="bi bi-chat-left"></i><span class="b-r-muted"> Comments (25)</span></div>
+                                                                                        <div class="col-2 <c:if test = "${post.userlike == 1}"> actives </c:if>" id="like${post.post_id}" onclick="like(${sessionScope.account.id}, ${post.post_id})" ><i class="bi bi-heart"></i><span class="b-r-muted" id="like1${post.post_id}"> Like ${post.countlike}</span> </div>
+                                                                                        <div class="col-3"> <i class="bi bi-chat-left"></i><span class="b-r-muted"> Comments</span></div>
                                                                                     </div>   
                                                                                     <div class="card-block user-box" >
-                                                                                        <div class="p-b-30"> <div id="loadmorecomment">Load more comment</div></div>
+                                                                                        <div class="p-b-30"> <div id="loadmorecomment" onclick="comment()">Load more comment</div></div>
                                                                                         <div class="media m-b-20">
                                                                                             <a class="media-left" href="#">
                                                                                                 <img class="media-object img-radius m-r-20" src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="Generic placeholder image">
@@ -446,13 +446,13 @@
                                                                                         function deletePost(obj) {
                                                                                             var result = confirm("ban chac chan muon xoa bai viet")
 
+
                                                                                             if (result) {
                                                                                                 $.ajax({
                                                                                                     url: "/Assignment/deletePost",
                                                                                                     type: "post", //send it through get method
                                                                                                     data: {
-
-                                                                                                        id: obj
+                                                                                                        id: obj,
                                                                                                     },
                                                                                                     success: function (data) {
                                                                                                         var row = document.getElementById("posts");
@@ -467,13 +467,53 @@
 
                                                                                         }
 
-                                                                                        function like() {
-                                                                                            window.alert("like");
+                                                                                        function like(obj1, obj2) {
+                                                                                            var op = 0;
+                                                                                          
+                                                                                            if ($('#like'+obj2).hasClass('actives')) {
+                                                                                                op = 1;
+
+                                                                                            } else {
+                                                                                                op = 0;
+
+                                                                                            }
+
+                                                                                            $.ajax({
+                                                                                                url: "/Assignment/like",
+                                                                                                type: "post", //send it through get method
+                                                                                                data: {
+                                                                                                    id_user: obj1,
+                                                                                                    id_post: obj2,
+                                                                                                    option: op
+                                                                                                },
+                                                                                                success: function (data) {
+                                                                                                    var b1 = document.getElementById("like1"+obj2);
+                                                                                                    var s = b1.innerHTML;
+                                                                                                    var s1 = s.slice(5);
+                                                                                                    var x = new Number(s1);
+                                                                                                    if (op == 1) {
+                                                                                                        $('#like'+obj2).removeClass('actives')      
+                                                                                                        x = x-1;
+                                                                                                    } else {
+                                                                                                        $('#like'+obj2).addClass('actives')  
+                                                                                                        x = x+1;
+                                                                                                    }
+                                                                                                    
+                                                                                                    b1.innerHTML = ' Like '+ x
+//                                                                                                    alert(x)
+                                                                                                   
+                                                                                                },
+                                                                                                error: function (xhr) {
+                                                                                                    //Do Something to handle error
+                                                                                                }
+                                                                                            });
                                                                                         }
-                                                                                        
+
                                                                                         function comment() {
                                                                                             window.alert("comment");
                                                                                         }
+                                                                                        
+                                                                                        
         </script>                                                                                  
     </body>
 </html>

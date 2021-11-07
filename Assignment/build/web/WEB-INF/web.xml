@@ -32,6 +32,14 @@
         <servlet-name>deletePost</servlet-name>
         <servlet-class>Controller.profile.deletePost</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LikePost</servlet-name>
+        <servlet-class>Controller.profile.LikePost</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CommentPost</servlet-name>
+        <servlet-class>Controller.profile.CommentPost</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Register</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -87,5 +95,13 @@
     <servlet-mapping>
         <servlet-name>deletePost</servlet-name>
         <url-pattern>/deletePost</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LikePost</servlet-name>
+        <url-pattern>/like</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CommentPost</servlet-name>
+        <url-pattern>/comment</url-pattern>
     </servlet-mapping>
 </web-app>

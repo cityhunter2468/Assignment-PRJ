@@ -103,6 +103,30 @@ public class PostDBContext extends DBContext {
                 p.setUser_id(rs.getInt("user_id"));
                 p.setStatus(rs.getInt("status"));
                 p.setUrl_file(rs.getString("url_file"));
+
+                String sql3 = "SELECT COUNT(like_id) as total\n"
+                        + "  FROM [Assignment].[dbo].[Like]\n"
+                        + "  where user_id = ? and post_id = ? ";
+                PreparedStatement stm_like = connection.prepareStatement(sql3);
+                stm_like.setInt(1, id1);
+                stm_like.setInt(2, p.getPost_id());
+                System.out.println(p.getPost_id());
+                ResultSet rs_like = stm_like.executeQuery();
+                if (rs_like.next()) {
+                    if (rs_like.getInt("total") != 0) p.setUserlike(1);
+                    System.out.println(p.getUserlike());
+                }
+
+                String sql4 = "SELECT COUNT(like_id) as total\n"
+                        + "  FROM [Like]\n"
+                        + "  WHERE post_id = ?";
+                PreparedStatement stm_total = connection.prepareStatement(sql4);
+                stm_total.setInt(1, p.getPost_id());
+                ResultSet rs_total = stm_total.executeQuery();
+                if (rs_total.next()) {
+                    p.setCountlike(rs_total.getInt("total"));
+                }
+
                 list.add(p);
             }
         } catch (Exception e) {
@@ -236,7 +260,7 @@ public class PostDBContext extends DBContext {
             PreparedStatement stm_comment = connection.prepareStatement(sql_comment);
             stm_comment.setInt(1, id);
             stm_comment.executeUpdate();
-            
+
             PreparedStatement stm_post = connection.prepareStatement(sql_post);
             stm_post.setInt(1, id);
             stm_post.executeUpdate();

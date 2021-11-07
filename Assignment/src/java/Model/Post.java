@@ -24,6 +24,8 @@ public class Post {
     private String content;
     private ArrayList<Comment> comment = new ArrayList<>();
     private Account ac = new Account();
+    private int userlike;
+    private int countlike;
     
     public int getUser_id() {
         return user_id;
@@ -105,7 +107,23 @@ public class Post {
         this.ac = ac;
     }
 
-    public Post(int post_id, int user_id, String url_img, String url_video, String url_file, Timestamp time_create, int status, String content) {
+    public int getUserlike() {
+        return userlike;
+    }
+
+    public void setUserlike(int userlike) {
+        this.userlike = userlike;
+    }
+
+    public int getCountlike() {
+        return countlike;
+    }
+
+    public void setCountlike(int countlike) {
+        this.countlike = countlike;
+    }
+
+    public Post(int post_id, int user_id, String url_img, String url_video, String url_file, Timestamp time_create, int status, String content, int userlike, int countlike) {
         this.post_id = post_id;
         this.user_id = user_id;
         this.url_img = url_img;
@@ -114,8 +132,13 @@ public class Post {
         this.time_create = time_create;
         this.status = status;
         this.content = content;
+        this.userlike = userlike;
+        this.countlike = countlike;
     }
 
+    
+
+    
 
     public Post() {
     }

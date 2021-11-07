@@ -438,7 +438,6 @@ ul#profile-lightgallery {
 
 #interact div:hover{
     cursor:pointer;
-    color: red;
 }
 
 #loadmorecomment{
@@ -447,4 +446,12 @@ ul#profile-lightgallery {
 #loadmorecomment:hover{
     cursor:pointer;
     color: red;
+}
+
+#interact .actives{
+    color: red;
+}
+
+.okee{
+    background: blue;
 }
