@@ -5,6 +5,7 @@
  */
 package Controller.friend;
 
+import Dal.ProfileDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -56,7 +57,19 @@ public class PostFriend extends HttpServlet {
         int id_user = Integer.parseInt(request.getParameter("id_user"));
         int id_friend = Integer.parseInt(request.getParameter("id_friend"));
         int op = Integer.parseInt(request.getParameter("op"));
-        System.out.println(op);
+        ProfileDBContext pdb = new ProfileDBContext();
+        if (op == 1 || op == 0){
+            pdb.deleteFriend(id_user, id_friend);
+            pdb.deleteFriend(id_friend, id_user);
+        }
+        if (op == 2){
+            pdb.dongy(id_user, id_friend);
+            pdb.dongy(id_friend, id_user);
+        }
+        if (op == -1){
+            pdb.ketban(id_user, id_friend, 0);
+            pdb.ketban(id_friend, id_user,  2);
+        }
     }
 
     /**

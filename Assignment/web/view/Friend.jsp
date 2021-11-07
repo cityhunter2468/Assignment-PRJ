@@ -42,18 +42,18 @@
                                             <c:when test = "${ac.id == sessionScope.account.id}">
                                             </c:when>
                                             <c:when test = "${ac.friendstatus == 0}">
-                                                <button type="button" class="btn btn-outline-primary" onclick="postFriend(${sessionScope.account.id}, ${ac.id}, 0)" id="friend${ac.id}">Đang chờ</button>
+                                                <button type="button" class="btn btn-outline-primary" onclick="postFriend(${sessionScope.account.id}, ${ac.id})" value="0" id="friend${ac.id}">Hủy Lời Mời</button>
                                             </c:when>
 
                                             <c:when test = "${ac.friendstatus == 1}">
-                                                <button type="button" class="btn btn-outline-primary" onclick="postFriend(${sessionScope.account.id}, ${ac.id}, 1)" id="friend${ac.id}">Hủy Kết Bạn</button>
+                                                <button type="button" class="btn btn-outline-primary" onclick="postFriend(${sessionScope.account.id}, ${ac.id})" value="1" id="friend${ac.id}">Hủy Kết Bạn</button>
                                             </c:when>
 
                                             <c:when test = "${ac.friendstatus == -1}">
-                                                <button type="button" class="btn btn-outline-primary" onclick="postFriend(${sessionScope.account.id}, ${ac.id}, -1)" id="friend${ac.id}">Kết Bạn</button>
+                                                <button type="button" class="btn btn-outline-primary" onclick="postFriend(${sessionScope.account.id}, ${ac.id})" value="-1" id="friend${ac.id}">Kết Bạn</button>
                                             </c:when>
                                             <c:when test = "${ac.friendstatus == 2}">
-                                                <button type="button" class="btn btn-outline-primary" onclick="postFriend(${sessionScope.account.id}, ${ac.id}, -1)" id="friend${ac.id}">Đồng Ý</button>
+                                                <button type="button" class="btn btn-outline-primary" onclick="postFriend(${sessionScope.account.id}, ${ac.id})" value="2" id="friend${ac.id}">Đồng Ý</button>
                                             </c:when>
                                         </c:choose>
                                     </div>
@@ -67,25 +67,42 @@
         </main>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script>
-                                                    function postFriend(o1, o2, o3) {
-                                                        alert("start")
-                                                        $.ajax({
-                                                            url: "/Assignment/postfiend",
+
+                                                    function postFriend(o1, o2) {
+                                                    var object = $('#friend' + o2);
+                                                    const o3 = object.val();
+                                                    $.ajax({
+                                                    url: "/Assignment/postfriend",
                                                             type: "post", //send it through get method
                                                             data: {
-                                                                id_user: o1,
-                                                                id_friend: o2,
-                                                                op: o3
+                                                            id_user: o1,
+                                                                    id_friend: o2,
+                                                                    op: o3
                                                             },
                                                             success: function (data) {
-                                                                alert(" oke")
+                                                            alert(o3);
+                                                            var object = document.getElementById('friend' + o2);
+                                                            if (o3 == 0 || o3 == 1){
+                                                            object.innerHTML = "Kết Bạn"
+                                                                    object.valueOf() = - 1
+                                                            }
+                                                            if (o3 == 2){
+                                                            object.html() = "Hủy Kết Bạn"
+                                                                    object.valueOf() = 1
+                                                            }
+                                                            if (o3 == - 1){
+                                                            object.html() = "Hủy Lời Mời"
+                                                                    object.valueOf() = 0
+                                                            }
+
                                                             },
                                                             error: function (xhr) {
-                                                                //Do Something to handle error
+                                                            //Do Something to handle error
                                                             }
-                                                        });
-                                                        alert("end")
+                                                    });
                                                     }
+
+
         </script>
     </body>
 </html>
