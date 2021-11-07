@@ -65,7 +65,7 @@ public class CommentPost extends HttpServlet {
         lcdb.insertComment(ac.getId(), post_id, content);
         String contextPath = request.getContextPath();
 
-        out.print("<div class=\"media m-b-20\">\n"
+        out.print("<div class=\"media m-b-20 sub_comment"+post_id+"\">\n"
                 + "<a class=\"media-left\" href=\"" + contextPath + "/profile/view?id=" + ac.getUrl_avata() + "\">\n"
                 + "<img class=\"media-object img-radius m-r-20\"");
         if (ac.getUrl_avata() != null) {

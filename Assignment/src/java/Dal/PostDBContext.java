@@ -134,7 +134,7 @@ public class PostDBContext extends DBContext {
                         + "  inner join Account as a\n"
                         + "  on c.user_id = a.id\n"
                         + "  where post_id = ?\n"
-                        + "  order by time_create desc";
+                        + "  order by comment_id desc";
                 PreparedStatement stm_com = connection.prepareStatement(sql5);
                 stm_com.setInt(1, p.getPost_id());
                 ResultSet rs_com = stm_com.executeQuery();

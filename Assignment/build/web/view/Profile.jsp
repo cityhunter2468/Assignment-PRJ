@@ -141,7 +141,7 @@
 
                                                                                         <div id="container_comment${post.post_id}">
                                                                                             <c:forEach items="${post.comment}" var="comment">
-                                                                                                <div class="media m-b-20">
+                                                                                                <div class="media m-b-20 sub_comment${post.post_id}">
                                                                                                     <a class="media-left" href="${pageContext.request.contextPath}/profile/view?id=${comment.account.id}">
                                                                                                         <img class="media-object img-radius m-r-20" <c:choose>
                                                                                                                  <c:when test = "${comment.account.url_avata != null}">
@@ -514,17 +514,20 @@
                                                                                                 }
                                                                                             });
                                                                                         }
-
-                                                                                        function comment() {
-                                                                                            var amount = document.getElementsByClassName("product").length;
+                                                                                        
+//                                                                                    <---------------------------------->  
+                                                                                        function comment(obj) {
+                                                                                            var amount = document.getElementsByClassName("sub_comment"+obj).length;
+                                                                                   
                                                                                             $.ajax({
-                                                                                                url: "/Project_banhang/load",
-                                                                                                type: "get", //send it through get method
+                                                                                                url: "/Assignment/loadmorecomment",
+                                                                                                type: "post", //send it through get method
                                                                                                 data: {
-                                                                                                    exits: amount
+                                                                                                    id_post: obj,
+                                                                                                    ex: amount
                                                                                                 },
                                                                                                 success: function (data) {
-                                                                                                    var row = document.getElementById("content");
+                                                                                                    var row = document.getElementById("container_comment" + obj);
                                                                                                     row.innerHTML += data;
                                                                                                 },
                                                                                                 error: function (xhr) {
@@ -532,15 +535,17 @@
                                                                                                 }
                                                                                             });
                                                                                         }
-                                                                                        function post(obj) {
-                                                                                            var amount = document.getElementById("container_comment" + obj).length;
 
+//                                                                                    <---------------------------------->    
+                                                                                        function post(obj) {
+                                                                                            var s = $('#comment' + obj).val();
                                                                                             $.ajax({
-                                                                                                url: "/Assignment/loadmorecomment",
+                                                                                                url: "/Assignment/comment",
                                                                                                 type: "post", //send it through get method
                                                                                                 data: {
+
                                                                                                     id_post: obj,
-                                                                                                    exist: amount
+                                                                                                    content: s
                                                                                                 },
                                                                                                 success: function (data) {
                                                                                                     var row = document.getElementById("container_comment" + obj);

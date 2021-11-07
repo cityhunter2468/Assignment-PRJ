@@ -5,6 +5,8 @@
  */
 package Dal;
 
+import Model.Account;
+import Model.Comment;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,6 +15,7 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -82,5 +85,38 @@ public class Like_CommentDBContext extends DBContext {
             Logger.getLogger(Like_CommentDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+    }
+
+    public ArrayList<Comment> getMoreComment(int id, int amount) {
+        ArrayList<Comment> list = new ArrayList<>();
+        try {
+            String sql = "  select * from Comment as c \n"
+                    + "  inner join Account as a\n"
+                    + "  on c.user_id = a.id\n"
+                    + "  where c.post_id = ? \n"
+                    + "  ORDER BY c.comment_id DESC\n"
+                    + "  OFFSET ? ROWS\n"
+                    + "FETCH NEXT 2 ROWS ONLY";
+
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, id);
+            stm.setInt(2, amount);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Comment c = new Comment();
+                    c.setId(rs.getInt(1));
+                    c.setTime(rs.getTimestamp(2));
+                    c.setContent(rs.getString(3));                     
+                    Account ac = new Account();
+                    ac.setId(rs.getInt(6));
+                    ac.setDisplayname(rs.getString(10));                   
+                    ac.setUrl_avata(rs.getString(11));                     
+                    c.setAccount(ac);
+                    list.add(c);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Like_CommentDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
     }
 }
