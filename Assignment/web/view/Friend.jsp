@@ -68,41 +68,47 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script>
 
+
                                                     function postFriend(o1, o2) {
-                                                    var object = $('#friend' + o2);
-                                                    const o3 = object.val();
-                                                    $.ajax({
-                                                    url: "/Assignment/postfriend",
+                                                        var object = $('#friend' + o2);
+                                                        const o3 = object.val();
+                                                        $.ajax({
+                                                            url: "/Assignment/postfriend",
                                                             type: "post", //send it through get method
                                                             data: {
-                                                            id_user: o1,
-                                                                    id_friend: o2,
-                                                                    op: o3
+                                                                id_user: o1,
+                                                                id_friend: o2,
+                                                                op: o3
                                                             },
                                                             success: function (data) {
-                                                            alert(o3);
-                                                            var object = document.getElementById('friend' + o2);
-                                                            if (o3 == 0 || o3 == 1){
-                                                            object.innerHTML = "Kết Bạn"
-                                                                    object.valueOf() = - 1
-                                                            }
-                                                            if (o3 == 2){
-                                                            object.html() = "Hủy Kết Bạn"
-                                                                    object.valueOf() = 1
-                                                            }
-                                                            if (o3 == - 1){
-                                                            object.html() = "Hủy Lời Mời"
-                                                                    object.valueOf() = 0
-                                                            }
+                                                                var object = document.getElementById('friend' + o2);
+                                                                if (o3 == 0 || o3 == 1) {
+                                                                    object.innerHTML = "Kết Bạn"
+                                                                    object.value = "-1"
+                                                                }
+                                                                ;
+                                                                if (o3 == 2) {
+                                                                    object.innerHTML = "Hủy Kết Bạn"
+                                                                    object.value = "1"
+                                                                }
+                                                                ;
+                                                                if (o3 == -1) {
+                                                                    object.innerHTML = "Hủy Lời Mời"
+                                                                    object.value = "0"
+                                                                }
 
                                                             },
                                                             error: function (xhr) {
-                                                            //Do Something to handle error
+                                                                //Do Something to handle error
                                                             }
-                                                    });
+                                                        });
                                                     }
 
 
         </script>
     </body>
+
+
+
+
 </html>

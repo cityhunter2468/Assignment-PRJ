@@ -7,24 +7,32 @@
             <file>file:/C:/Users/levan/OneDrive/Máy%20tính/Assignment-PRJ/Assignment/src/java/Model/Account.java</file>
             <file>file:/C:/Users/levan/OneDrive/Máy%20tính/Assignment-PRJ/Assignment/src/java/Controller/home/Home.java</file>
             <file>file:/C:/Users/levan/OneDrive/Máy%20tính/Assignment-PRJ/Assignment/web/view/NewFeed.jsp</file>
+            <file>file:/C:/Users/levan/OneDrive/Máy%20tính/Assignment-PRJ/Assignment/web/view/Login.jsp</file>
             <file>file:/C:/Users/levan/OneDrive/Máy%20tính/Assignment-PRJ/Assignment/web/view/Friend.jsp</file>
+            <file>file:/C:/Users/levan/OneDrive/Máy%20tính/Assignment-PRJ/Assignment/src/java/Controller/authen/Authen.java</file>
             <file>file:/C:/Users/levan/OneDrive/Máy%20tính/Assignment-PRJ/Assignment/src/java/Controller/profile/ProfileEdit.java</file>
             <file>file:/C:/Users/levan/OneDrive/Máy%20tính/Assignment-PRJ/Assignment/src/java/Controller/authen/Register.java</file>
             <file>file:/C:/Users/levan/OneDrive/Máy%20tính/Assignment-PRJ/Assignment/web/view/Profile_Edit.jsp</file>
+            <file>file:/C:/Users/levan/OneDrive/Máy%20tính/Assignment-PRJ/Assignment/src/java/Controller/authen/BaseReqAuth.java</file>
             <file>file:/C:/Users/levan/OneDrive/Máy%20tính/Assignment-PRJ/Assignment/src/java/Controller/profile/CommentPost.java</file>
             <file>file:/C:/Users/levan/OneDrive/Máy%20tính/Assignment-PRJ/Assignment/src/java/Model/Post.java</file>
             <file>file:/C:/Users/levan/OneDrive/Máy%20tính/Assignment-PRJ/Assignment/src/java/Dal/AccountDBContext.java</file>
             <file>file:/C:/Users/levan/OneDrive/Máy%20tính/Assignment-PRJ/Assignment/src/java/Controller/home/LoadMoreNewFeed.java</file>
+            <file>file:/C:/Users/levan/OneDrive/Máy%20tính/Assignment-PRJ/Assignment/web/css/styleFriend.css</file>
             <file>file:/C:/Users/levan/OneDrive/Máy%20tính/Assignment-PRJ/Assignment/src/java/Controller/profile/ProfileView.java</file>
+            <file>file:/C:/Users/levan/OneDrive/Máy%20tính/Assignment-PRJ/Assignment/src/java/Controller/profile/deleteFriend.java</file>
             <file>file:/C:/Users/levan/OneDrive/Máy%20tính/Assignment-PRJ/Assignment/src/java/Controller/profile/LoadMoreComment.java</file>
             <file>file:/C:/Users/levan/OneDrive/Máy%20tính/Assignment-PRJ/Assignment/web/css/styleProfile.css</file>
             <file>file:/C:/Users/levan/OneDrive/Máy%20tính/Assignment-PRJ/Assignment/web/css/styleNewFeed.css</file>
             <file>file:/C:/Users/levan/OneDrive/Máy%20tính/Assignment-PRJ/Assignment/web/view/Narbar.jsp</file>
             <file>file:/C:/Users/levan/OneDrive/Máy%20tính/Assignment-PRJ/Assignment/src/java/Controller/friend/Friend.java</file>
+            <file>file:/C:/Users/levan/OneDrive/Máy%20tính/Assignment-PRJ/Assignment/web/script/script_Narbar.js</file>
             <file>file:/C:/Users/levan/OneDrive/Máy%20tính/Assignment-PRJ/Assignment/src/java/Dal/ProfileDBContext.java</file>
             <file>file:/C:/Users/levan/OneDrive/Máy%20tính/Assignment-PRJ/Assignment/src/java/Controller/profile/LikePost.java</file>
             <file>file:/C:/Users/levan/OneDrive/Máy%20tính/Assignment-PRJ/Assignment/src/java/Model/Comment.java</file>
+            <file>file:/C:/Users/levan/OneDrive/Máy%20tính/Assignment-PRJ/Assignment/src/java/Controller/home/Upload.java</file>
             <file>file:/C:/Users/levan/OneDrive/Máy%20tính/Assignment-PRJ/Assignment/src/java/Dal/PostDBContext.java</file>
+            <file>file:/C:/Users/levan/OneDrive/Máy%20tính/Assignment-PRJ/Assignment/src/java/Controller/friend/PostFriend.java</file>
             <file>file:/C:/Users/levan/OneDrive/Máy%20tính/Assignment-PRJ/Assignment/src/java/Dal/Like_CommentDBContext.java</file>
             <file>file:/C:/Users/levan/OneDrive/Máy%20tính/Assignment-PRJ/Assignment/web/view/Profile.jsp</file>
             <file>file:/C:/Users/levan/OneDrive/Máy%20tính/Assignment-PRJ/Assignment/src/java/Model/Profile.java</file>

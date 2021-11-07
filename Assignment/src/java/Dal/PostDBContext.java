@@ -288,7 +288,7 @@ public class PostDBContext extends DBContext {
             String sql = "select * from Relationship_User as ru \n"
                     + "inner join Account as a\n"
                     + "on ru.friend_id = a.id\n"
-                    + "where ru.user_id = ? and ru.status != 0\n"
+                    + "where ru.user_id = ? and ru.status != 0 and ru.status != 2\n"
                     + "ORDER BY ru.user_id DESC\n";
 
             PreparedStatement stm = connection.prepareStatement(sql);
