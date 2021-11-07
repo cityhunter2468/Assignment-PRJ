@@ -66,15 +66,11 @@ public class PostDBContext extends DBContext {
                 + "                   left join Relationship_User as ru \n"
                 + "                   on a.id = ru.user_id\n"
                 + "                  where (p.status = 2 and  p.user_id = ?) or (p.status = 1 and ru.user_id = ? and ru.friend_id = ?  and ru.status = 1)\n"
-                + "                ORDER BY time_create DESC\n"
-                + "               OFFSET ? ROWS\n"
-                + "                FETCH NEXT 5 ROWS ONLY";
+                + "                ORDER BY time_create DESC\n";
 
         String sql2 = "SELECT * FROM Post\n"
                 + "where user_id = ? \n"
-                + "ORDER BY time_create DESC\n"
-                + "OFFSET ? ROWS\n"
-                + "FETCH NEXT 5 ROWS ONLY";
+                + "ORDER BY time_create DESC\n";
         try {
             String sql = "";
             if (op == 1) {
@@ -86,11 +82,9 @@ public class PostDBContext extends DBContext {
             if (op == 1) {
                 stm.setInt(1, id);
                 stm.setInt(2, id);
-                stm.setInt(3, id1);
-                stm.setInt(4, amount);
+                stm.setInt(3, id1); 
             } else {
-                stm.setInt(1, id);
-                stm.setInt(2, amount);
+                stm.setInt(1, id);             
             }
 
             ResultSet rs = stm.executeQuery();
@@ -256,15 +250,11 @@ public class PostDBContext extends DBContext {
                 + "                   left join Relationship_User as ru \n"
                 + "                   on a.id = ru.user_id\n"
                 + "                  where (p.status = 2 and  p.user_id = ?) or (p.status = 1 and ru.user_id = ? and ru.friend_id = ?  and ru.status = 1)\n"
-                + "                ORDER BY time_create DESC\n"
-                + "               OFFSET ? ROWS\n"
-                + "                FETCH NEXT 5 ROWS ONLY";
+                + "                ORDER BY time_create DESC\n";
 
         String sql2 = "SELECT * FROM Post\n"
                 + "where user_id = ? \n"
-                + "ORDER BY time_create DESC\n"
-                + "OFFSET ? ROWS\n"
-                + "FETCH NEXT 5 ROWS ONLY";
+                + "ORDER BY time_create DESC\n";
         try {
             String sql = "";
             if (op == 1) {
@@ -276,11 +266,9 @@ public class PostDBContext extends DBContext {
             if (op == 1) {
                 stm.setInt(1, id);
                 stm.setInt(2, id);
-                stm.setInt(3, id1);
-                stm.setInt(4, amount);
+                stm.setInt(3, id1);                
             } else {
-                stm.setInt(1, id);
-                stm.setInt(2, amount);
+                stm.setInt(1, id);               
             }
 
             ResultSet rs = stm.executeQuery();
@@ -301,13 +289,10 @@ public class PostDBContext extends DBContext {
                     + "inner join Account as a\n"
                     + "on ru.friend_id = a.id\n"
                     + "where ru.user_id = ? and ru.status != 0\n"
-                    + "ORDER BY ru.user_id DESC\n"
-                    + "                OFFSET ? ROWS\n"
-                    + "                FETCH NEXT 5 ROWS ONLY";
+                    + "ORDER BY ru.user_id DESC\n";
 
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, id);
-            stm.setInt(2, amount);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
                 Account ac = new Account();

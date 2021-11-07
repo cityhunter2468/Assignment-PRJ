@@ -42,27 +42,32 @@
                                     <a href="#"><i class="fas fa-ellipsis-v"></i></a>
                                 </div>
                             </div>
+
                             <div class="status-field">
                                 <p>${post.content}</p>
                                 <c:choose>
                                     <c:when test = "${post.url_img != null}">
                                         <img src="${pageContext.request.contextPath}/${post.url_img}" class="anh" alt="">
                                     </c:when>
-                                    <c:otherwise>
-                                        src="${pageContext.request.contextPath}/assert/no_avata.jpg" 
-                                    </c:otherwise>
                                 </c:choose>
                             </div>
+
                             <div class="post-reaction">
                                 <div class="activity-icons">
-                                    <div onclick="like(${sessionScope.account.id},${post.post_id})"><i id="like${post.post_id}" class="bi bi-heart <c:if test = "${post.userlike == 1}"> actives </c:if>"></i> <span id="like1${post.post_id}">Like ${post.countlike} </span></div>
-                                        <div ><i class="bi bi-chat-left"></i> Comment </div>
+                                    <div onclick="like(${sessionScope.account.id},${post.post_id})">
+                                        <i id="like${post.post_id}" class="bi bi-heart <c:if test = "${post.userlike == 1}"> actives </c:if>"></i> 
+                                        <span id="like1${post.post_id}">Like ${post.countlike} </span>
                                     </div>
+                                    <div ><i class="bi bi-chat-left"></i> Comment </div>
                                 </div>
-                                <div id="loadmorecomment" onclick="comment(${post.post_id})">Load more comment</div>
+                            </div>
+                                    
+                            <div id="loadmorecomment" onclick="comment(${post.post_id})">Load more comment
+                            </div>
+
                             <div class="comment_like" id="container_comment${post.post_id}">
                                 <c:forEach items="${post.comment}" var="comment">
-                                    <div class="sub_comment">
+                                    <div class="sub_comment${post.post_id}">
                                         <div class="row">
                                             <div class="col-sm-1"><img <c:choose>
                                                         <c:when test = "${comment.account.url_avata != null}">
@@ -97,9 +102,10 @@
                                     <div class="col-sm-2"><button type="button" class="btn btn-primary" onclick="post(${post.post_id})">Post</button></div>
                                 </div>
                             </div>
+                                
                         </div>
                     </c:forEach>
-
+                        
                 </div>
             </div>
         </main>
@@ -118,35 +124,35 @@
 
                                         });
 
-//                                function ScrollHandler(e) {
-//                                    //throttle event:
-//                                    clearTimeout(_throttleTimer);
-//                                    _throttleTimer = setTimeout(function () {
-//                                        console.log('scroll');
-//
-//                                        //do work
-//                                        if ($window.scrollTop() + $window.height() > $document.height() - 100) {
-//                                            //alert("bottom");
-//                                            var amount = document.getElementsByClassName("sub_content").length;
-//                                            $.ajax({
-//                                                url: "/Assignment/LoadMoreNewFeed",
-//                                                type: "post", //send it through get method
-//                                                data: {
-//                                                    exits: amount
-//                                                },
-//                                                success: function (data) {
-//                                                    //alert("da lay dc data");
-//                                                    var row = document.getElementById("content");
-//                                                    row.innerHTML += data;
-//                                                },
-//                                                error: function (xhr) {
-//                                                    //Do Something to handle error
-//                                                }
-//                                            });
-//                                        }
-//
-//                                    }, _throttleDelay);
-//                                }
+                                        function ScrollHandler(e) {
+                                            //throttle event:
+                                            clearTimeout(_throttleTimer);
+                                            _throttleTimer = setTimeout(function () {
+                                                console.log('scroll');
+
+                                                //do work
+                                                if ($window.scrollTop() + $window.height() > $document.height() - 100) {
+                                                    //alert("bottom");
+                                                    var amount = document.getElementsByClassName("sub_content").length;
+                                                    $.ajax({
+                                                        url: "/Assignment/LoadMoreNewFeed",
+                                                        type: "post", //send it through get method
+                                                        data: {
+                                                            exits: amount
+                                                        },
+                                                        success: function (data) {
+                                                            //alert("da lay dc data");
+                                                            var row = document.getElementById("content");
+                                                            row.innerHTML += data;
+                                                        },
+                                                        error: function (xhr) {
+                                                            //Do Something to handle error
+                                                        }
+                                                    });
+                                                }
+
+                                            }, _throttleDelay);
+                                        }
 
                                         function like(obj1, obj2) {
                                             var op = 0;
@@ -203,6 +209,26 @@
                                                     var row = document.getElementById("container_comment" + obj);
 //                                                    row.innerHTML = data + row.innerHTML;
                                                     row.innerHTML = data + row.innerHTML;
+                                                },
+                                                error: function (xhr) {
+                                                    //Do Something to handle error
+                                                }
+                                            });
+                                        }
+
+                                        function comment(obj) {
+                                            var amount = document.getElementsByClassName("sub_comment" + obj).length;
+
+                                            $.ajax({
+                                                url: "/Assignment/loadmorecomment",
+                                                type: "get", //send it through get method
+                                                data: {
+                                                    id_post: obj,
+                                                    ex: amount
+                                                },
+                                                success: function (data) {
+                                                    var row = document.getElementById("container_comment" + obj);
+                                                    row.innerHTML += data;
                                                 },
                                                 error: function (xhr) {
                                                     //Do Something to handle error

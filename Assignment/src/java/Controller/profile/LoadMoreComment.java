@@ -42,7 +42,28 @@ public class LoadMoreComment extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        PrintWriter out = response.getWriter();
+        int id_post = Integer.parseInt(request.getParameter("id_post"));
+        int amount = Integer.parseInt(request.getParameter("ex"));
+        Like_CommentDBContext lcdb = new Like_CommentDBContext();
+        ArrayList<Comment> com = lcdb.getMoreComment(id_post, amount);
+        String contextPath = request.getContextPath();
+        for (Comment c : com) {
+            out.println("<div class=\"sub_comment"+id_post+"\">\n"
+                    + "  <div class=\"row\">\n"
+                    + "  <div class=\"col-sm-1\"><img ");
+            if (c.getAccount().getUrl_avata() != null) {
+                out.println("src=\"" + contextPath + "/" + c.getAccount().getUrl_avata() + "\" ");
+            } else {
+                out.println("src=\"" + contextPath + "/assert/no_avata.jpg\" ");
+            }
+            out.println("alt=\"Admin\" class=\"rounded-circle\" width=\"40\" height=\"40\"> </div>\n"
+                    + "                                            <div class=\"col-sm-10\"> <a href=\"\">" + c.getAccount().getDisplayname() + "</a> <span class=\"time_comment\"> " + c.getTime() + "</span>\n"
+                    + "                                                <p>" + c.getContent() + "</p>\n"
+                    + "                                            </div>\n"
+                    + "                                        </div>\n"
+                    + "                                    </div>              ");
+        }
     }
 
     /**
@@ -74,7 +95,7 @@ public class LoadMoreComment extends HttpServlet {
             out.println("alt=\"Generic placeholder image\">\n"
                     + "   </a>\n"
                     + "     <div class=\"media-body b-b-muted social-client-description\">\n"
-                    + "   <div class=\"chat-header\">" + c.getAccount().getDisplayname() + "<span class=\"text-muted\">"+c.getTime()+"</span></div>\n"
+                    + "   <div class=\"chat-header\">" + c.getAccount().getDisplayname() + "<span class=\"text-muted\">" + c.getTime() + "</span></div>\n"
                     + "   <p class=\"text-muted\">" + c.getContent() + "</p>\n"
                     + "   </div>\n"
                     + "  </div>");

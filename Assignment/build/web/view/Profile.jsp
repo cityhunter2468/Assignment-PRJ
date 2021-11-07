@@ -190,14 +190,6 @@
                                                         </c:forEach>
                                                     </div>
 
-                                                    <div>
-                                                        <div class="row">
-                                                            <div class="col text-center">
-                                                                <button type="button" class="btn btn-outline-primary" id="loadmore_post">Load more</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
                                                 </div>
 
 
@@ -356,14 +348,6 @@
                                                         </div>
                                                     </div>
 
-                                                    <div>
-                                                        <div class="row">
-                                                            <div class="col text-center">
-                                                                <button type="button" class="btn btn-outline-primary" id="loadmore_photos">Load more</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
                                                 </div>
 
                                                 <div class="tab-pane" id="friends">
@@ -405,14 +389,7 @@
                                                             </c:forEach>
                                                         </div>
                                                     </div>
-                                                    <div>
-                                                        <div class="row">
-                                                            <div class="col text-center">
-                                                                <button type="button" class="btn btn-outline-primary" id="loadmore_friends">Load more</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
+                             
                                                 </div>       
                                             </div>
                                         </div>    
