@@ -6,6 +6,7 @@
 package Dal;
 
 import Model.Account;
+import Model.Comment;
 import Model.Post;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -113,7 +114,9 @@ public class PostDBContext extends DBContext {
                 System.out.println(p.getPost_id());
                 ResultSet rs_like = stm_like.executeQuery();
                 if (rs_like.next()) {
-                    if (rs_like.getInt("total") != 0) p.setUserlike(1);
+                    if (rs_like.getInt("total") != 0) {
+                        p.setUserlike(1);
+                    }
                     System.out.println(p.getUserlike());
                 }
 
@@ -125,6 +128,28 @@ public class PostDBContext extends DBContext {
                 ResultSet rs_total = stm_total.executeQuery();
                 if (rs_total.next()) {
                     p.setCountlike(rs_total.getInt("total"));
+                }
+
+                String sql5 = "SELECT top 2 *\n"
+                        + "  FROM [dbo].[Comment] as c\n"
+                        + "  inner join Account as a\n"
+                        + "  on c.user_id = a.id\n"
+                        + "  where post_id = 1\n"
+                        + "  order by time_create desc";
+                PreparedStatement stm_com = connection.prepareStatement(sql5);
+                stm_com.setInt(1, p.getPost_id());
+                ResultSet rs_com = stm_com.executeQuery();
+                while (rs_com.next()) {
+                    Comment c = new Comment();
+                    c.setId(rs.getInt(1));
+                    c.setTime(rs.getDate(2));
+                    c.setContent(rs.getString(3));
+                    Account ac = new Account();
+                    ac.setId(rs.getInt(6));
+                    ac.setDisplayname(rs.getString(10));
+                    ac.setUrl_avata(rs.getString(11));
+                    c.setAccount(ac);
+                    p.getComment().add(c);
                 }
 
                 list.add(p);
