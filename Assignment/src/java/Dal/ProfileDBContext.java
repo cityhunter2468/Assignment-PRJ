@@ -163,7 +163,7 @@ public class ProfileDBContext extends DBContext {
         try {
             String sql = "select * from Account where displayname LIKE ?";
             PreparedStatement stm = connection.prepareStatement(sql);
-            s = "%"+s+"%";
+            s = "%" + s + "%";
             stm.setString(1, s);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
@@ -171,16 +171,16 @@ public class ProfileDBContext extends DBContext {
                 ac.setId(rs.getInt(1));
                 ac.setDisplayname(rs.getString(5));
                 ac.setUrl_avata(rs.getString(6));
-                
+
                 String sql1 = "select *  from Relationship_User\n"
                         + "where user_id = ? and friend_id = ?";
                 PreparedStatement stm1 = connection.prepareStatement(sql1);
                 stm1.setInt(1, id);
                 stm1.setInt(2, ac.getId());
                 ResultSet rs1 = stm1.executeQuery();
-                
+
                 ac.setFriendstatus(-1);
-                if (rs1.next()) {                   
+                if (rs1.next()) {
                     ac.setFriendstatus(rs1.getInt(3));
                 }
                 list.add(ac);
@@ -189,5 +189,43 @@ public class ProfileDBContext extends DBContext {
             Logger.getLogger(ProfileDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return list;
+    }
+
+    public void ketban(int id, int id1, int op) {
+        try {
+            String sql = " INSERT INTO [dbo].[Relationship_User]\n"
+                    + "           ([user_id]\n"
+                    + "           ,[friend_id]\n"
+                    + "           ,[status])\n"
+                    + "     VALUES\n"
+                    + "           (?\n"
+                    + "           ,?\n"
+                    + "           ,?)";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, id);
+            stm.setInt(2, id1);
+            stm.setInt(3, op);
+            stm.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProfileDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public void dongy(int id, int id1) {
+        try {
+            String sql = " UPDATE [dbo].[Relationship_User]\n"
+                    + "   SET [status] = ?\n"
+                    + " WHERE user_id = ? and friend_id = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, 1);
+            stm.setInt(2, id);
+            stm.setInt(3, id1);
+            stm.executeQuery();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ProfileDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 }

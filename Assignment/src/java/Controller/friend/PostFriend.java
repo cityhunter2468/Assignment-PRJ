@@ -5,12 +5,8 @@
  */
 package Controller.friend;
 
-import Controller.authen.BaseReqAuth;
-import Dal.ProfileDBContext;
-import Model.Account;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author levan
  */
-public class Friend extends BaseReqAuth {
+public class PostFriend extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,6 +27,7 @@ public class Friend extends BaseReqAuth {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -41,9 +38,8 @@ public class Friend extends BaseReqAuth {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void processGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
     }
 
     /**
@@ -55,14 +51,12 @@ public class Friend extends BaseReqAuth {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void processPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String s = request.getParameter("search");
-        ProfileDBContext pdb = new ProfileDBContext();
-        Account ac = (Account) request.getSession().getAttribute("account");
-        ArrayList<Account> a = pdb.getFriend(ac.getId(), s);
-        request.setAttribute("account", a);
-        request.getRequestDispatcher("view/Friend.jsp").forward(request, response);
+        int id_user = Integer.parseInt(request.getParameter("id_user"));
+        int id_friend = Integer.parseInt(request.getParameter("id_friend"));
+        int op = Integer.parseInt(request.getParameter("op"));
+        System.out.println(op);
     }
 
     /**

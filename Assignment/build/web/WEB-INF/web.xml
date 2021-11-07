@@ -48,6 +48,10 @@
         <servlet-name>Friend</servlet-name>
         <servlet-class>Controller.friend.Friend</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PostFriend</servlet-name>
+        <servlet-class>Controller.friend.PostFriend</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Register</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -119,5 +123,9 @@
     <servlet-mapping>
         <servlet-name>Friend</servlet-name>
         <url-pattern>/friend</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PostFriend</servlet-name>
+        <url-pattern>/postfriend</url-pattern>
     </servlet-mapping>
 </web-app>

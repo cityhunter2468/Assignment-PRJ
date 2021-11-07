@@ -71,11 +71,12 @@ public abstract class BaseReqAuth extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String contextPath = request.getContextPath();
         if (isAuthenticated(request)) {
             //business
             processPost(request, response);
         } else {
-            response.getWriter().println("access denied!");
+            response.sendRedirect(contextPath+"/login");
         }
     }
 
