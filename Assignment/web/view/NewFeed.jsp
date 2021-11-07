@@ -77,7 +77,7 @@
                                                             src="${pageContext.request.contextPath}/assert/no_avata.jpg" 
                                                         </c:otherwise>
                                                     </c:choose>alt="Admin" class="rounded-circle" width="40" height="40"> </div>
-                                            <div class="col-sm-10"> <a href="">${comment.account.displayname}</a> <span class="time_comment"> ${comment.time}</span>
+                                            <div class="col-sm-10"> <a href="${pageContext.request.contextPath}/profile/view?id=${comment.account.id}">${comment.account.displayname}</a> <span class="time_comment"> ${comment.time}</span>
                                                 <p>${comment.content}</p>
                                             </div>
                                         </div>

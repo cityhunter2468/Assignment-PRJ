@@ -122,7 +122,7 @@ public class LoadMoreNewFeed extends HttpServlet {
                     out.println("src=\"" + contextPath + "/assert/no_avata.jpg\" ");
                 }
                 out.println("alt=\"Admin\" class=\"rounded-circle\" width=\"40\" height=\"40\"> </div>\n"
-                        + "  <div class=\"col-sm-10\"> <a href=\"\">" + c.getAccount().getDisplayname() + "</a> <span class=\"time_comment\"> " + c.getTime() + "</span>\n"
+                        + "  <div class=\"col-sm-10\"> <a href=\""+contextPath+"/profile/view?id="+c.getAccount().getId()+"\">" + c.getAccount().getDisplayname() + "</a> <span class=\"time_comment\"> " + c.getTime() + "</span>\n"
                         + "  <p>" + c.getContent() + "</p>\n"
                         + " </div>\n"
                         + "</div>\n"
