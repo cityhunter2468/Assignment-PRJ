@@ -44,6 +44,10 @@
         <servlet-name>LoadMoreComment</servlet-name>
         <servlet-class>Controller.profile.LoadMoreComment</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Friend</servlet-name>
+        <servlet-class>Controller.friend.Friend</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Register</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -111,5 +115,9 @@
     <servlet-mapping>
         <servlet-name>LoadMoreComment</servlet-name>
         <url-pattern>/loadmorecomment</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Friend</servlet-name>
+        <url-pattern>/friend</url-pattern>
     </servlet-mapping>
 </web-app>

@@ -19,7 +19,8 @@ public class Account {
     private String displayname;
     private String url_avata;
     private ArrayList<Account> friend = new ArrayList<Account>();
-            
+    private int friendstatus;
+    
     public String getUrl_avata() {
         return url_avata;
     }
@@ -76,6 +77,15 @@ public class Account {
         this.friend = friend;
     }
 
+    public int getFriendstatus() {
+        return friendstatus;
+    }
+
+    public void setFriendstatus(int friendstatus) {
+        this.friendstatus = friendstatus;
+    }
+    
+    
     public Account(int id, String user, String pass, String email, String displayname, String url_avata) {
         this.id = id;
         this.user = user;
@@ -83,6 +93,10 @@ public class Account {
         this.email = email;
         this.displayname = displayname;
         this.url_avata = url_avata;
+    }
+
+    public Account(int friendstatus) {
+        this.friendstatus = friendstatus;
     }
 
     

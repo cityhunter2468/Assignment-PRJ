@@ -5,11 +5,13 @@
  */
 package Dal;
 
+import Model.Account;
 import Model.Profile;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -156,4 +158,36 @@ public class ProfileDBContext extends DBContext {
 
     }
 
+    public ArrayList<Account> getFriend(int id, String s) {
+        ArrayList<Account> list = new ArrayList<>();
+        try {
+            String sql = "select * from Account where displayname LIKE ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            s = "%"+s+"%";
+            stm.setString(1, s);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Account ac = new Account();
+                ac.setId(rs.getInt(1));
+                ac.setDisplayname(rs.getString(5));
+                ac.setUrl_avata(rs.getString(6));
+                
+                String sql1 = "select *  from Relationship_User\n"
+                        + "where user_id = ? and friend_id = ?";
+                PreparedStatement stm1 = connection.prepareStatement(sql1);
+                stm1.setInt(1, id);
+                stm1.setInt(2, ac.getId());
+                ResultSet rs1 = stm1.executeQuery();
+                
+                ac.setFriendstatus(-1);
+                if (rs1.next()) {                   
+                    ac.setFriendstatus(rs1.getInt(3));
+                }
+                list.add(ac);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProfileDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
 }
