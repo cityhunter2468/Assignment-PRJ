@@ -41,7 +41,28 @@ public class CommentPost extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        PrintWriter out = response.getWriter();
+        String content = request.getParameter("content");
+        int post_id = Integer.parseInt(request.getParameter("id_post"));
+        System.out.println(post_id);
+        Account ac = (Account) request.getSession().getAttribute("account");
+        Like_CommentDBContext lcdb = new Like_CommentDBContext();
+        lcdb.insertComment(ac.getId(), post_id, content);
+        String contextPath = request.getContextPath();
+        out.println("<div class=\"sub_comment\">\n"
+                + "  <div class=\"row\">\n"
+                + "  <div class=\"col-sm-1\"><img ");
+        if (ac.getUrl_avata() != null) {
+            out.println("src=\"" + contextPath + "/" + ac.getUrl_avata() + "\" ");
+        } else {
+            out.println("src=\"" + contextPath + "/assert/no_avata.jpg\" ");
+        }
+        out.println("alt=\"Admin\" class=\"rounded-circle\" width=\"40\" height=\"40\"> </div>\n"
+                + "                                            <div class=\"col-sm-10\"> <a href=\"\">"+ac.getDisplayname()+"</a> <span class=\"time_comment\"> Vua xong</span>\n"
+                + "                                                <p>"+content+"</p>\n"
+                + "                                            </div>\n"
+                + "                                        </div>\n"
+                + "                                    </div>              ");
     }
 
     /**
@@ -65,7 +86,7 @@ public class CommentPost extends HttpServlet {
         lcdb.insertComment(ac.getId(), post_id, content);
         String contextPath = request.getContextPath();
 
-        out.print("<div class=\"media m-b-20 sub_comment"+post_id+"\">\n"
+        out.print("<div class=\"media m-b-20 sub_comment" + post_id + "\">\n"
                 + "<a class=\"media-left\" href=\"" + contextPath + "/profile/view?id=" + ac.getUrl_avata() + "\">\n"
                 + "<img class=\"media-object img-radius m-r-20\"");
         if (ac.getUrl_avata() != null) {
@@ -76,8 +97,8 @@ public class CommentPost extends HttpServlet {
         out.println("alt=\"Generic placeholder image\">\n"
                 + "   </a>\n"
                 + "     <div class=\"media-body b-b-muted social-client-description\">\n"
-                + "   <div class=\"chat-header\">"+ac.getDisplayname()+"<span class=\"text-muted\">Vua Xong</span></div>\n"
-                + "   <p class=\"text-muted\">"+content+"</p>\n"
+                + "   <div class=\"chat-header\">" + ac.getDisplayname() + "<span class=\"text-muted\">Vua Xong</span></div>\n"
+                + "   <p class=\"text-muted\">" + content + "</p>\n"
                 + "   </div>\n"
                 + "  </div>");
     }

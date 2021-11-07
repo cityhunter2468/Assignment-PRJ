@@ -55,12 +55,12 @@
                             </div>
                             <div class="post-reaction">
                                 <div class="activity-icons">
-                                    <div onclick="heart()"><i class="bi bi-heart <c:if test = "${post.userlike == 1}"> actives </c:if>"></i>Like ${post.countlike} </div>
-                                    <div ><i class="bi bi-chat-left"></i> Comment </div>
+                                    <div onclick="like(${sessionScope.account.id},${post.post_id})"><i id="like${post.post_id}" class="bi bi-heart <c:if test = "${post.userlike == 1}"> actives </c:if>"></i> <span id="like1${post.post_id}">Like ${post.countlike} </span></div>
+                                        <div ><i class="bi bi-chat-left"></i> Comment </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div id="loadmorecomment" onclick="comment(${post.post_id})">Load more comment</div>
-                            <div class="comment_like">
+                                <div id="loadmorecomment" onclick="comment(${post.post_id})">Load more comment</div>
+                            <div class="comment_like" id="container_comment${post.post_id}">
                                 <c:forEach items="${post.comment}" var="comment">
                                     <div class="sub_comment">
                                         <div class="row">
@@ -76,10 +76,11 @@
                                                 <p>${comment.content}</p>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>                                      
                                 </c:forEach>
                             </div>
-                            <div clasc="post_comment">
+
+                            <div class="post_comment">
                                 <div class="row">
                                     <div class="col-sm-1"><img <c:choose>
                                                 <c:when test = "${sessionScope.account.url_avata != null}">
@@ -89,11 +90,11 @@
                                                     src="${pageContext.request.contextPath}/assert/no_avata.jpg" 
                                                 </c:otherwise>
                                             </c:choose>alt="Admin" class="rounded-circle" width="40" height="40"></div>
-                                    <div class="col-sm-10"><input type="text" class="form-control" placeholder="Your Comment Here"></div>
+                                    <div class="col-sm-10"><input type="text" class="form-control" placeholder="Your Comment Here"  id="comment${post.post_id}"></div>
                                 </div>
                                 <div class="row button_post">
                                     <div class="col-sm-5"></div>
-                                    <div class="col-sm-2"><button type="button" class="btn btn-primary">Post</button></div>
+                                    <div class="col-sm-2"><button type="button" class="btn btn-primary" onclick="post(${post.post_id})">Post</button></div>
                                 </div>
                             </div>
                         </div>
@@ -104,18 +105,18 @@
         </main>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script>
-                                var _throttleTimer = null;
-                                var _throttleDelay = 100;
-                                var $window = $(window);
-                                var $document = $(document);
+                                        var _throttleTimer = null;
+                                        var _throttleDelay = 100;
+                                        var $window = $(window);
+                                        var $document = $(document);
 
-                                $document.ready(function () {
+                                        $document.ready(function () {
 
-                                    $window
-                                            .off('scroll', ScrollHandler)
-                                            .on('scroll', ScrollHandler);
+                                            $window
+                                                    .off('scroll', ScrollHandler)
+                                                    .on('scroll', ScrollHandler);
 
-                                });
+                                        });
 
 //                                function ScrollHandler(e) {
 //                                    //throttle event:
@@ -146,6 +147,68 @@
 //
 //                                    }, _throttleDelay);
 //                                }
+
+                                        function like(obj1, obj2) {
+                                            var op = 0;
+
+                                            if ($('#like' + obj2).hasClass('actives')) {
+                                                op = 1;
+
+                                            } else {
+                                                op = 0;
+
+                                            }
+
+                                            $.ajax({
+                                                url: "/Assignment/like",
+                                                type: "post", //send it through get method
+                                                data: {
+                                                    id_user: obj1,
+                                                    id_post: obj2,
+                                                    option: op
+                                                },
+                                                success: function (data) {
+                                                    var b1 = document.getElementById("like1" + obj2);
+                                                    var s = b1.innerHTML;
+                                                    var s1 = s.slice(5);
+                                                    var x = new Number(s1);
+                                                    if (op == 1) {
+                                                        $('#like' + obj2).removeClass('actives')
+                                                        x = x - 1;
+                                                    } else {
+                                                        $('#like' + obj2).addClass('actives')
+                                                        x = x + 1;
+                                                    }
+
+                                                    b1.innerHTML = ' Like ' + x
+//                                                                                                    alert(x)
+
+                                                },
+                                                error: function (xhr) {
+                                                    //Do Something to handle error
+                                                }
+                                            });
+                                        }
+
+                                        function post(obj) {
+                                            var s = $('#comment' + obj).val();
+                                            $.ajax({
+                                                url: "/Assignment/comment",
+                                                type: "get", //send it through get method
+                                                data: {
+                                                    id_post: obj,
+                                                    content: s
+                                                },
+                                                success: function (data) {
+                                                    var row = document.getElementById("container_comment" + obj);
+//                                                    row.innerHTML = data + row.innerHTML;
+                                                    row.innerHTML = data + row.innerHTML;
+                                                },
+                                                error: function (xhr) {
+                                                    //Do Something to handle error
+                                                }
+                                            });
+                                        }
         </script>
     </body>
 </html>
