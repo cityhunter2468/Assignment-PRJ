@@ -6,6 +6,7 @@
 package Model;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  *
@@ -13,7 +14,7 @@ import java.sql.Date;
  */
 public class Comment {
     private int id;
-    private Date time;
+    private Timestamp time;
     private String content;
     private int post_id;
     private Account account;
@@ -26,13 +27,15 @@ public class Comment {
         this.id = id;
     }
 
-    public Date getTime() {
+    public Timestamp getTime() {
         return time;
     }
 
-    public void setTime(Date time) {
+    public void setTime(Timestamp time) {
         this.time = time;
     }
+
+    
 
     public String getContent() {
         return content;
@@ -58,14 +61,13 @@ public class Comment {
         this.account = account;
     }
 
-    public Comment(int id, Date time, String content, int post_id, Account account) {
+    public Comment(int id, Timestamp time, String content, int post_id, Account account) {
         this.id = id;
         this.time = time;
         this.content = content;
         this.post_id = post_id;
         this.account = account;
     }
-
     
 
     public Comment() {

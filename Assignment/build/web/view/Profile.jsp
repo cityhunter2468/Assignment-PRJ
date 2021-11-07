@@ -54,11 +54,7 @@
                                                     </div>
                                                     <div class="card-block social-follower">
                                                         <h4>${requestScope.account.displayname}</h4>
-                                                        <h5>${requestScope.profile.occupation}</h5>
-
-                                                        <div class="">
-                                                            <button type="button" class="btn btn-outline-primary waves-effect btn-block"><i class="icofont icofont-ui-user m-r-10"></i> Add as Friend</button>
-                                                        </div>
+                                                        <h5>${requestScope.profile.occupation}</h5>                                  
                                                     </div>
                                                 </div>                                                                                                                                     
                                             </div>
@@ -138,37 +134,47 @@
 
                                                                                     <div class="row" id="interact">
                                                                                         <div class="col-2 <c:if test = "${post.userlike == 1}"> actives </c:if>" id="like${post.post_id}" onclick="like(${sessionScope.account.id}, ${post.post_id})" ><i class="bi bi-heart"></i><span class="b-r-muted" id="like1${post.post_id}"> Like ${post.countlike}</span> </div>
-                                                                                        <div class="col-3"> <i class="bi bi-chat-left"></i><span class="b-r-muted"> Comments</span></div>
-                                                                                    </div>   
-                                                                                    <div class="card-block user-box" >
-                                                                                        <div class="p-b-30"> <div id="loadmorecomment" onclick="comment()">Load more comment</div></div>
-                                                                                        <div class="media m-b-20">
-                                                                                            <a class="media-left" href="#">
-                                                                                                <img class="media-object img-radius m-r-20" src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="Generic placeholder image">
-                                                                                            </a>
-                                                                                            <div class="media-body b-b-muted social-client-description">
-                                                                                                <div class="chat-header">About Marta Williams<span class="text-muted">Jane 10, 2015</span></div>
-                                                                                                <p class="text-muted">lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="media m-b-20">
-                                                                                            <a class="media-left" href="#">
-                                                                                                <img class="media-object img-radius m-r-20" src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="Generic placeholder image">
-                                                                                            </a>
-                                                                                            <div class="media-body b-b-muted social-client-description">
-                                                                                                <div class="chat-header">About Marta Williams<span class="text-muted">Jane 11, 2015</span></div>
-                                                                                                <p class="text-muted">lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                                                                            </div>
+                                                                                            <div class="col-3"> <i class="bi bi-chat-left"></i><span class="b-r-muted"> Comments</span></div>
+                                                                                        </div>   
+                                                                                        <div class="card-block user-box" >
+                                                                                            <div class="p-b-30"> <div id="loadmorecomment" onclick="comment(${post.post_id})">Load more comment</div></div>
+
+                                                                                        <div id="container_comment${post.post_id}">
+                                                                                            <c:forEach items="${post.comment}" var="comment">
+                                                                                                <div class="media m-b-20">
+                                                                                                    <a class="media-left" href="${pageContext.request.contextPath}/profile/view?id=${comment.account.id}">
+                                                                                                        <img class="media-object img-radius m-r-20" <c:choose>
+                                                                                                                 <c:when test = "${comment.account.url_avata != null}">
+                                                                                                                     src="${pageContext.request.contextPath}/${comment.account.url_avata}" 
+                                                                                                                 </c:when>
+                                                                                                                 <c:otherwise>
+                                                                                                                     src="${pageContext.request.contextPath}/assert/no_avata.jpg" 
+                                                                                                                 </c:otherwise>
+                                                                                                             </c:choose>  alt="Generic placeholder image">
+                                                                                                    </a>
+                                                                                                    <div class="media-body b-b-muted social-client-description">
+                                                                                                        <div class="chat-header">${comment.account.displayname}<span class="text-muted">${comment.time}</span></div>
+                                                                                                        <p class="text-muted">${comment.content}</p>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </c:forEach>
                                                                                         </div>
                                                                                         <div class="media">
-                                                                                            <a class="media-left" href="#">
-                                                                                                <img class="media-object img-radius m-r-20" src="https://bootdey.com/img/Content/avatar/avatar4.png" alt="Generic placeholder image">
+                                                                                            <a class="media-left" href="${pageContext.request.contextPath}/profile/view?id=${sessionScope.account.id}">
+                                                                                                <img class="media-object img-radius m-r-20" <c:choose>
+                                                                                                         <c:when test = "${sessionScope.account.url_avata != null}">
+                                                                                                             src="${pageContext.request.contextPath}/${sessionScope.account.url_avata}" 
+                                                                                                         </c:when>
+                                                                                                         <c:otherwise>
+                                                                                                             src="${pageContext.request.contextPath}/assert/no_avata.jpg" 
+                                                                                                         </c:otherwise>
+                                                                                                     </c:choose> alt="Generic placeholder image">
                                                                                             </a>
                                                                                             <div class="media-body">
                                                                                                 <form class="">
                                                                                                     <div class="">
-                                                                                                        <textarea rows="5" cols="5" class="form-control" placeholder="Write Something here..."></textarea>
-                                                                                                        <div class="text-right m-t-20"><a href="#" class="btn btn-primary waves-effect waves-light">Post</a></div>
+                                                                                                        <textarea rows="5" cols="5" class="form-control" placeholder="Write Something here..." id="comment${post.post_id}"></textarea>
+                                                                                                        <div class="text-right m-t-20"><button type="button" class="btn btn-primary" onclick="post(${post.post_id})">Post</button></div>
                                                                                                     </div>
                                                                                                 </form>
                                                                                             </div>
@@ -469,8 +475,8 @@
 
                                                                                         function like(obj1, obj2) {
                                                                                             var op = 0;
-                                                                                          
-                                                                                            if ($('#like'+obj2).hasClass('actives')) {
+
+                                                                                            if ($('#like' + obj2).hasClass('actives')) {
                                                                                                 op = 1;
 
                                                                                             } else {
@@ -487,21 +493,21 @@
                                                                                                     option: op
                                                                                                 },
                                                                                                 success: function (data) {
-                                                                                                    var b1 = document.getElementById("like1"+obj2);
+                                                                                                    var b1 = document.getElementById("like1" + obj2);
                                                                                                     var s = b1.innerHTML;
                                                                                                     var s1 = s.slice(5);
                                                                                                     var x = new Number(s1);
                                                                                                     if (op == 1) {
-                                                                                                        $('#like'+obj2).removeClass('actives')      
-                                                                                                        x = x-1;
+                                                                                                        $('#like' + obj2).removeClass('actives')
+                                                                                                        x = x - 1;
                                                                                                     } else {
-                                                                                                        $('#like'+obj2).addClass('actives')  
-                                                                                                        x = x+1;
+                                                                                                        $('#like' + obj2).addClass('actives')
+                                                                                                        x = x + 1;
                                                                                                     }
-                                                                                                    
-                                                                                                    b1.innerHTML = ' Like '+ x
+
+                                                                                                    b1.innerHTML = ' Like ' + x
 //                                                                                                    alert(x)
-                                                                                                   
+
                                                                                                 },
                                                                                                 error: function (xhr) {
                                                                                                     //Do Something to handle error
@@ -510,10 +516,43 @@
                                                                                         }
 
                                                                                         function comment() {
-                                                                                            window.alert("comment");
+                                                                                            var amount = document.getElementsByClassName("product").length;
+                                                                                            $.ajax({
+                                                                                                url: "/Project_banhang/load",
+                                                                                                type: "get", //send it through get method
+                                                                                                data: {
+                                                                                                    exits: amount
+                                                                                                },
+                                                                                                success: function (data) {
+                                                                                                    var row = document.getElementById("content");
+                                                                                                    row.innerHTML += data;
+                                                                                                },
+                                                                                                error: function (xhr) {
+                                                                                                    //Do Something to handle error
+                                                                                                }
+                                                                                            });
                                                                                         }
-                                                                                        
-                                                                                        
+                                                                                        function post(obj) {
+                                                                                            var amount = document.getElementById("container_comment" + obj).length;
+
+                                                                                            $.ajax({
+                                                                                                url: "/Assignment/loadmorecomment",
+                                                                                                type: "post", //send it through get method
+                                                                                                data: {
+                                                                                                    id_post: obj,
+                                                                                                    exist: amount
+                                                                                                },
+                                                                                                success: function (data) {
+                                                                                                    var row = document.getElementById("container_comment" + obj);
+                                                                                                    row.innerHTML = data + row.innerHTML;
+                                                                                                    $('#comment' + obj).val() = "Write Something here...";
+                                                                                                },
+                                                                                                error: function (xhr) {
+                                                                                                    //Do Something to handle error
+                                                                                                }
+                                                                                            });
+                                                                                        }
+
         </script>                                                                                  
     </body>
 </html>

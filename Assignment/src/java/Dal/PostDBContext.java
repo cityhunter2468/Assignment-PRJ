@@ -111,13 +111,12 @@ public class PostDBContext extends DBContext {
                 PreparedStatement stm_like = connection.prepareStatement(sql3);
                 stm_like.setInt(1, id1);
                 stm_like.setInt(2, p.getPost_id());
-                System.out.println(p.getPost_id());
+      
                 ResultSet rs_like = stm_like.executeQuery();
                 if (rs_like.next()) {
                     if (rs_like.getInt("total") != 0) {
                         p.setUserlike(1);
                     }
-                    System.out.println(p.getUserlike());
                 }
 
                 String sql4 = "SELECT COUNT(like_id) as total\n"
@@ -134,24 +133,25 @@ public class PostDBContext extends DBContext {
                         + "  FROM [dbo].[Comment] as c\n"
                         + "  inner join Account as a\n"
                         + "  on c.user_id = a.id\n"
-                        + "  where post_id = 1\n"
+                        + "  where post_id = ?\n"
                         + "  order by time_create desc";
                 PreparedStatement stm_com = connection.prepareStatement(sql5);
                 stm_com.setInt(1, p.getPost_id());
                 ResultSet rs_com = stm_com.executeQuery();
                 while (rs_com.next()) {
+//                    System.out.println("da chay den day 142");
                     Comment c = new Comment();
-                    c.setId(rs.getInt(1));
-                    c.setTime(rs.getDate(2));
-                    c.setContent(rs.getString(3));
+                    c.setId(rs_com.getInt(1));
+                    c.setTime(rs_com.getTimestamp(2));
+                    c.setContent(rs_com.getString(3));                    
                     Account ac = new Account();
-                    ac.setId(rs.getInt(6));
-                    ac.setDisplayname(rs.getString(10));
-                    ac.setUrl_avata(rs.getString(11));
+                    ac.setId(rs_com.getInt(6));
+                    ac.setDisplayname(rs_com.getString(10));                   
+                    ac.setUrl_avata(rs_com.getString(11));                     
                     c.setAccount(ac);
+                    
                     p.getComment().add(c);
                 }
-
                 list.add(p);
             }
         } catch (Exception e) {

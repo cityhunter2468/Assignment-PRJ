@@ -5,8 +5,6 @@
  */
 package Controller.profile;
 
-import Dal.Like_CommentDBContext;
-import Model.Account;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -18,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author levan
  */
-public class CommentPost extends HttpServlet {
+public class LoadMoreComment extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -29,6 +27,23 @@ public class CommentPost extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet LoadMoreComment</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet LoadMoreComment at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
+    }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -41,7 +56,7 @@ public class CommentPost extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        processRequest(request, response);
     }
 
     /**
@@ -55,31 +70,7 @@ public class CommentPost extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        PrintWriter out = response.getWriter();
-
-        String content = request.getParameter("content");
-        int post_id = Integer.parseInt(request.getParameter("id_post"));
-        System.out.println(post_id);
-        Account ac = (Account) request.getSession().getAttribute("account");
-        Like_CommentDBContext lcdb = new Like_CommentDBContext();
-        lcdb.insertComment(ac.getId(), post_id, content);
-        String contextPath = request.getContextPath();
-
-        out.print("<div class=\"media m-b-20\">\n"
-                + "<a class=\"media-left\" href=\"" + contextPath + "/profile/view?id=" + ac.getUrl_avata() + "\">\n"
-                + "<img class=\"media-object img-radius m-r-20\"");
-        if (ac.getUrl_avata() != null) {
-            out.println("src=\"" + contextPath + "/" + ac.getUrl_avata() + "\" ");
-        } else {
-            out.println("src=\"" + contextPath + "/assert/no_avata.jpg\" ");
-        }
-        out.println("alt=\"Generic placeholder image\">\n"
-                + "   </a>\n"
-                + "     <div class=\"media-body b-b-muted social-client-description\">\n"
-                + "   <div class=\"chat-header\">"+ac.getDisplayname()+"<span class=\"text-muted\">Vua Xong</span></div>\n"
-                + "   <p class=\"text-muted\">"+content+"</p>\n"
-                + "   </div>\n"
-                + "  </div>");
+        processRequest(request, response);
     }
 
     /**
