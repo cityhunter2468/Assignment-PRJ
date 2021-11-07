@@ -20,7 +20,6 @@ and open the template in the editor.
     width: 65%;
     padding: 20px;
     border-radius: 6px;
-    height: 510px;
     overflow-y: auto; 
 }
 
@@ -102,5 +101,27 @@ and open the template in the editor.
 ::-webkit-scrollbar-thumb {
   background: #d5d5db;
 }
+#loadmorecomment{
+    margin-top: 10px;
+}
 
+#loadmorecomment:hover{
+    cursor: pointer;
+    color: red;
+}
 
+.comment_like{
+    margin-top: 10px;
+}
+
+.time_comment{
+    margin-left: 10px; 
+}
+
+.button_post{
+    padding-top: 10px;
+}
+
+.actives{
+    color: red;
+}

@@ -32,7 +32,7 @@
                                                 src="${pageContext.request.contextPath}/assert/no_avata.jpg" 
                                             </c:otherwise>
                                         </c:choose>alt="Admin" class="rounded-circle" width="35" height="35">
-                                    
+
                                     <div>
                                         <p> <a href="profile/view?id=${post.ac.id}">${post.ac.displayname}</a></p>
                                         <small>${post.time_create}</small>
@@ -55,60 +55,97 @@
                             </div>
                             <div class="post-reaction">
                                 <div class="activity-icons">
-                                    <div onclick="heart()"><i class="bi bi-heart"></i>120 </div>
-                                    <div onclick="comment()"><i class="bi bi-chat-left"></i>120 </div>
+                                    <div onclick="heart()"><i class="bi bi-heart <c:if test = "${post.userlike == 1}"> actives </c:if>"></i>Like ${post.countlike} </div>
+                                    <div ><i class="bi bi-chat-left"></i> Comment </div>
+                                </div>
+                            </div>
+                            <div id="loadmorecomment" onclick="comment(${post.post_id})">Load more comment</div>
+                            <div class="comment_like">
+                                <c:forEach items="${post.comment}" var="comment">
+                                    <div class="sub_comment">
+                                        <div class="row">
+                                            <div class="col-sm-1"><img <c:choose>
+                                                        <c:when test = "${comment.account.url_avata != null}">
+                                                            src="${pageContext.request.contextPath}/${comment.account.url_avata}" 
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            src="${pageContext.request.contextPath}/assert/no_avata.jpg" 
+                                                        </c:otherwise>
+                                                    </c:choose>alt="Admin" class="rounded-circle" width="40" height="40"> </div>
+                                            <div class="col-sm-10"> <a href="">${comment.account.displayname}</a> <span class="time_comment"> ${comment.time}</span>
+                                                <p>${comment.content}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </c:forEach>
+                            </div>
+                            <div clasc="post_comment">
+                                <div class="row">
+                                    <div class="col-sm-1"><img <c:choose>
+                                                <c:when test = "${sessionScope.account.url_avata != null}">
+                                                    src="${pageContext.request.contextPath}/${sessionScope.account.url_avata}" 
+                                                </c:when>
+                                                <c:otherwise>
+                                                    src="${pageContext.request.contextPath}/assert/no_avata.jpg" 
+                                                </c:otherwise>
+                                            </c:choose>alt="Admin" class="rounded-circle" width="40" height="40"></div>
+                                    <div class="col-sm-10"><input type="text" class="form-control" placeholder="Your Comment Here"></div>
+                                </div>
+                                <div class="row button_post">
+                                    <div class="col-sm-5"></div>
+                                    <div class="col-sm-2"><button type="button" class="btn btn-primary">Post</button></div>
                                 </div>
                             </div>
                         </div>
                     </c:forEach>
-                        
+
                 </div>
             </div>
         </main>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script>
-                                        var _throttleTimer = null;
-                                        var _throttleDelay = 100;
-                                        var $window = $(window);
-                                        var $document = $(document);
+                                var _throttleTimer = null;
+                                var _throttleDelay = 100;
+                                var $window = $(window);
+                                var $document = $(document);
 
-                                        $document.ready(function () {
+                                $document.ready(function () {
 
-                                            $window
-                                                    .off('scroll', ScrollHandler)
-                                                    .on('scroll', ScrollHandler);
+                                    $window
+                                            .off('scroll', ScrollHandler)
+                                            .on('scroll', ScrollHandler);
 
-                                        });
+                                });
 
-                                        function ScrollHandler(e) {
-                                            //throttle event:
-                                            clearTimeout(_throttleTimer);
-                                            _throttleTimer = setTimeout(function () {
-                                                console.log('scroll');
-
-                                                //do work
-                                                if ($window.scrollTop() + $window.height() > $document.height() - 100) {
-                                                    //alert("bottom");
-                                                    var amount = document.getElementsByClassName("sub_content").length;
-                                                    $.ajax({
-                                                        url: "/Assignment/LoadMoreNewFeed",
-                                                        type: "post", //send it through get method
-                                                        data: {
-                                                            exits: amount
-                                                        },
-                                                        success: function (data) {
-                                                            //alert("da lay dc data");
-                                                            var row = document.getElementById("content");
-                                                            row.innerHTML += data;
-                                                        },
-                                                        error: function (xhr) {
-                                                            //Do Something to handle error
-                                                        }
-                                                    });
-                                                }
-
-                                            }, _throttleDelay);
-                                        }
+//                                function ScrollHandler(e) {
+//                                    //throttle event:
+//                                    clearTimeout(_throttleTimer);
+//                                    _throttleTimer = setTimeout(function () {
+//                                        console.log('scroll');
+//
+//                                        //do work
+//                                        if ($window.scrollTop() + $window.height() > $document.height() - 100) {
+//                                            //alert("bottom");
+//                                            var amount = document.getElementsByClassName("sub_content").length;
+//                                            $.ajax({
+//                                                url: "/Assignment/LoadMoreNewFeed",
+//                                                type: "post", //send it through get method
+//                                                data: {
+//                                                    exits: amount
+//                                                },
+//                                                success: function (data) {
+//                                                    //alert("da lay dc data");
+//                                                    var row = document.getElementById("content");
+//                                                    row.innerHTML += data;
+//                                                },
+//                                                error: function (xhr) {
+//                                                    //Do Something to handle error
+//                                                }
+//                                            });
+//                                        }
+//
+//                                    }, _throttleDelay);
+//                                }
         </script>
     </body>
 </html>

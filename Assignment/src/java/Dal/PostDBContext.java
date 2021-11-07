@@ -111,7 +111,7 @@ public class PostDBContext extends DBContext {
                 PreparedStatement stm_like = connection.prepareStatement(sql3);
                 stm_like.setInt(1, id1);
                 stm_like.setInt(2, p.getPost_id());
-      
+
                 ResultSet rs_like = stm_like.executeQuery();
                 if (rs_like.next()) {
                     if (rs_like.getInt("total") != 0) {
@@ -143,13 +143,13 @@ public class PostDBContext extends DBContext {
                     Comment c = new Comment();
                     c.setId(rs_com.getInt(1));
                     c.setTime(rs_com.getTimestamp(2));
-                    c.setContent(rs_com.getString(3));                    
+                    c.setContent(rs_com.getString(3));
                     Account ac = new Account();
                     ac.setId(rs_com.getInt(6));
-                    ac.setDisplayname(rs_com.getString(10));                   
-                    ac.setUrl_avata(rs_com.getString(11));                     
+                    ac.setDisplayname(rs_com.getString(10));
+                    ac.setUrl_avata(rs_com.getString(11));
                     c.setAccount(ac);
-                    
+
                     p.getComment().add(c);
                 }
                 list.add(p);
@@ -192,6 +192,53 @@ public class PostDBContext extends DBContext {
                 ac.setDisplayname(rs.getString("displayname"));
                 ac.setUrl_avata(rs.getString("url_avarta"));
                 p.setAc(ac);
+                String sql3 = "SELECT COUNT(like_id) as total\n"
+                        + "  FROM [Assignment].[dbo].[Like]\n"
+                        + "  where user_id = ? and post_id = ? ";
+                PreparedStatement stm_like = connection.prepareStatement(sql3);
+                stm_like.setInt(1, id);
+                stm_like.setInt(2, p.getPost_id());
+
+                ResultSet rs_like = stm_like.executeQuery();
+                if (rs_like.next()) {
+                    if (rs_like.getInt("total") != 0) {
+                        p.setUserlike(1);
+                    }
+                }
+
+                String sql4 = "SELECT COUNT(like_id) as total\n"
+                        + "  FROM [Like]\n"
+                        + "  WHERE post_id = ?";
+                PreparedStatement stm_total = connection.prepareStatement(sql4);
+                stm_total.setInt(1, p.getPost_id());
+                ResultSet rs_total = stm_total.executeQuery();
+                if (rs_total.next()) {
+                    p.setCountlike(rs_total.getInt("total"));
+                }
+
+                String sql5 = "SELECT top 2 *\n"
+                        + "  FROM [dbo].[Comment] as c\n"
+                        + "  inner join Account as a\n"
+                        + "  on c.user_id = a.id\n"
+                        + "  where post_id = ?\n"
+                        + "  order by comment_id desc";
+                PreparedStatement stm_com = connection.prepareStatement(sql5);
+                stm_com.setInt(1, p.getPost_id());
+                ResultSet rs_com = stm_com.executeQuery();
+                while (rs_com.next()) {
+//                    System.out.println("da chay den day 142");
+                    Comment c = new Comment();
+                    c.setId(rs_com.getInt(1));
+                    c.setTime(rs_com.getTimestamp(2));
+                    c.setContent(rs_com.getString(3));
+                    Account a = new Account();
+                    a.setId(rs_com.getInt(6));
+                    a.setDisplayname(rs_com.getString(10));
+                    a.setUrl_avata(rs_com.getString(11));
+                    c.setAccount(a);
+
+                    p.getComment().add(c);
+                }
                 list.add(p);
             }
         } catch (SQLException ex) {

@@ -449,6 +449,7 @@
                                                                                             }
 
                                                                                         }
+//                                                                                    <---------------------------------->                                                                                         
                                                                                         function deletePost(obj) {
                                                                                             var result = confirm("ban chac chan muon xoa bai viet")
 
@@ -472,7 +473,7 @@
                                                                                             }
 
                                                                                         }
-
+//                                                                                    <---------------------------------->  
                                                                                         function like(obj1, obj2) {
                                                                                             var op = 0;
 
@@ -514,11 +515,11 @@
                                                                                                 }
                                                                                             });
                                                                                         }
-                                                                                        
+
 //                                                                                    <---------------------------------->  
                                                                                         function comment(obj) {
-                                                                                            var amount = document.getElementsByClassName("sub_comment"+obj).length;
-                                                                                   
+                                                                                            var amount = document.getElementsByClassName("sub_comment" + obj).length;
+
                                                                                             $.ajax({
                                                                                                 url: "/Assignment/loadmorecomment",
                                                                                                 type: "post", //send it through get method
@@ -557,6 +558,7 @@
                                                                                                 }
                                                                                             });
                                                                                         }
+//                                                                                    <---------------------------------->     
 
         </script>                                                                                  
     </body>
