@@ -5,6 +5,7 @@
  */
 package Controller.profile;
 
+import Controller.authen.BaseReqAuth;
 import Dal.Like_CommentDBContext;
 import Model.Account;
 import java.io.IOException;
@@ -18,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author levan
  */
-public class CommentPost extends HttpServlet {
+public class CommentPost extends BaseReqAuth {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,7 +40,7 @@ public class CommentPost extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void processGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         PrintWriter out = response.getWriter();
         String content = request.getParameter("content");
@@ -74,7 +75,7 @@ public class CommentPost extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void processPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         PrintWriter out = response.getWriter();
 
