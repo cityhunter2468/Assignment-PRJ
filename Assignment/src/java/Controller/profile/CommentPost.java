@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author levan
  */
-public class CommentPost extends BaseReqAuth {
+public class CommentPost extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,7 +40,7 @@ public class CommentPost extends BaseReqAuth {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void processGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         PrintWriter out = response.getWriter();
         String content = request.getParameter("content");
@@ -75,7 +75,7 @@ public class CommentPost extends BaseReqAuth {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void processPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         PrintWriter out = response.getWriter();
 

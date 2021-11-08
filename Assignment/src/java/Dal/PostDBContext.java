@@ -82,9 +82,9 @@ public class PostDBContext extends DBContext {
             if (op == 1) {
                 stm.setInt(1, id);
                 stm.setInt(2, id);
-                stm.setInt(3, id1); 
+                stm.setInt(3, id1);
             } else {
-                stm.setInt(1, id);             
+                stm.setInt(1, id);
             }
 
             ResultSet rs = stm.executeQuery();
@@ -266,9 +266,9 @@ public class PostDBContext extends DBContext {
             if (op == 1) {
                 stm.setInt(1, id);
                 stm.setInt(2, id);
-                stm.setInt(3, id1);                
+                stm.setInt(3, id1);
             } else {
-                stm.setInt(1, id);               
+                stm.setInt(1, id);
             }
 
             ResultSet rs = stm.executeQuery();
@@ -312,12 +312,18 @@ public class PostDBContext extends DBContext {
         try {
             String sql_comment = "DELETE FROM [dbo].[Comment]\n"
                     + "      WHERE post_id = ?";
+            String sql_like = "DELETE FROM [dbo].[Like]\n"
+                    + "      WHERE post_id = ?";
             String sql_post = "DELETE FROM [dbo].[Post]\n"
                     + "      WHERE post_id = ? ";
             PreparedStatement stm_comment = connection.prepareStatement(sql_comment);
             stm_comment.setInt(1, id);
             stm_comment.executeUpdate();
-
+            
+            PreparedStatement stm_like = connection.prepareStatement(sql_like);
+            stm_like.setInt(1, id);
+            stm_like.executeUpdate();
+            
             PreparedStatement stm_post = connection.prepareStatement(sql_post);
             stm_post.setInt(1, id);
             stm_post.executeUpdate();
