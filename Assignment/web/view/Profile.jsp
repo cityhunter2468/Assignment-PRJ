@@ -112,7 +112,7 @@
                                                                                             <span class="dropdown-toggle addon-btn text-muted f-right service-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="tooltip"></span>
                                                                                             <div class="dropdown-menu dropdown-menu-right b-none services-list">
                                                                                                 <div class="dropdown-item" onclick="deletePost(${post.post_id})">Remove post</div>
-                                                                                                <div class="dropdown-item" >Edit post</div>
+                                                                                                <a class="dropdown-item" href="${pageContext.request.contextPath}/updatepost?id=${post.post_id}">Edit post</a>
                                                                                             </div>
                                                                                         </c:if>  
 

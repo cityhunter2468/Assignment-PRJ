@@ -319,11 +319,11 @@ public class PostDBContext extends DBContext {
             PreparedStatement stm_comment = connection.prepareStatement(sql_comment);
             stm_comment.setInt(1, id);
             stm_comment.executeUpdate();
-            
+
             PreparedStatement stm_like = connection.prepareStatement(sql_like);
             stm_like.setInt(1, id);
             stm_like.executeUpdate();
-            
+
             PreparedStatement stm_post = connection.prepareStatement(sql_post);
             stm_post.setInt(1, id);
             stm_post.executeUpdate();
@@ -331,5 +331,37 @@ public class PostDBContext extends DBContext {
             Logger.getLogger(PostDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+    }
+
+    public Post getPost(int id) {
+        try {
+            String sql = "SELECT [post_id]\n"
+                    + "      ,[time_create]\n"
+                    + "      ,[content]\n"
+                    + "      ,[url_img]\n"
+                    + "      ,[url_video]\n"
+                    + "      ,[user_id]\n"
+                    + "      ,[status]\n"
+                    + "      ,[url_file]\n"
+                    + "  FROM [Assignment].[dbo].[Post]\n"
+                    + "  where post_id = ? ";
+
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, id);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Post p = new Post();
+                p.setPost_id(id);
+                p.setTime_create(rs.getTimestamp("time_create"));
+                p.setContent(rs.getString("content"));
+                p.setUrl_img(rs.getString("url_img"));
+                p.setUser_id(rs.getInt("user_id"));
+                p.setStatus(rs.getInt("status"));
+                return p;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PostDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 }

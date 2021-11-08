@@ -60,6 +60,10 @@
         <servlet-name>PostFriend</servlet-name>
         <servlet-class>Controller.friend.PostFriend</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdatePost</servlet-name>
+        <servlet-class>Controller.home.UpdatePost</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Register</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -135,5 +139,9 @@
     <servlet-mapping>
         <servlet-name>PostFriend</servlet-name>
         <url-pattern>/postfriend</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdatePost</servlet-name>
+        <url-pattern>/updatepost</url-pattern>
     </servlet-mapping>
 </web-app>
