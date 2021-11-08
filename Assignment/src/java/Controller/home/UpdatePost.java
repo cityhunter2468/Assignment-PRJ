@@ -72,7 +72,7 @@ public class UpdatePost extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
+        int id = Integer.parseInt(request.getParameter("idpost"));
         PostDBContext pdb = new PostDBContext();
         Post pp = pdb.getPost(id);
         
@@ -116,12 +116,10 @@ public class UpdatePost extends HttpServlet {
         HttpSession session = request.getSession();
         Account ac = (Account) session.getAttribute("account");
         p.setUser_id(ac.getId());//
-        
         p.setContent(request.getParameter("content"));
         p.setStatus(Integer.parseInt(request.getParameter("status")));//
-        
-        PostDBContext pdb = new PostDBContext();
-        pdb.AddPost(p);
+        p.setPost_id(pp.getPost_id());
+        pdb.updatePost(p);
         String contextPath = request.getContextPath();
         response.sendRedirect(contextPath+"/home");
     }

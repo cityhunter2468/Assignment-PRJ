@@ -37,6 +37,7 @@
                                     <span class="input-group-text" id="inputGroup-sizing-default">Content</span>
                                 </div>
                                 <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="content" value="${requestScope.post.content}">
+                                <input type="hidden" name="idpost" value="${requestScope.post.post_id}">
                         </div>
                         <c:if test = "${requestScope.post.url_img != null}">
                             <div id="displayimg">

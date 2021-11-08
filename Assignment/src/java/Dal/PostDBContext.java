@@ -30,14 +30,10 @@ public class PostDBContext extends DBContext {
                     + "           ([time_create]\n"
                     + "           ,[content]\n"
                     + "           ,[url_img]\n"
-                    + "           ,[url_video]\n"
                     + "           ,[user_id]\n"
                     + "           ,[status]\n"
-                    + "           ,[url_file])\n"
                     + "     VALUES\n"
                     + "           (?\n"
-                    + "           ,?\n"
-                    + "           ,?\n"
                     + "           ,?\n"
                     + "           ,?\n"
                     + "           ,?\n"
@@ -47,20 +43,42 @@ public class PostDBContext extends DBContext {
             stm.setTimestamp(1, p.getTime_create());
             stm.setString(2, p.getContent());
             stm.setString(3, p.getUrl_img());
-            stm.setString(4, p.getUrl_video());
-            stm.setInt(5, p.getUser_id());
-            stm.setInt(6, p.getStatus());
-            stm.setString(7, p.getUrl_file());
+            stm.setInt(4, p.getUser_id());
+            stm.setInt(5, p.getStatus());
             ResultSet rs = stm.executeQuery();
         } catch (SQLException ex) {
             Logger.getLogger(PostDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
+    public void updatePost(Post p) {
+        try {
+            String sql = "UPDATE [dbo].[Post]\n"
+                    + "   SET [time_create] = ?\n"
+                    + "      ,[content] = ?\n"
+                    + "      ,[url_img] = ?\n"   
+                    + "      ,[user_id] = ?\n"
+                    + "      ,[status] = ?\n"
+                    + " WHERE post_id = ?";
+
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setTimestamp(1, p.getTime_create());
+            stm.setString(2, p.getContent());
+            stm.setString(3, p.getUrl_img());
+            stm.setInt(4, p.getUser_id());
+            stm.setInt(5, p.getStatus());
+            stm.setInt(6, p.getPost_id());
+            stm.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(PostDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.out.println(p.getTime_create());
+    }
+
     public ArrayList<Post> getPost(int id, int id1, int amount, int op) {
         ArrayList<Post> list = new ArrayList<Post>();
         String sql1 = "select DISTINCT p.post_id, p.time_create, p.content,p.url_img,\n"
-                + "                  p.url_video, p.status, p.url_file, a.id as user_id from Post as p \n"
+                + "                   p.status, a.id as user_id from Post as p \n"
                 + "                   inner join Account as a\n"
                 + "                    on p.user_id = a.id \n"
                 + "                   left join Relationship_User as ru \n"
@@ -93,11 +111,10 @@ public class PostDBContext extends DBContext {
                 p.setPost_id(rs.getInt("post_id"));
                 p.setTime_create(rs.getTimestamp("time_create"));
                 p.setContent(rs.getString("content"));
-                p.setUrl_img(rs.getString("url_img"));
-                p.setUrl_video(rs.getString("url_video"));
+                p.setUrl_img(rs.getString("url_img"));     
                 p.setUser_id(rs.getInt("user_id"));
                 p.setStatus(rs.getInt("status"));
-                p.setUrl_file(rs.getString("url_file"));
+
 
                 String sql3 = "SELECT COUNT(like_id) as total\n"
                         + "  FROM [Assignment].[dbo].[Like]\n"
@@ -157,7 +174,7 @@ public class PostDBContext extends DBContext {
         ArrayList<Post> list = new ArrayList<>();
         try {
             String sql = "select DISTINCT p.post_id, p.time_create, p.content,p.url_img,\n"
-                    + "p.url_video, p.status, p.url_file, a.id, a.displayname, a.url_avarta from Post as p \n"
+                    + " p.status, a.id, a.displayname, a.url_avarta from Post as p \n"
                     + "inner join Account as a\n"
                     + "on p.user_id = a.id \n"
                     + "left join Relationship_User as ru \n"
@@ -178,9 +195,7 @@ public class PostDBContext extends DBContext {
                 p.setTime_create(rs.getTimestamp("time_create"));
                 p.setContent(rs.getString("content"));
                 p.setUrl_img(rs.getString("url_img"));
-                p.setUrl_video(rs.getString("url_video"));
                 p.setStatus(rs.getInt("status"));
-                p.setUrl_file(rs.getString("url_file"));
                 Account ac = new Account();
                 ac.setId(rs.getInt("id"));
                 ac.setDisplayname(rs.getString("displayname"));
@@ -339,10 +354,8 @@ public class PostDBContext extends DBContext {
                     + "      ,[time_create]\n"
                     + "      ,[content]\n"
                     + "      ,[url_img]\n"
-                    + "      ,[url_video]\n"
                     + "      ,[user_id]\n"
                     + "      ,[status]\n"
-                    + "      ,[url_file]\n"
                     + "  FROM [Assignment].[dbo].[Post]\n"
                     + "  where post_id = ? ";
 
