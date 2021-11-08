@@ -31,7 +31,7 @@ public class PostDBContext extends DBContext {
                     + "           ,[content]\n"
                     + "           ,[url_img]\n"
                     + "           ,[user_id]\n"
-                    + "           ,[status]\n"
+                    + "           ,[status])\n"
                     + "     VALUES\n"
                     + "           (?\n"
                     + "           ,?\n"
@@ -45,7 +45,8 @@ public class PostDBContext extends DBContext {
             stm.setString(3, p.getUrl_img());
             stm.setInt(4, p.getUser_id());
             stm.setInt(5, p.getStatus());
-            ResultSet rs = stm.executeQuery();
+            System.out.println("da chay 48");
+            stm.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(PostDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -56,7 +57,7 @@ public class PostDBContext extends DBContext {
             String sql = "UPDATE [dbo].[Post]\n"
                     + "   SET [time_create] = ?\n"
                     + "      ,[content] = ?\n"
-                    + "      ,[url_img] = ?\n"   
+                    + "      ,[url_img] = ?\n"
                     + "      ,[user_id] = ?\n"
                     + "      ,[status] = ?\n"
                     + " WHERE post_id = ?";
@@ -111,10 +112,9 @@ public class PostDBContext extends DBContext {
                 p.setPost_id(rs.getInt("post_id"));
                 p.setTime_create(rs.getTimestamp("time_create"));
                 p.setContent(rs.getString("content"));
-                p.setUrl_img(rs.getString("url_img"));     
+                p.setUrl_img(rs.getString("url_img"));
                 p.setUser_id(rs.getInt("user_id"));
                 p.setStatus(rs.getInt("status"));
-
 
                 String sql3 = "SELECT COUNT(like_id) as total\n"
                         + "  FROM [Assignment].[dbo].[Like]\n"
